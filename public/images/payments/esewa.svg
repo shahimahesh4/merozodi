@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 38" fill="none">
+  <rect width="130" height="38" rx="8" fill="#60BB46"/>
+  <g transform="translate(10, 7)">
+    <circle cx="12" cy="12" r="11" fill="#ffffff"/>
+    <path d="M12.5 7.5C9.7 7.5 7.5 9.7 7.5 12.5C7.5 15.3 9.7 17.5 12.5 17.5C14.8 17.5 16.8 16 17.3 13.8H12.5V11.8H19.3C19.4 12 19.4 12.3 19.4 12.5C19.4 16.4 16.3 19.5 12.5 19.5C8.6 19.5 5.5 16.4 5.5 12.5C5.5 8.6 8.6 5.5 12.5 5.5C14.7 5.5 16.6 6.5 17.8 8.1L16.2 9.5C15.3 8.3 14 7.5 12.5 7.5Z" fill="#60BB46"/>
+  </g>
+  <text x="38" y="24" fill="#ffffff" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="14.5" letter-spacing="-0.3">eSewa</text>
+  <text x="83" y="24" fill="#e8f8e0" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="11">ePay</text>
+</svg>

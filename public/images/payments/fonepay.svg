@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 38" fill="none">
+  <rect width="120" height="38" rx="8" fill="#D31A2B"/>
+  <g transform="translate(10, 8)">
+    <circle cx="11" cy="11" r="10.5" fill="#ffffff" fill-opacity="0.2"/>
+    <circle cx="11" cy="11" r="7.5" fill="#ffffff"/>
+    <text x="11" y="15" text-anchor="middle" fill="#D31A2B" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="12">f</text>
+  </g>
+  <text x="36" y="24" fill="#ffffff" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="14.5" letter-spacing="-0.2">fonepay</text>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135 38" fill="none">
+  <rect width="135" height="38" rx="8" fill="#0A4C86"/>
+  <g transform="translate(10, 8)">
+    <circle cx="5" cy="11" r="4" fill="#ffffff"/>
+    <circle cx="15" cy="5" r="3" fill="#F4511E"/>
+    <circle cx="15" cy="16" r="3" fill="#29B6F6"/>
+    <path d="M5 11 L15 5 M5 11 L15 16" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round"/>
+  </g>
+  <text x="32" y="24" fill="#ffffff" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="13">connect</text>
+  <text x="83" y="24" fill="#F4511E" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="13.5">IPS</text>
+</svg>

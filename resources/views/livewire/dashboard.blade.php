@@ -50,12 +50,12 @@
 
             <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
                 @if(!$user->is_verified)
-                    <a href="{{ route('my-kyc') }}" class="flex-1 sm:flex-none px-3.5 py-2 sm:py-2.5 rounded-xl bg-white/20 hover:bg-white/30 text-white text-xs font-bold backdrop-blur-xs transition flex items-center justify-center gap-1.5 border border-white/30 tap-active">
+                    <a wire:navigate href="{{ route('my-kyc') }}" class="flex-1 sm:flex-none px-3.5 py-2 sm:py-2.5 rounded-xl bg-white/20 hover:bg-white/30 text-white text-xs font-bold backdrop-blur-xs transition flex items-center justify-center gap-1.5 border border-white/30 tap-active">
                         <i class="fa-solid fa-id-card"></i> Verify KYC
                     </a>
                 @endif
                 @if(!$user->is_premium)
-                    <a href="{{ route('pricing') }}" class="flex-1 sm:flex-none px-4 py-2 sm:py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black shadow-lg transition flex items-center justify-center gap-1.5 tap-active">
+                    <a wire:navigate href="{{ route('pricing') }}" class="flex-1 sm:flex-none px-4 py-2 sm:py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black shadow-lg transition flex items-center justify-center gap-1.5 tap-active">
                         <i class="fa-solid fa-crown text-amber-950"></i> Upgrade
                     </a>
                 @endif
@@ -83,7 +83,7 @@
                     </div>
                 </div>
                 <div class="flex items-center gap-2 w-full md:w-auto shrink-0">
-                    <a href="{{ route('my-kyc') }}" class="w-full md:w-auto px-5 py-2.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-black rounded-xl shadow-md transition flex items-center justify-center gap-1.5 tap-active">
+                    <a wire:navigate href="{{ route('my-kyc') }}" class="w-full md:w-auto px-5 py-2.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-black rounded-xl shadow-md transition flex items-center justify-center gap-1.5 tap-active">
                         <i class="fa-solid fa-id-card"></i> Submit KYC for Quick Verification
                     </a>
                 </div>
@@ -92,7 +92,7 @@
 
         <!-- Metric Stat Cards -->
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 md:mb-8">
-            <a href="{{ route('my-activity') }}" class="p-4 sm:p-5 bg-white rounded-2xl sm:rounded-3xl border border-slate-200/80 shadow-xs hover:border-rose-300 hover:shadow-md transition tap-active">
+            <a wire:navigate href="{{ route('my-activity') }}" class="p-4 sm:p-5 bg-white rounded-2xl sm:rounded-3xl border border-slate-200/80 shadow-xs hover:border-rose-300 hover:shadow-md transition tap-active">
                 <div class="flex justify-between items-start">
                     <span class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider">Connects</span>
                     <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-xs sm:text-sm font-bold">
@@ -103,7 +103,7 @@
                 <span class="text-[10px] sm:text-[11px] text-rose-600 font-semibold mt-0.5 block truncate">Pending requests</span>
             </a>
 
-            <a href="{{ route('my-activity') }}" class="p-4 sm:p-5 bg-white rounded-2xl sm:rounded-3xl border border-slate-200/80 shadow-xs hover:border-indigo-300 hover:shadow-md transition tap-active">
+            <a wire:navigate href="{{ route('my-activity') }}" class="p-4 sm:p-5 bg-white rounded-2xl sm:rounded-3xl border border-slate-200/80 shadow-xs hover:border-indigo-300 hover:shadow-md transition tap-active">
                 <div class="flex justify-between items-start">
                     <span class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider">Visitors</span>
                     <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xs sm:text-sm font-bold">
@@ -114,7 +114,7 @@
                 <span class="text-[10px] sm:text-[11px] text-indigo-600 font-semibold mt-0.5 block truncate">Profile views</span>
             </a>
 
-            <a href="{{ route('my-activity') }}" class="p-4 sm:p-5 bg-white rounded-2xl sm:rounded-3xl border border-slate-200/80 shadow-xs hover:border-pink-300 hover:shadow-md transition tap-active">
+            <a wire:navigate href="{{ route('my-activity') }}" class="p-4 sm:p-5 bg-white rounded-2xl sm:rounded-3xl border border-slate-200/80 shadow-xs hover:border-pink-300 hover:shadow-md transition tap-active">
                 <div class="flex justify-between items-start">
                     <span class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider">Likes</span>
                     <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center text-xs sm:text-sm font-bold">
@@ -125,7 +125,7 @@
                 <span class="text-[10px] sm:text-[11px] text-pink-600 font-semibold mt-0.5 block truncate">Shortlisted count</span>
             </a>
 
-            <a href="{{ route('messages') }}" class="p-4 sm:p-5 bg-white rounded-2xl sm:rounded-3xl border border-slate-200/80 shadow-xs hover:border-emerald-300 hover:shadow-md transition tap-active">
+            <a wire:navigate href="{{ route('messages') }}" class="p-4 sm:p-5 bg-white rounded-2xl sm:rounded-3xl border border-slate-200/80 shadow-xs hover:border-emerald-300 hover:shadow-md transition tap-active">
                 <div class="flex justify-between items-start">
                     <span class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider">Messages</span>
                     <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs sm:text-sm font-bold">
@@ -148,7 +148,7 @@
                         <h2 class="text-sm sm:text-base font-black text-slate-900 flex items-center gap-2">
                             <i class="fa-solid fa-envelope-open-text text-rose-600"></i> Connection Requests
                         </h2>
-                        <a href="{{ route('my-activity') }}" class="text-xs font-bold text-rose-600 hover:underline">View All</a>
+                        <a wire:navigate href="{{ route('my-activity') }}" class="text-xs font-bold text-rose-600 hover:underline">View All</a>
                     </div>
 
                     @if($pendingReceivedRequests->count() > 0)
@@ -165,7 +165,7 @@
                                             @endif
                                         </div>
                                         <div class="truncate">
-                                            <a href="{{ route('profile.show', $req->sender->id) }}" class="font-extrabold text-slate-900 text-xs sm:text-sm hover:text-rose-600 transition truncate block">
+                                            <a wire:navigate href="{{ route('profile.show', $req->sender->id) }}" class="font-extrabold text-slate-900 text-xs sm:text-sm hover:text-rose-600 transition truncate block">
                                                 {{ $req->sender->name }}, {{ $req->sender->age }}
                                             </a>
                                             <p class="text-[11px] text-slate-500 truncate">
@@ -203,13 +203,13 @@
                         <h2 class="text-sm sm:text-base font-black text-slate-900 flex items-center gap-2">
                             <i class="fa-solid fa-wand-magic-sparkles text-amber-500"></i> Recommended Matches
                         </h2>
-                        <a href="{{ route('browse', ['tierTab' => 'mutual']) }}" class="text-xs font-bold text-rose-600 hover:underline">Explore More</a>
+                        <a wire:navigate href="{{ route('browse', ['tierTab' => 'mutual']) }}" class="text-xs font-bold text-rose-600 hover:underline">Explore More</a>
                     </div>
 
                     <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                         @foreach($recommendedProfiles as $p)
                             <div class="p-3 sm:p-4 rounded-2xl bg-slate-50 border border-slate-100 text-center space-y-2.5 group hover:border-rose-200 transition">
-                                <a href="{{ route('profile.show', $p->id) }}" class="block">
+                                <a wire:navigate href="{{ route('profile.show', $p->id) }}" class="block">
                                     <div class="relative w-16 h-16 sm:w-20 sm:h-20 mx-auto">
                                         <img src="{{ $p->avatar_url }}" alt="{{ $p->name }}" class="w-full h-full rounded-2xl object-cover shadow-xs group-hover:scale-105 transition duration-300">
                                         @if($p->isOnline())
@@ -221,7 +221,7 @@
                                     <h3 class="font-extrabold text-slate-900 text-xs mt-2 group-hover:text-rose-600 truncate">{{ $p->name }}, {{ $p->age }}</h3>
                                     <p class="text-[10px] text-slate-500 truncate">{{ $p->profile?->living_city ?? 'Kathmandu' }}</p>
                                 </a>
-                                <a href="{{ route('profile.show', $p->id) }}" class="btn btn-outline btn-xs w-full rounded-xl text-[10px] font-bold border-slate-200 hover:bg-slate-900 hover:text-white tap-active">
+                                <a wire:navigate href="{{ route('profile.show', $p->id) }}" class="btn btn-outline btn-xs w-full rounded-xl text-[10px] font-bold border-slate-200 hover:bg-slate-900 hover:text-white tap-active">
                                     View Match
                                 </a>
                             </div>
@@ -238,27 +238,27 @@
                 <div class="bg-white rounded-3xl p-5 sm:p-6 shadow-xs border border-slate-200/80">
                     <h3 class="font-extrabold text-xs uppercase tracking-wider text-slate-400 mb-3 sm:mb-4">My Account & Tools</h3>
                     <nav class="space-y-1 text-xs font-bold text-slate-700">
-                        <a href="{{ route('my-profile') }}" class="p-3 rounded-2xl hover:bg-slate-50 flex items-center justify-between group transition tap-active">
+                        <a wire:navigate href="{{ route('my-profile') }}" class="p-3 rounded-2xl hover:bg-slate-50 flex items-center justify-between group transition tap-active">
                             <span class="flex items-center gap-3"><i class="fa-solid fa-user-pen text-rose-500 w-4 text-center"></i> Edit Profile</span>
                             <i class="fa-solid fa-chevron-right text-slate-300 group-hover:translate-x-1 transition text-[10px]"></i>
                         </a>
-                        <a href="{{ route('my-gallery') }}" class="p-3 rounded-2xl hover:bg-slate-50 flex items-center justify-between group transition tap-active">
+                        <a wire:navigate href="{{ route('my-gallery') }}" class="p-3 rounded-2xl hover:bg-slate-50 flex items-center justify-between group transition tap-active">
                             <span class="flex items-center gap-3"><i class="fa-solid fa-images text-pink-500 w-4 text-center"></i> Photo Album</span>
                             <i class="fa-solid fa-chevron-right text-slate-300 group-hover:translate-x-1 transition text-[10px]"></i>
                         </a>
-                        <a href="{{ route('my-kyc') }}" class="p-3 rounded-2xl hover:bg-slate-50 flex items-center justify-between group transition tap-active">
+                        <a wire:navigate href="{{ route('my-kyc') }}" class="p-3 rounded-2xl hover:bg-slate-50 flex items-center justify-between group transition tap-active">
                             <span class="flex items-center gap-3"><i class="fa-solid fa-id-card-clip text-emerald-500 w-4 text-center"></i> KYC Document Verification</span>
                             <i class="fa-solid fa-chevron-right text-slate-300 group-hover:translate-x-1 transition text-[10px]"></i>
                         </a>
-                        <a href="{{ route('my-activity') }}" class="p-3 rounded-2xl hover:bg-slate-50 flex items-center justify-between group transition tap-active">
+                        <a wire:navigate href="{{ route('my-activity') }}" class="p-3 rounded-2xl hover:bg-slate-50 flex items-center justify-between group transition tap-active">
                             <span class="flex items-center gap-3"><i class="fa-solid fa-chart-line text-indigo-500 w-4 text-center"></i> Activity & Likes</span>
                             <i class="fa-solid fa-chevron-right text-slate-300 group-hover:translate-x-1 transition text-[10px]"></i>
                         </a>
-                        <a href="{{ route('messages') }}" class="p-3 rounded-2xl hover:bg-slate-50 flex items-center justify-between group transition tap-active">
+                        <a wire:navigate href="{{ route('messages') }}" class="p-3 rounded-2xl hover:bg-slate-50 flex items-center justify-between group transition tap-active">
                             <span class="flex items-center gap-3"><i class="fa-solid fa-comments text-amber-500 w-4 text-center"></i> Real-Time Chat Inbox</span>
                             <i class="fa-solid fa-chevron-right text-slate-300 group-hover:translate-x-1 transition text-[10px]"></i>
                         </a>
-                        <a href="{{ route('pricing') }}" class="p-3 rounded-2xl hover:bg-slate-50 flex items-center justify-between group transition tap-active">
+                        <a wire:navigate href="{{ route('pricing') }}" class="p-3 rounded-2xl hover:bg-slate-50 flex items-center justify-between group transition tap-active">
                             <span class="flex items-center gap-3"><i class="fa-solid fa-crown text-amber-500 w-4 text-center"></i> Membership Packages</span>
                             <i class="fa-solid fa-chevron-right text-slate-300 group-hover:translate-x-1 transition text-[10px]"></i>
                         </a>
@@ -269,13 +269,13 @@
                 <div class="bg-white rounded-3xl p-5 sm:p-6 shadow-xs border border-slate-200/80">
                     <div class="flex items-center justify-between mb-3 pb-3 border-b border-slate-100">
                         <h3 class="font-extrabold text-xs uppercase tracking-wider text-slate-400">Recent Visitors</h3>
-                        <a href="{{ route('my-activity') }}" class="text-[11px] font-bold text-rose-600 hover:underline">All</a>
+                        <a wire:navigate href="{{ route('my-activity') }}" class="text-[11px] font-bold text-rose-600 hover:underline">All</a>
                     </div>
                     @if($recentVisitors->count() > 0)
                         <div class="space-y-3">
                             @foreach($recentVisitors as $v)
                                 <div class="flex items-center justify-between text-xs">
-                                    <a href="{{ route('profile.show', $v->viewer->id) }}" class="flex items-center gap-2.5 hover:text-rose-600 transition tap-active">
+                                    <a wire:navigate href="{{ route('profile.show', $v->viewer->id) }}" class="flex items-center gap-2.5 hover:text-rose-600 transition tap-active">
                                         <div class="relative shrink-0">
                                             <img src="{{ $v->viewer->avatar_url }}" alt="{{ $v->viewer->name }}" class="w-8 h-8 rounded-xl object-cover">
                                             @if($v->viewer->isOnline())

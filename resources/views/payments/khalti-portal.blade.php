@@ -28,7 +28,7 @@
             <button type="submit" class="w-full py-3.5 bg-purple-600 hover:bg-purple-700 text-white font-extrabold text-xs rounded-xl shadow-lg shadow-purple-200 transition">
                 <i class="fa-solid fa-circle-check mr-1.5"></i> Authorize & Pay NPR {{ number_format($payment->total_amount, 2) }}
             </button>
-            <a href="{{ route('pricing') }}" class="btn btn-ghost btn-sm w-full text-xs text-slate-400">Cancel Payment</a>
+            <a wire:navigate href="{{ route('pricing') }}" class="btn btn-ghost btn-sm w-full text-xs text-slate-400">Cancel Payment</a>
         </form>
     </div>
 </body>

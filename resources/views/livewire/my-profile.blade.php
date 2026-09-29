@@ -8,7 +8,7 @@
                 <p class="text-xs text-slate-500 mt-1">Keep your profile updated to receive higher quality matches</p>
             </div>
             <div class="flex gap-3">
-                <a href="{{ route('profile.show', auth()->id()) }}" class="btn btn-outline btn-sm rounded-xl text-xs font-bold border-slate-300">
+                <a wire:navigate href="{{ route('profile.show', auth()->id()) }}" class="btn btn-outline btn-sm rounded-xl text-xs font-bold border-slate-300">
                     <i class="fa-solid fa-eye"></i> View Live Profile
                 </a>
                 <button wire:click="saveProfile" class="btn btn-primary btn-sm rounded-xl text-xs font-bold bg-rose-600 border-none text-white hover:bg-rose-700 shadow-md">

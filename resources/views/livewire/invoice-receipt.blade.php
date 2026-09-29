@@ -18,14 +18,14 @@
 
         <!-- Action Bar (Hidden when Printing/Exporting PDF) -->
         <div class="flex flex-wrap items-center justify-between gap-3 mb-6 print:hidden">
-            <a href="{{ route('dashboard') }}" class="btn btn-ghost btn-sm gap-2 text-slate-600 rounded-xl hover:bg-slate-200">
+            <a wire:navigate href="{{ route('dashboard') }}" class="btn btn-ghost btn-sm gap-2 text-slate-600 rounded-xl hover:bg-slate-200">
                 <i class="fa-solid fa-arrow-left"></i> Return to Dashboard
             </a>
             <div class="flex items-center gap-2">
                 <button onclick="window.print()" class="btn bg-slate-900 hover:bg-slate-800 text-white btn-sm rounded-xl font-bold shadow-sm transition tap-active">
                     <i class="fa-solid fa-print mr-1.5"></i> Print Invoice / Save PDF
                 </button>
-                <a href="{{ route('browse') }}" class="btn btn-primary bg-rose-600 hover:bg-rose-700 border-none text-white btn-sm rounded-xl font-bold shadow-md shadow-rose-200">
+                <a wire:navigate href="{{ route('browse') }}" class="btn btn-primary bg-rose-600 hover:bg-rose-700 border-none text-white btn-sm rounded-xl font-bold shadow-md shadow-rose-200">
                     <i class="fa-solid fa-wand-magic-sparkles mr-1.5"></i> Start Browsing Matches
                 </a>
             </div>

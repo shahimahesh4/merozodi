@@ -136,7 +136,7 @@
                             </span>
                             <h2 class="text-xs font-extrabold uppercase text-slate-800 tracking-wider">Order Summary</h2>
                         </div>
-                        <a href="{{ route('pricing') }}" class="text-[11px] font-bold text-rose-600 hover:text-rose-700 hover:underline inline-flex items-center gap-1 transition">
+                        <a wire:navigate href="{{ route('pricing') }}" class="text-[11px] font-bold text-rose-600 hover:text-rose-700 hover:underline inline-flex items-center gap-1 transition">
                             <span>Change Plan</span>
                             <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
                         </a>

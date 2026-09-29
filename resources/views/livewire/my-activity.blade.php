@@ -7,7 +7,7 @@
                 <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900">Activity & Interaction Center</h1>
                 <p class="text-xs text-slate-500 mt-1">Manage all your matrimonial connections, shortlisted profiles, and profile visitors</p>
             </div>
-            <a href="{{ route('dashboard') }}" class="btn btn-outline btn-sm rounded-xl text-xs font-bold border-slate-300">
+            <a wire:navigate href="{{ route('dashboard') }}" class="btn btn-outline btn-sm rounded-xl text-xs font-bold border-slate-300">
                 <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
             </a>
         </div>
@@ -61,7 +61,7 @@
                                         @endif
                                     </div>
                                     <div>
-                                        <a href="{{ route('profile.show', $rc->sender->id) }}" class="font-bold text-slate-900 text-sm hover:text-rose-600 transition">
+                                        <a wire:navigate href="{{ route('profile.show', $rc->sender->id) }}" class="font-bold text-slate-900 text-sm hover:text-rose-600 transition">
                                             {{ $rc->sender->name }}, {{ $rc->sender->age }}
                                         </a>
                                         <p class="text-xs text-slate-500">
@@ -84,7 +84,7 @@
                                         </button>
                                     @elseif($rc->status === 'accepted')
                                         <span class="badge badge-success text-white text-xs font-bold p-3">Connected</span>
-                                        <a href="{{ route('messages.chat', $rc->sender->id) }}" class="btn btn-sm btn-outline rounded-xl text-xs font-bold">
+                                        <a wire:navigate href="{{ route('messages.chat', $rc->sender->id) }}" class="btn btn-sm btn-outline rounded-xl text-xs font-bold">
                                             <i class="fa-solid fa-comments"></i> Chat
                                         </a>
                                     @else
@@ -119,7 +119,7 @@
                                         @endif
                                     </div>
                                     <div>
-                                        <a href="{{ route('profile.show', $sc->receiver->id) }}" class="font-bold text-slate-900 text-sm hover:text-rose-600 transition">
+                                        <a wire:navigate href="{{ route('profile.show', $sc->receiver->id) }}" class="font-bold text-slate-900 text-sm hover:text-rose-600 transition">
                                             {{ $sc->receiver->name }}, {{ $sc->receiver->age }}
                                         </a>
                                         <p class="text-xs text-slate-500">
@@ -135,7 +135,7 @@
                                         </button>
                                     @elseif($sc->status === 'accepted')
                                         <span class="badge badge-success text-white text-xs font-bold p-3">Request Accepted!</span>
-                                        <a href="{{ route('messages.chat', $sc->receiver->id) }}" class="btn btn-sm btn-primary rounded-xl text-xs font-bold bg-rose-600 border-none text-white">
+                                        <a wire:navigate href="{{ route('messages.chat', $sc->receiver->id) }}" class="btn btn-sm btn-primary rounded-xl text-xs font-bold bg-rose-600 border-none text-white">
                                             <i class="fa-solid fa-comments"></i> Start Chat
                                         </a>
                                     @else
@@ -175,7 +175,7 @@
                                             </span>
                                         @endif
                                     </div>
-                                    <a href="{{ route('profile.show', $lp->liked->id) }}" class="font-bold text-slate-900 text-sm hover:text-rose-600 block">
+                                    <a wire:navigate href="{{ route('profile.show', $lp->liked->id) }}" class="font-bold text-slate-900 text-sm hover:text-rose-600 block">
                                         {{ $lp->liked->name }}, {{ $lp->liked->age }}
                                     </a>
                                     <p class="text-xs text-slate-500">
@@ -183,7 +183,7 @@
                                     </p>
                                 </div>
                                 <div class="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between">
-                                    <a href="{{ route('profile.show', $lp->liked->id) }}" class="btn btn-outline btn-xs rounded-xl font-bold">
+                                    <a wire:navigate href="{{ route('profile.show', $lp->liked->id) }}" class="btn btn-outline btn-xs rounded-xl font-bold">
                                         View Profile
                                     </a>
                                     <button wire:click="removeLike({{ $lp->id }})" class="text-xs text-rose-600 hover:underline">
@@ -218,7 +218,7 @@
                                         @endif
                                     </div>
                                     <div>
-                                        <a href="{{ route('profile.show', $pv->viewer->id) }}" class="font-bold text-slate-900 text-sm hover:text-rose-600 transition">
+                                        <a wire:navigate href="{{ route('profile.show', $pv->viewer->id) }}" class="font-bold text-slate-900 text-sm hover:text-rose-600 transition">
                                             {{ $pv->viewer->name }}, {{ $pv->viewer->age }}
                                         </a>
                                         <p class="text-xs text-slate-500">
@@ -226,7 +226,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <a href="{{ route('profile.show', $pv->viewer->id) }}" class="btn btn-outline btn-sm rounded-xl text-xs font-bold">
+                                <a wire:navigate href="{{ route('profile.show', $pv->viewer->id) }}" class="btn btn-outline btn-sm rounded-xl text-xs font-bold">
                                     View Match
                                 </a>
                             </div>

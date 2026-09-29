@@ -51,7 +51,7 @@
             <button type="submit" class="w-full py-3.5 bg-blue-700 hover:bg-blue-800 text-white font-extrabold text-xs rounded-xl shadow-lg shadow-blue-200 transition">
                 <i class="fa-solid fa-lock mr-1.5"></i> Authorize & Complete Payment
             </button>
-            <a href="{{ route('pricing') }}" class="btn btn-ghost btn-sm w-full text-xs text-slate-400">Cancel Payment</a>
+            <a wire:navigate href="{{ route('pricing') }}" class="btn btn-ghost btn-sm w-full text-xs text-slate-400">Cancel Payment</a>
         </form>
     </div>
 </body>

@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
             <!-- Breadcrumbs -->
             <nav class="flex items-center gap-2 text-xs font-semibold text-rose-200/80 mb-5" aria-label="Breadcrumb">
-                <a href="{{ route('home') }}" class="hover:text-white transition flex items-center gap-1">
+                <a wire:navigate href="{{ route('home') }}" class="hover:text-white transition flex items-center gap-1">
                     <i class="fa-solid fa-house text-[11px]"></i> Home
                 </a>
                 <span class="text-rose-400/60">/</span>
@@ -143,7 +143,7 @@
                             Our legal compliance officers and member support team are available to answer any questions regarding terms or membership policies.
                         </p>
                         <div class="pt-2">
-                            <a href="{{ route('contact') }}" class="btn btn-sm bg-rose-600 hover:bg-rose-700 text-white font-bold border-none rounded-xl text-xs w-full shadow-sm">
+                            <a wire:navigate href="{{ route('contact') }}" class="btn btn-sm bg-rose-600 hover:bg-rose-700 text-white font-bold border-none rounded-xl text-xs w-full shadow-sm">
                                 <i class="fa-solid fa-envelope mr-1"></i> Contact Support Desk
                             </a>
                         </div>
@@ -153,7 +153,7 @@
                 <!-- Quick Navigation to Privacy Policy -->
                 <div class="bg-white rounded-2xl p-5 border border-slate-200/80 text-xs text-slate-600 space-y-2">
                     <span class="font-bold text-slate-800 block">Related Policies:</span>
-                    <a href="{{ route('privacy') }}" class="flex items-center justify-between text-rose-600 hover:underline font-semibold">
+                    <a wire:navigate href="{{ route('privacy') }}" class="flex items-center justify-between text-rose-600 hover:underline font-semibold">
                         <span><i class="fa-solid fa-shield-halved mr-1.5"></i> Data Privacy Policy</span>
                         <i class="fa-solid fa-arrow-right text-[10px]"></i>
                     </a>
@@ -185,7 +185,7 @@
                         </p>
                     </div>
                     <div class="flex items-center gap-3 shrink-0">
-                        <a href="{{ route('browse') }}" class="btn btn-primary bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 border-none text-white rounded-xl text-xs font-bold px-6 shadow-md shadow-rose-200 tap-active">
+                        <a wire:navigate href="{{ route('browse') }}" class="btn btn-primary bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 border-none text-white rounded-xl text-xs font-bold px-6 shadow-md shadow-rose-200 tap-active">
                             Browse Matches Now
                         </a>
                     </div>

@@ -7,7 +7,7 @@
                 <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900">National ID & KYC Verification</h1>
                 <p class="text-xs text-slate-500 mt-1">Get the official Verified Profile Badge and build instant trust with matches</p>
             </div>
-            <a href="{{ route('dashboard') }}" class="btn btn-outline btn-sm rounded-xl text-xs font-bold border-slate-300">
+            <a wire:navigate href="{{ route('dashboard') }}" class="btn btn-outline btn-sm rounded-xl text-xs font-bold border-slate-300">
                 <i class="fa-solid fa-arrow-left"></i> Dashboard
             </a>
         </div>

@@ -183,7 +183,7 @@
                                 @endif
                             </div>
                             <div class="truncate">
-                                <a href="{{ route('profile.show', $activeUser->id) }}" class="font-black text-slate-900 text-xs sm:text-sm hover:text-rose-600 transition flex items-center gap-1.5 truncate">
+                                <a wire:navigate href="{{ route('profile.show', $activeUser->id) }}" class="font-black text-slate-900 text-xs sm:text-sm hover:text-rose-600 transition flex items-center gap-1.5 truncate">
                                     <span class="truncate">{{ $activeUser->name }}</span>
                                     @if($activeUser->is_verified)
                                         <i class="fa-solid fa-circle-check text-emerald-500 text-xs shrink-0" title="Verified Member"></i>
@@ -206,7 +206,7 @@
                             <button wire:click="sendVideoInvite" class="btn btn-sm bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white rounded-xl text-xs font-bold border-none shadow-md shadow-rose-100 flex items-center gap-1.5 tap-active px-3 sm:px-4">
                                 <i class="fa-solid fa-video text-xs"></i> <span class="hidden sm:inline">Video Date</span>
                             </button>
-                            <a href="{{ route('profile.show', $activeUser->id) }}" class="btn btn-sm btn-ghost text-slate-500 rounded-xl text-xs px-2.5 tap-active" title="View Profile">
+                            <a wire:navigate href="{{ route('profile.show', $activeUser->id) }}" class="btn btn-sm btn-ghost text-slate-500 rounded-xl text-xs px-2.5 tap-active" title="View Profile">
                                 <i class="fa-solid fa-user"></i>
                             </a>
                         </div>

@@ -36,11 +36,11 @@
         <!-- Breadcrumbs & Share Actions Bar -->
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
             <nav class="text-xs text-slate-400 flex items-center gap-2" aria-label="Breadcrumb">
-                <a href="{{ route('home') }}" class="hover:text-rose-600 transition flex items-center gap-1">
+                <a wire:navigate href="{{ route('home') }}" class="hover:text-rose-600 transition flex items-center gap-1">
                     <i class="fa-solid fa-house text-[11px]"></i> Home
                 </a>
                 <span>/</span>
-                <a href="{{ route('blog') }}" class="hover:text-rose-600 transition">Guides & Advice</a>
+                <a wire:navigate href="{{ route('blog') }}" class="hover:text-rose-600 transition">Guides & Advice</a>
                 <span>/</span>
                 <span class="text-slate-800 font-bold truncate max-w-[200px] sm:max-w-[300px]">{{ $blog->title }}</span>
             </nav>
@@ -140,7 +140,7 @@
                     </p>
                 </div>
                 <div class="relative z-10 shrink-0 w-full sm:w-auto">
-                    <a href="{{ route('register') }}" class="btn bg-white hover:bg-rose-50 text-rose-700 font-black border-none rounded-2xl px-6 py-3 shadow-md transition transform hover:-translate-y-0.5 w-full sm:w-auto text-xs sm:text-sm">
+                    <a wire:navigate href="{{ route('register') }}" class="btn bg-white hover:bg-rose-50 text-rose-700 font-black border-none rounded-2xl px-6 py-3 shadow-md transition transform hover:-translate-y-0.5 w-full sm:w-auto text-xs sm:text-sm">
                         <i class="fa-solid fa-user-plus mr-1.5"></i> Register Free Today
                     </a>
                 </div>
@@ -167,7 +167,7 @@
 
             <!-- Bottom Share & Back Bar -->
             <div class="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <a href="{{ route('blog') }}" class="btn btn-ghost btn-sm gap-2 text-xs font-bold text-slate-600 hover:text-rose-600 rounded-xl">
+                <a wire:navigate href="{{ route('blog') }}" class="btn btn-ghost btn-sm gap-2 text-xs font-bold text-slate-600 hover:text-rose-600 rounded-xl">
                     <i class="fa-solid fa-arrow-left"></i> Back to All Guides
                 </a>
                 <div class="flex items-center gap-2 text-xs font-bold text-slate-500">
@@ -185,14 +185,14 @@
                         <span class="text-xs font-bold text-rose-600 uppercase tracking-wider">Explore More</span>
                         <h3 class="text-xl sm:text-2xl font-black text-slate-900 mt-0.5">Recommended Matrimonial Guides</h3>
                     </div>
-                    <a href="{{ route('blog') }}" class="text-xs font-bold text-rose-600 hover:underline flex items-center gap-1">
+                    <a wire:navigate href="{{ route('blog') }}" class="text-xs font-bold text-rose-600 hover:underline flex items-center gap-1">
                         View All <i class="fa-solid fa-arrow-right text-[10px]"></i>
                     </a>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     @foreach($relatedBlogs as $rel)
-                        <a href="{{ route('blog.detail', $rel->slug) }}" class="bg-white rounded-3xl p-4 border border-slate-200/80 shadow-2xs hover:shadow-xl hover:border-rose-300 transition-all duration-300 block group flex flex-col justify-between transform hover:-translate-y-1">
+                        <a wire:navigate href="{{ route('blog.detail', $rel->slug) }}" class="bg-white rounded-3xl p-4 border border-slate-200/80 shadow-2xs hover:shadow-xl hover:border-rose-300 transition-all duration-300 block group flex flex-col justify-between transform hover:-translate-y-1">
                             <div>
                                 <div class="h-44 rounded-2xl overflow-hidden mb-3.5 relative bg-slate-100">
                                     <img src="{{ $rel->featured_image }}" 

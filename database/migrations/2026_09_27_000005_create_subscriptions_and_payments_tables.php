@@ -32,7 +32,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('subscription_plan_id')->constrained()->cascadeOnDelete();
             $table->timestamp('starts_at')->useCurrent();
-            $table->timestamp('ends_at');
+            $table->timestamp('ends_at')->nullable();
             $table->boolean('is_active')->default(true);
             $table->boolean('auto_renew')->default(false);
             $table->timestamps();
@@ -60,7 +60,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamp('boosted_at')->useCurrent();
-            $table->timestamp('expires_at');
+            $table->timestamp('expires_at')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

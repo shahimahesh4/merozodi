@@ -253,7 +253,7 @@
 
                             <!-- Card Action Footer -->
                             <div class="p-4 pt-0 grid grid-cols-2 gap-2">
-                                <a href="{{ route('profile.show', $profile->id) }}" class="btn btn-outline btn-sm rounded-xl text-xs font-bold border-slate-200 hover:bg-slate-900 hover:text-white flex items-center justify-center tap-active">
+                                <a wire:navigate href="{{ route('profile.show', $profile->id) }}" class="btn btn-outline btn-sm rounded-xl text-xs font-bold border-slate-200 hover:bg-slate-900 hover:text-white flex items-center justify-center tap-active">
                                     Full Details
                                 </a>
 
@@ -263,7 +263,7 @@
                                         <i class="fa-solid fa-clock"></i> Sent
                                     </button>
                                 @elseif($connectStatus === 'accepted')
-                                    <a href="{{ route('messages', $profile->id) }}" class="btn btn-sm btn-success text-white rounded-xl text-xs font-bold tap-active">
+                                    <a wire:navigate href="{{ route('messages', $profile->id) }}" class="btn btn-sm btn-success text-white rounded-xl text-xs font-bold tap-active">
                                         <i class="fa-solid fa-comment"></i> Chat
                                     </a>
                                 @else
@@ -479,7 +479,7 @@
 
                     <!-- Modal Actions -->
                     <div class="pt-2.5 border-t border-slate-100 flex justify-between items-center gap-2">
-                        <a href="{{ route('profile.show', $selectedProfile->id) }}" class="btn btn-outline btn-sm rounded-xl text-xs font-bold">
+                        <a wire:navigate href="{{ route('profile.show', $selectedProfile->id) }}" class="btn btn-outline btn-sm rounded-xl text-xs font-bold">
                             View Full Profile
                         </a>
                         <div class="flex gap-2">

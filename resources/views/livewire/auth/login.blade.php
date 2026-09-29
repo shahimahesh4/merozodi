@@ -37,7 +37,7 @@
             </form>
 
             <div class="mt-6 pt-6 border-t border-slate-100 text-center text-xs text-slate-500">
-                Don't have an account yet? <a href="{{ route('register') }}" class="font-black text-rose-600 hover:underline">Register Free</a>
+                Don't have an account yet? <a wire:navigate href="{{ route('register') }}" class="font-black text-rose-600 hover:underline">Register Free</a>
             </div>
         </div>
 

@@ -54,7 +54,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
             <!-- Breadcrumbs -->
             <nav class="flex items-center gap-2 text-xs font-semibold text-rose-200/80 mb-6" aria-label="Breadcrumb">
-                <a href="{{ route('home') }}" class="hover:text-white transition flex items-center gap-1">
+                <a wire:navigate href="{{ route('home') }}" class="hover:text-white transition flex items-center gap-1">
                     <i class="fa-solid fa-house text-[11px]"></i> Home
                 </a>
                 <span class="text-rose-400/60">/</span>
@@ -244,10 +244,10 @@
                 Join thousands of verified Nepali singles discovering meaningful marital harmony today. Free registration with full privacy control.
             </p>
             <div class="pt-2 flex flex-col sm:flex-row justify-center items-center gap-3.5">
-                <a href="{{ route('register') }}" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white font-black text-xs sm:text-sm rounded-2xl shadow-xl shadow-rose-950 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 tap-active">
+                <a wire:navigate href="{{ route('register') }}" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white font-black text-xs sm:text-sm rounded-2xl shadow-xl shadow-rose-950 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 tap-active">
                     <i class="fa-solid fa-user-plus"></i> Register Free Today
                 </a>
-                <a href="{{ route('browse') }}" class="w-full sm:w-auto px-8 py-3.5 bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm rounded-2xl border border-white/20 backdrop-blur-md transition flex items-center justify-center gap-2 tap-active">
+                <a wire:navigate href="{{ route('browse') }}" class="w-full sm:w-auto px-8 py-3.5 bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm rounded-2xl border border-white/20 backdrop-blur-md transition flex items-center justify-center gap-2 tap-active">
                     <i class="fa-solid fa-compass"></i> Browse Verified Matches
                 </a>
             </div>

@@ -9,7 +9,7 @@
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
             <!-- Breadcrumbs -->
             <nav class="flex items-center gap-2 text-xs font-semibold text-rose-200/80 mb-5" aria-label="Breadcrumb">
-                <a href="{{ route('home') }}" class="hover:text-white transition flex items-center gap-1">
+                <a wire:navigate href="{{ route('home') }}" class="hover:text-white transition flex items-center gap-1">
                     <i class="fa-solid fa-house text-[11px]"></i> Home
                 </a>
                 <span class="text-rose-400/60">/</span>

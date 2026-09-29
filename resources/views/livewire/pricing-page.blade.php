@@ -70,11 +70,11 @@
                     <!-- Payment button -->
                     <div>
                         @if($plan->price_npr == 0)
-                            <a href="{{ route('register') }}" class="btn btn-outline btn-block rounded-2xl text-xs font-bold border-slate-300 hover:bg-slate-900 hover:text-white tap-active">
+                            <a wire:navigate href="{{ route('register') }}" class="btn btn-outline btn-block rounded-2xl text-xs font-bold border-slate-300 hover:bg-slate-900 hover:text-white tap-active">
                                 Get Started Free
                             </a>
                         @else
-                            <a href="{{ route('checkout', $plan->id) }}" class="btn btn-block rounded-2xl text-xs font-bold tap-active {{ $plan->is_popular ? 'bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white shadow-lg shadow-rose-200' : 'bg-slate-900 hover:bg-slate-800 text-white' }}">
+                            <a wire:navigate href="{{ route('checkout', $plan->id) }}" class="btn btn-block rounded-2xl text-xs font-bold tap-active {{ $plan->is_popular ? 'bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white shadow-lg shadow-rose-200' : 'bg-slate-900 hover:bg-slate-800 text-white' }}">
                                 Upgrade via eSewa / Khalti / Fonepay
                             </a>
                         @endif

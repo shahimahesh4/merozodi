@@ -81,25 +81,25 @@
                 </div>
 
                 <!-- Brand Logo -->
-                <a href="{{ route('home') }}" class="flex items-center gap-2 group py-1" title="{{ $siteName }}">
+                <a wire:navigate href="{{ route('home') }}" class="flex items-center gap-2 group py-1" title="{{ $siteName }}">
                     <img src="{{ $siteLogo }}" alt="{{ $siteName }}" class="h-9 sm:h-11 md:h-14 w-auto object-contain transition transform group-hover:scale-105">
                 </a>
 
                 <!-- Desktop Navigation Links -->
                 <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-600">
-                    <a href="{{ route('home') }}" class="group hover:text-rose-600 transition flex items-center gap-1.5 {{ request()->routeIs('home') ? 'text-rose-600 font-bold' : '' }}">
+                    <a wire:navigate href="{{ route('home') }}" class="group hover:text-rose-600 transition flex items-center gap-1.5 {{ request()->routeIs('home') ? 'text-rose-600 font-bold' : '' }}">
                         <i class="fa-solid fa-house text-xs transition-colors {{ request()->routeIs('home') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Home
                     </a>
-                    <a href="{{ route('browse') }}" class="group hover:text-rose-600 transition flex items-center gap-1.5 {{ request()->routeIs('browse') ? 'text-rose-600 font-bold' : '' }}">
+                    <a wire:navigate href="{{ route('browse') }}" class="group hover:text-rose-600 transition flex items-center gap-1.5 {{ request()->routeIs('browse') ? 'text-rose-600 font-bold' : '' }}">
                         <i class="fa-solid fa-compass text-xs transition-colors {{ request()->routeIs('browse') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Find Matches
                     </a>
-                    <a href="{{ route('events') }}" class="group hover:text-rose-600 transition flex items-center gap-1.5 {{ request()->routeIs('events') ? 'text-rose-600 font-bold' : '' }}">
+                    <a wire:navigate href="{{ route('events') }}" class="group hover:text-rose-600 transition flex items-center gap-1.5 {{ request()->routeIs('events') ? 'text-rose-600 font-bold' : '' }}">
                         <i class="fa-solid fa-calendar-days text-xs transition-colors {{ request()->routeIs('events') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Events
                     </a>
-                    <a href="{{ route('blog') }}" class="group hover:text-rose-600 transition flex items-center gap-1.5 {{ request()->routeIs('blog*') ? 'text-rose-600 font-bold' : '' }}">
+                    <a wire:navigate href="{{ route('blog') }}" class="group hover:text-rose-600 transition flex items-center gap-1.5 {{ request()->routeIs('blog*') ? 'text-rose-600 font-bold' : '' }}">
                         <i class="fa-solid fa-book-open text-xs transition-colors {{ request()->routeIs('blog*') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Guides & Stories
                     </a>
-                    <a href="{{ route('pricing') }}" class="group hover:text-rose-600 transition flex items-center gap-1.5 {{ request()->routeIs('pricing') ? 'text-rose-600 font-bold' : '' }}">
+                    <a wire:navigate href="{{ route('pricing') }}" class="group hover:text-rose-600 transition flex items-center gap-1.5 {{ request()->routeIs('pricing') ? 'text-rose-600 font-bold' : '' }}">
                         <i class="fa-solid fa-crown text-xs transition-colors {{ request()->routeIs('pricing') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Membership
                     </a>
                 </nav>
@@ -108,13 +108,13 @@
                 <div class="flex items-center gap-2 sm:gap-3">
                     @auth
                         <!-- Message Icon with Real-Time Livewire Unread Counter -->
-                        <a href="{{ route('messages') }}" class="btn btn-ghost btn-circle btn-sm text-slate-700 hover:text-rose-600 relative tap-active" title="Messages">
+                        <a wire:navigate href="{{ route('messages') }}" class="btn btn-ghost btn-circle btn-sm text-slate-700 hover:text-rose-600 relative tap-active" title="Messages">
                             <i class="fa-solid fa-comments text-base"></i>
                             @livewire('unread-counter', ['type' => 'header'])
                         </a>
 
                         <!-- Dashboard Shortcut for Desktop -->
-                        <a href="{{ route('dashboard') }}" class="btn btn-ghost btn-sm text-xs font-bold text-slate-700 hidden sm:inline-flex rounded-xl">
+                        <a wire:navigate href="{{ route('dashboard') }}" class="btn btn-ghost btn-sm text-xs font-bold text-slate-700 hidden sm:inline-flex rounded-xl">
                             <i class="fa-solid fa-gauge mr-1 text-slate-400"></i> Dashboard
                         </a>
 
@@ -143,13 +143,13 @@
                                         </span>
                                     @endif
                                 </li>
-                                <li><a href="{{ route('dashboard') }}"><i class="fa-solid fa-gauge text-slate-500"></i> My Dashboard</a></li>
-                                <li><a href="{{ route('my-profile') }}"><i class="fa-solid fa-user-pen text-slate-500"></i> Edit Profile</a></li>
-                                <li><a href="{{ route('my-gallery') }}"><i class="fa-solid fa-images text-slate-500"></i> Photo Gallery</a></li>
-                                <li><a href="{{ route('my-kyc') }}"><i class="fa-solid fa-id-card text-slate-500"></i> KYC Document Verification</a></li>
-                                <li><a href="{{ route('my-activity') }}"><i class="fa-solid fa-heart text-rose-500"></i> Activity & Interests</a></li>
-                                <li><a href="{{ route('messages') }}"><i class="fa-solid fa-comments text-rose-500"></i> Chat Messages</a></li>
-                                <li><a href="{{ route('browse') }}"><i class="fa-solid fa-compass text-slate-500"></i> Browse Matches</a></li>
+                                <li><a wire:navigate href="{{ route('dashboard') }}"><i class="fa-solid fa-gauge text-slate-500"></i> My Dashboard</a></li>
+                                <li><a wire:navigate href="{{ route('my-profile') }}"><i class="fa-solid fa-user-pen text-slate-500"></i> Edit Profile</a></li>
+                                <li><a wire:navigate href="{{ route('my-gallery') }}"><i class="fa-solid fa-images text-slate-500"></i> Photo Gallery</a></li>
+                                <li><a wire:navigate href="{{ route('my-kyc') }}"><i class="fa-solid fa-id-card text-slate-500"></i> KYC Document Verification</a></li>
+                                <li><a wire:navigate href="{{ route('my-activity') }}"><i class="fa-solid fa-heart text-rose-500"></i> Activity & Interests</a></li>
+                                <li><a wire:navigate href="{{ route('messages') }}"><i class="fa-solid fa-comments text-rose-500"></i> Chat Messages</a></li>
+                                <li><a wire:navigate href="{{ route('browse') }}"><i class="fa-solid fa-compass text-slate-500"></i> Browse Matches</a></li>
 
                                 <li class="border-t border-slate-100 mt-1">
                                     <form method="POST" action="{{ route('logout') }}" class="w-full">
@@ -162,11 +162,11 @@
                             </ul>
                         </div>
                     @else
-                        <a href="{{ route('login') }}" class="px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold text-slate-700 hover:text-rose-600 transition tap-active inline-flex items-center gap-1.5">
+                        <a wire:navigate href="{{ route('login') }}" class="px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold text-slate-700 hover:text-rose-600 transition tap-active inline-flex items-center gap-1.5">
                             <i class="fa-solid fa-right-to-bracket text-xs text-rose-500"></i>
                             <span>Log In</span>
                         </a>
-                        <a href="{{ route('register') }}" class="px-3.5 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 rounded-xl shadow-md shadow-rose-200 transition transform hover:-translate-y-0.5 tap-active inline-flex items-center gap-1.5">
+                        <a wire:navigate href="{{ route('register') }}" class="px-3.5 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 rounded-xl shadow-md shadow-rose-200 transition transform hover:-translate-y-0.5 tap-active inline-flex items-center gap-1.5">
                             <i class="fa-solid fa-user-plus text-xs"></i>
                             <span>Register Free</span>
                         </a>
@@ -237,10 +237,10 @@
                             </div>
                             <p class="text-xs text-rose-100 font-medium">Welcome to {{ $siteName }} - {{ $siteTagline }}</p>
                             <div class="flex gap-2 pt-1">
-                                <a href="{{ route('login') }}" class="btn btn-sm bg-white hover:bg-rose-50 text-rose-600 font-bold border-none rounded-xl flex-1 shadow-sm flex items-center justify-center gap-1.5">
+                                <a wire:navigate href="{{ route('login') }}" class="btn btn-sm bg-white hover:bg-rose-50 text-rose-600 font-bold border-none rounded-xl flex-1 shadow-sm flex items-center justify-center gap-1.5">
                                     <i class="fa-solid fa-right-to-bracket text-xs"></i> Log In
                                 </a>
-                                <a href="{{ route('register') }}" class="btn btn-sm bg-rose-900/80 hover:bg-rose-950 text-white font-bold border border-white/20 rounded-xl flex-1 shadow-sm flex items-center justify-center gap-1.5">
+                                <a wire:navigate href="{{ route('register') }}" class="btn btn-sm bg-rose-900/80 hover:bg-rose-950 text-white font-bold border border-white/20 rounded-xl flex-1 shadow-sm flex items-center justify-center gap-1.5">
                                     <i class="fa-solid fa-user-plus text-xs"></i> Register
                                 </a>
                             </div>
@@ -251,56 +251,56 @@
                 <!-- Navigation List -->
                 <div class="p-4 space-y-1 text-sm font-semibold text-slate-700">
                     <span class="text-[10px] font-black uppercase tracking-wider text-slate-400 px-3 py-1.5 block">Explore</span>
-                    <a href="{{ route('home') }}" class="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('home') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
+                    <a wire:navigate href="{{ route('home') }}" class="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('home') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
                         <i class="fa-solid fa-house w-5 text-center transition-colors {{ request()->routeIs('home') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Home
                     </a>
-                    <a href="{{ route('browse') }}" class="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('browse') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
+                    <a wire:navigate href="{{ route('browse') }}" class="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('browse') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
                         <i class="fa-solid fa-compass w-5 text-center transition-colors {{ request()->routeIs('browse') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Discover Matches
                     </a>
-                    <a href="{{ route('events') }}" class="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('events') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
+                    <a wire:navigate href="{{ route('events') }}" class="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('events') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
                         <i class="fa-solid fa-calendar-days w-5 text-center transition-colors {{ request()->routeIs('events') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Matrimonial Events
                     </a>
-                    <a href="{{ route('blog') }}" class="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('blog*') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
+                    <a wire:navigate href="{{ route('blog') }}" class="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('blog*') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
                         <i class="fa-solid fa-book-open w-5 text-center transition-colors {{ request()->routeIs('blog*') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Guides & Astrological Advice
                     </a>
-                    <a href="{{ route('pricing') }}" class="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('pricing') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
+                    <a wire:navigate href="{{ route('pricing') }}" class="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('pricing') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
                         <i class="fa-solid fa-crown w-5 text-center transition-colors {{ request()->routeIs('pricing') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Membership Plans
                     </a>
 
                     <!-- Company & Legal -->
                     <span class="text-[10px] font-black uppercase tracking-wider text-slate-400 px-3 py-1.5 block">Information</span>
-                    <a href="{{ route('about') }}" class="group flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('about*') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
+                    <a wire:navigate href="{{ route('about') }}" class="group flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('about*') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
                         <i class="fa-solid fa-circle-info w-5 text-center transition-colors {{ request()->routeIs('about*') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> About MeroZodi
                     </a>
-                    <a href="{{ route('contact') }}" class="group flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('contact*') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
+                    <a wire:navigate href="{{ route('contact') }}" class="group flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('contact*') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
                         <i class="fa-solid fa-headset w-5 text-center transition-colors {{ request()->routeIs('contact*') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Contact & Support
                     </a>
-                    <a href="{{ route('privacy') }}" class="group flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('privacy*') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
+                    <a wire:navigate href="{{ route('privacy') }}" class="group flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('privacy*') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
                         <i class="fa-solid fa-shield-halved w-5 text-center transition-colors {{ request()->routeIs('privacy*') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Privacy Policy
                     </a>
-                    <a href="{{ route('terms') }}" class="group flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('terms*') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
+                    <a wire:navigate href="{{ route('terms') }}" class="group flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('terms*') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
                         <i class="fa-solid fa-file-contract w-5 text-center transition-colors {{ request()->routeIs('terms*') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Terms & Conditions
                     </a>
 
                     @auth
                         <div class="border-t border-slate-100 my-2 pt-2">
                             <span class="text-[10px] font-black uppercase tracking-wider text-slate-400 px-3 py-1.5 block">My Account</span>
-                            <a href="{{ route('dashboard') }}" class="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('dashboard') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
+                            <a wire:navigate href="{{ route('dashboard') }}" class="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('dashboard') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
                                 <i class="fa-solid fa-gauge w-5 text-center transition-colors {{ request()->routeIs('dashboard') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Dashboard
                             </a>
-                            <a href="{{ route('my-profile') }}" class="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('my-profile') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
+                            <a wire:navigate href="{{ route('my-profile') }}" class="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('my-profile') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
                                 <i class="fa-solid fa-user-pen w-5 text-center transition-colors {{ request()->routeIs('my-profile') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Edit Profile
                             </a>
-                            <a href="{{ route('my-gallery') }}" class="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('my-gallery') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
+                            <a wire:navigate href="{{ route('my-gallery') }}" class="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('my-gallery') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
                                 <i class="fa-solid fa-images w-5 text-center transition-colors {{ request()->routeIs('my-gallery') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Photo Gallery
                             </a>
-                            <a href="{{ route('my-kyc') }}" class="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('my-kyc') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
+                            <a wire:navigate href="{{ route('my-kyc') }}" class="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('my-kyc') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
                                 <i class="fa-solid fa-id-card w-5 text-center transition-colors {{ request()->routeIs('my-kyc') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> KYC Document Verification
                             </a>
-                            <a href="{{ route('my-activity') }}" class="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('my-activity') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
+                            <a wire:navigate href="{{ route('my-activity') }}" class="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('my-activity') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
                                 <i class="fa-solid fa-heart w-5 text-center transition-colors {{ request()->routeIs('my-activity') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Activity & Interests
                             </a>
-                            <a href="{{ route('messages') }}" class="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('messages') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
+                            <a wire:navigate href="{{ route('messages') }}" class="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition {{ request()->routeIs('messages') ? 'bg-rose-50 text-rose-600 font-bold' : '' }}">
                                 <i class="fa-solid fa-comments w-5 text-center transition-colors {{ request()->routeIs('messages') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Chat Messages
                             </a>
                         </div>
@@ -320,7 +320,7 @@
                     </form>
                 @else
                     <div class="text-center text-xs text-slate-400">
-                        Need Help? <a href="{{ route('contact') }}" class="text-rose-600 font-bold">Contact Support</a>
+                        Need Help? <a wire:navigate href="{{ route('contact') }}" class="text-rose-600 font-bold">Contact Support</a>
                     </div>
                 @endauth
                 <div class="mt-3 pt-2.5 border-t border-slate-200/60 flex items-center justify-between text-[11px] text-slate-400">
@@ -344,19 +344,19 @@
         <div class="grid grid-cols-5 h-14 items-center px-1">
             
             <!-- Tab 1: Home -->
-            <a href="{{ route('home') }}" class="flex flex-col items-center justify-center text-center tap-active relative py-1 {{ request()->routeIs('home') ? 'text-rose-600 font-extrabold' : 'text-slate-400 hover:text-slate-600 font-medium' }}">
+            <a wire:navigate href="{{ route('home') }}" class="flex flex-col items-center justify-center text-center tap-active relative py-1 {{ request()->routeIs('home') ? 'text-rose-600 font-extrabold' : 'text-slate-400 hover:text-slate-600 font-medium' }}">
                 <i class="fa-solid fa-house text-lg mb-0.5"></i>
                 <span class="text-[10px] tracking-tight">Home</span>
             </a>
 
             <!-- Tab 2: Discover / Browse Matches -->
-            <a href="{{ route('browse') }}" class="flex flex-col items-center justify-center text-center tap-active relative py-1 {{ request()->routeIs('browse') ? 'text-rose-600 font-extrabold' : 'text-slate-400 hover:text-slate-600 font-medium' }}">
+            <a wire:navigate href="{{ route('browse') }}" class="flex flex-col items-center justify-center text-center tap-active relative py-1 {{ request()->routeIs('browse') ? 'text-rose-600 font-extrabold' : 'text-slate-400 hover:text-slate-600 font-medium' }}">
                 <i class="fa-solid fa-compass text-lg mb-0.5"></i>
                 <span class="text-[10px] tracking-tight">Discover</span>
             </a>
 
             <!-- Tab 3: Messages with Real-Time Badge -->
-            <a href="{{ route('messages') }}" class="flex flex-col items-center justify-center text-center tap-active relative py-1 {{ request()->routeIs('messages*') ? 'text-rose-600 font-extrabold' : 'text-slate-400 hover:text-slate-600 font-medium' }}">
+            <a wire:navigate href="{{ route('messages') }}" class="flex flex-col items-center justify-center text-center tap-active relative py-1 {{ request()->routeIs('messages*') ? 'text-rose-600 font-extrabold' : 'text-slate-400 hover:text-slate-600 font-medium' }}">
                 <div class="relative">
                     <i class="fa-solid fa-comments text-lg mb-0.5"></i>
                     @auth
@@ -367,14 +367,14 @@
             </a>
 
             <!-- Tab 4: Events -->
-            <a href="{{ route('events') }}" class="flex flex-col items-center justify-center text-center tap-active relative py-1 {{ request()->routeIs('events') ? 'text-rose-600 font-extrabold' : 'text-slate-400 hover:text-slate-600 font-medium' }}">
+            <a wire:navigate href="{{ route('events') }}" class="flex flex-col items-center justify-center text-center tap-active relative py-1 {{ request()->routeIs('events') ? 'text-rose-600 font-extrabold' : 'text-slate-400 hover:text-slate-600 font-medium' }}">
                 <i class="fa-solid fa-calendar-days text-lg mb-0.5"></i>
                 <span class="text-[10px] tracking-tight">Events</span>
             </a>
 
             <!-- Tab 5: Profile / Dashboard or Login -->
             @auth
-                <a href="{{ route('dashboard') }}" class="flex flex-col items-center justify-center text-center tap-active relative py-1 {{ request()->routeIs('dashboard') || request()->routeIs('my-*') ? 'text-rose-600 font-extrabold' : 'text-slate-400 hover:text-slate-600 font-medium' }}">
+                <a wire:navigate href="{{ route('dashboard') }}" class="flex flex-col items-center justify-center text-center tap-active relative py-1 {{ request()->routeIs('dashboard') || request()->routeIs('my-*') ? 'text-rose-600 font-extrabold' : 'text-slate-400 hover:text-slate-600 font-medium' }}">
                     <div class="relative mb-0.5">
                         <div class="w-5 h-5 rounded-full ring-1.5 ring-slate-300 overflow-hidden {{ request()->routeIs('dashboard') || request()->routeIs('my-*') ? 'ring-rose-600' : '' }}">
                             <img src="{{ auth()->user()->avatar_url }}" alt="{{ auth()->user()->name }}" class="w-full h-full object-cover">
@@ -384,7 +384,7 @@
                     <span class="text-[10px] tracking-tight">Account</span>
                 </a>
             @else
-                <a href="{{ route('login') }}" class="flex flex-col items-center justify-center text-center tap-active relative py-1 {{ request()->routeIs('login') || request()->routeIs('register') ? 'text-rose-600 font-extrabold' : 'text-slate-400 hover:text-slate-600 font-medium' }}">
+                <a wire:navigate href="{{ route('login') }}" class="flex flex-col items-center justify-center text-center tap-active relative py-1 {{ request()->routeIs('login') || request()->routeIs('register') ? 'text-rose-600 font-extrabold' : 'text-slate-400 hover:text-slate-600 font-medium' }}">
                     <i class="fa-solid fa-circle-user text-lg mb-0.5"></i>
                     <span class="text-[10px] tracking-tight">Login</span>
                 </a>
@@ -466,11 +466,11 @@
                 <div>
                     <h4 class="text-white font-bold text-sm tracking-wider uppercase mb-4">Explore</h4>
                     <ul class="space-y-2.5 text-sm">
-                        <li><a href="{{ route('browse') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-xs text-rose-500"></i> Browse Profiles</a></li>
-                        <li><a href="{{ route('events') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-xs text-rose-500"></i> Matrimonial Events</a></li>
-                        <li><a href="{{ route('blog') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-xs text-rose-500"></i> Guides & Advice</a></li>
-                        <li><a href="{{ route('pricing') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-xs text-rose-500"></i> Membership Packages</a></li>
-                        <li><a href="{{ route('register') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-xs text-rose-500"></i> Free Registration</a></li>
+                        <li><a wire:navigate href="{{ route('browse') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-xs text-rose-500"></i> Browse Profiles</a></li>
+                        <li><a wire:navigate href="{{ route('events') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-xs text-rose-500"></i> Matrimonial Events</a></li>
+                        <li><a wire:navigate href="{{ route('blog') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-xs text-rose-500"></i> Guides & Advice</a></li>
+                        <li><a wire:navigate href="{{ route('pricing') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-xs text-rose-500"></i> Membership Packages</a></li>
+                        <li><a wire:navigate href="{{ route('register') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-xs text-rose-500"></i> Free Registration</a></li>
                     </ul>
                 </div>
 
@@ -478,10 +478,10 @@
                 <div>
                     <h4 class="text-white font-bold text-sm tracking-wider uppercase mb-4">Company & Help</h4>
                     <ul class="space-y-2.5 text-sm">
-                        <li><a href="{{ route('about') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-circle-info text-xs text-rose-500"></i> About Us</a></li>
-                        <li><a href="{{ route('contact') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-headset text-xs text-rose-500"></i> Contact Us & Support</a></li>
-                        <li><a href="{{ route('privacy') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-xs text-rose-500"></i> Privacy Policy</a></li>
-                        <li><a href="{{ route('terms') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-file-contract text-xs text-rose-500"></i> Terms & Conditions</a></li>
+                        <li><a wire:navigate href="{{ route('about') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-circle-info text-xs text-rose-500"></i> About Us</a></li>
+                        <li><a wire:navigate href="{{ route('contact') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-headset text-xs text-rose-500"></i> Contact Us & Support</a></li>
+                        <li><a wire:navigate href="{{ route('privacy') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-xs text-rose-500"></i> Privacy Policy</a></li>
+                        <li><a wire:navigate href="{{ route('terms') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-file-contract text-xs text-rose-500"></i> Terms & Conditions</a></li>
                     </ul>
                 </div>
 
@@ -519,10 +519,10 @@
                     </span>
                 </div>
                 <div class="flex gap-6">
-                    <a href="{{ route('privacy') }}" class="hover:text-white transition">Privacy Policy</a>
-                    <a href="{{ route('terms') }}" class="hover:text-white transition">Terms of Service</a>
-                    <a href="{{ route('about') }}" class="hover:text-white transition">About Us</a>
-                    <a href="{{ route('contact') }}" class="hover:text-white transition">Contact Us</a>
+                    <a wire:navigate href="{{ route('privacy') }}" class="hover:text-white transition">Privacy Policy</a>
+                    <a wire:navigate href="{{ route('terms') }}" class="hover:text-white transition">Terms of Service</a>
+                    <a wire:navigate href="{{ route('about') }}" class="hover:text-white transition">About Us</a>
+                    <a wire:navigate href="{{ route('contact') }}" class="hover:text-white transition">Contact Us</a>
                 </div>
             </div>
         </div>

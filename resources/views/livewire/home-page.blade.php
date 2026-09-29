@@ -367,7 +367,7 @@
 
                             <!-- Action buttons -->
                             <div class="p-3.5 sm:p-4 pt-0">
-                                <a href="{{ route('profile.show', $profile->id) }}" class="w-full py-2.5 bg-slate-900 hover:bg-rose-600 text-white font-black text-xs rounded-xl transition flex items-center justify-center gap-2 tap-active shadow-xs">
+                                <a wire:navigate href="{{ route('profile.show', $profile->id) }}" class="w-full py-2.5 bg-slate-900 hover:bg-rose-600 text-white font-black text-xs rounded-xl transition flex items-center justify-center gap-2 tap-active shadow-xs">
                                     <i class="fa-solid fa-heart text-xs text-rose-400"></i> View Full Profile & Connect
                                 </a>
                             </div>
@@ -376,7 +376,7 @@
                 </div>
 
                 <div class="mt-8 sm:mt-10 text-center">
-                    <a href="{{ route('browse') }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-white hover:bg-rose-50 text-rose-600 font-black text-xs sm:text-sm border border-rose-200 shadow-xs hover:border-rose-300 hover:shadow-md transition tap-active">
+                    <a wire:navigate href="{{ route('browse') }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-white hover:bg-rose-50 text-rose-600 font-black text-xs sm:text-sm border border-rose-200 shadow-xs hover:border-rose-300 hover:shadow-md transition tap-active">
                         <span>Explore All Verified Matches</span>
                         <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
@@ -398,10 +398,10 @@
                     To safeguard our members' privacy and security, prospective Nepali bride and groom profiles, photographs, and contact options are only visible to authenticated members.
                 </p>
                 <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
-                    <a href="{{ route('login') }}" class="px-7 py-3.5 bg-slate-900 hover:bg-rose-600 text-white font-black text-xs sm:text-sm rounded-xl shadow-md hover:shadow-lg transition flex items-center gap-2 tap-active">
+                    <a wire:navigate href="{{ route('login') }}" class="px-7 py-3.5 bg-slate-900 hover:bg-rose-600 text-white font-black text-xs sm:text-sm rounded-xl shadow-md hover:shadow-lg transition flex items-center gap-2 tap-active">
                         <i class="fa-solid fa-right-to-bracket"></i> Log In to View Profiles
                     </a>
-                    <a href="{{ route('register') }}" class="px-7 py-3.5 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white font-black text-xs sm:text-sm rounded-xl shadow-md hover:shadow-lg shadow-rose-200 transition flex items-center gap-2 tap-active">
+                    <a wire:navigate href="{{ route('register') }}" class="px-7 py-3.5 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white font-black text-xs sm:text-sm rounded-xl shadow-md hover:shadow-lg shadow-rose-200 transition flex items-center gap-2 tap-active">
                         <i class="fa-solid fa-user-plus"></i> Register Free Today
                     </a>
                 </div>
@@ -462,10 +462,10 @@
                         @endforeach
                     </div>
                     <div class="pt-2 flex flex-col sm:flex-row gap-3 sm:gap-4">
-                        <a href="{{ route('browse') }}" class="px-7 py-3.5 bg-gradient-to-r from-rose-600 via-pink-600 to-rose-600 hover:from-rose-700 hover:to-pink-700 text-white font-black text-xs sm:text-sm rounded-2xl shadow-xl shadow-rose-950/50 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 tap-active">
+                        <a wire:navigate href="{{ route('browse') }}" class="px-7 py-3.5 bg-gradient-to-r from-rose-600 via-pink-600 to-rose-600 hover:from-rose-700 hover:to-pink-700 text-white font-black text-xs sm:text-sm rounded-2xl shadow-xl shadow-rose-950/50 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 tap-active">
                             <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i> Explore Astrological Matches
                         </a>
-                        <a href="{{ route('blog.detail', 'kundali-matching-gun-milan-modern-nepali-marriages') }}" class="px-6 py-3.5 bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm rounded-2xl border border-white/20 backdrop-blur-md transition flex items-center justify-center gap-2 tap-active">
+                        <a wire:navigate href="{{ route('blog.detail', 'kundali-matching-gun-milan-modern-nepali-marriages') }}" class="px-6 py-3.5 bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm rounded-2xl border border-white/20 backdrop-blur-md transition flex items-center justify-center gap-2 tap-active">
                             <i class="fa-solid fa-book-open text-rose-300"></i> Gun Milan Guide
                         </a>
                     </div>
@@ -578,7 +578,7 @@
                 @endphp
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
                     @foreach($castesList as $caste)
-                        <a href="{{ route('browse') }}?searchQuery={{ urlencode($caste['name']) }}" class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 hover:border-rose-300 shadow-xs hover:shadow-md transition-all duration-300 group flex items-center justify-between tap-active">
+                        <a wire:navigate href="{{ route('browse') }}?searchQuery={{ urlencode($caste['name']) }}" class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 hover:border-rose-300 shadow-xs hover:shadow-md transition-all duration-300 group flex items-center justify-between tap-active">
                             <div class="flex items-center gap-3.5">
                                 <div class="w-11 h-11 rounded-xl {{ $caste['bg'] }} flex items-center justify-center text-lg font-bold group-hover:scale-110 transition duration-300">
                                     <i class="fa-solid {{ $caste['icon'] }}"></i>
@@ -668,7 +668,7 @@
                 @endphp
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
                     @foreach($diasporaHubs as $hub)
-                        <a href="{{ route('browse') }}?{{ $hub['param'] }}" class="bg-white p-5 rounded-2xl border border-slate-200/80 hover:border-indigo-300 shadow-xs hover:shadow-md transition-all duration-300 group flex flex-col justify-between tap-active">
+                        <a wire:navigate href="{{ route('browse') }}?{{ $hub['param'] }}" class="bg-white p-5 rounded-2xl border border-slate-200/80 hover:border-indigo-300 shadow-xs hover:shadow-md transition-all duration-300 group flex flex-col justify-between tap-active">
                             <div class="flex items-center justify-between mb-3">
                                 <div class="flex items-center gap-3">
                                     <img src="{{ $hub['flag'] }}" alt="{{ $hub['country'] }} Flag" class="w-8 h-8 rounded-full object-cover border border-slate-200 shadow-2xs">
@@ -715,7 +715,7 @@
                                 'count' => '1,500+'
                             ];
                         @endphp
-                        <a href="{{ route('browse') }}?searchQuery={{ urlencode($occ->name) }}" class="bg-white p-5 rounded-2xl border border-slate-200/80 hover:border-amber-300 shadow-xs hover:shadow-md transition-all duration-300 group flex flex-col justify-between tap-active">
+                        <a wire:navigate href="{{ route('browse') }}?searchQuery={{ urlencode($occ->name) }}" class="bg-white p-5 rounded-2xl border border-slate-200/80 hover:border-amber-300 shadow-xs hover:shadow-md transition-all duration-300 group flex flex-col justify-between tap-active">
                             <div class="flex items-start gap-3.5 mb-2">
                                 <div class="w-11 h-11 rounded-xl {{ $meta['bg'] }} flex items-center justify-center text-lg font-bold shrink-0 group-hover:scale-110 transition duration-300">
                                     <i class="fa-solid {{ $meta['icon'] }}"></i>
@@ -785,7 +785,7 @@
                                 'desc' => 'Cultural harmony, family values, and sacred wedding ceremonies.'
                             ];
                         @endphp
-                        <a href="{{ route('browse') }}?religion={{ $rel->id }}" class="bg-white p-6 rounded-3xl border border-slate-200/80 {{ $meta['border'] }} shadow-xs hover:shadow-lg transition group text-center space-y-3 tap-active">
+                        <a wire:navigate href="{{ route('browse') }}?religion={{ $rel->id }}" class="bg-white p-6 rounded-3xl border border-slate-200/80 {{ $meta['border'] }} shadow-xs hover:shadow-lg transition group text-center space-y-3 tap-active">
                             <div class="w-14 h-14 mx-auto rounded-2xl {{ $meta['bg'] }} {{ $meta['color'] }} flex items-center justify-center text-2xl font-bold group-hover:scale-110 transition duration-300">
                                 <i class="fa-solid {{ $meta['icon'] }}"></i>
                             </div>
@@ -855,7 +855,7 @@
                                         {{ $blog->published_at ? $blog->published_at->format('M d, Y') : 'Recent' }}
                                     </span>
                                     <h4 class="text-base font-black text-slate-900 group-hover:text-rose-600 transition leading-snug line-clamp-2">
-                                        <a href="{{ route('blog.detail', $blog->slug) }}">{{ $blog->title }}</a>
+                                        <a wire:navigate href="{{ route('blog.detail', $blog->slug) }}">{{ $blog->title }}</a>
                                     </h4>
                                     <p class="text-sm text-slate-500 line-clamp-2 leading-normal">
                                         {{ $blog->summary }}
@@ -863,7 +863,7 @@
                                 </div>
                             </div>
                             <div class="p-5 pt-0">
-                                <a href="{{ route('blog.detail', $blog->slug) }}" class="text-xs font-black text-rose-600 hover:text-rose-700 flex items-center gap-1 tap-active">
+                                <a wire:navigate href="{{ route('blog.detail', $blog->slug) }}" class="text-xs font-black text-rose-600 hover:text-rose-700 flex items-center gap-1 tap-active">
                                     Read Full Article <i class="fa-solid fa-arrow-right text-[10px]"></i>
                                 </a>
                             </div>
@@ -872,7 +872,7 @@
                 </div>
 
                 <div class="mt-8 sm:mt-10 text-center">
-                    <a href="{{ route('blog') }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-white hover:bg-rose-50 text-rose-600 font-black text-xs sm:text-sm border border-rose-200 shadow-xs hover:border-rose-300 hover:shadow-md transition tap-active">
+                    <a wire:navigate href="{{ route('blog') }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-white hover:bg-rose-50 text-rose-600 font-black text-xs sm:text-sm border border-rose-200 shadow-xs hover:border-rose-300 hover:shadow-md transition tap-active">
                         <span>View All Articles</span>
                         <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
@@ -897,10 +897,10 @@
                 {{ $settings['bottom_cta_subtitle'] ?? 'Join over 2,000+ verified Nepali singles across Kathmandu, Sydney, Dallas, London, Toronto, and worldwide. Create your free matrimony profile today.' }}
             </p>
             <div class="pt-4 flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a href="{{ route('register') }}" class="w-full sm:w-auto px-9 py-4 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white font-black text-sm rounded-2xl shadow-xl shadow-rose-950 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 tap-active">
+                <a wire:navigate href="{{ route('register') }}" class="w-full sm:w-auto px-9 py-4 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white font-black text-sm rounded-2xl shadow-xl shadow-rose-950 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 tap-active">
                     <i class="fa-solid fa-user-plus"></i> Register Free Today
                 </a>
-                <a href="{{ route('browse') }}" class="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold text-sm rounded-2xl border border-white/20 backdrop-blur-md transition flex items-center justify-center gap-2 tap-active">
+                <a wire:navigate href="{{ route('browse') }}" class="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold text-sm rounded-2xl border border-white/20 backdrop-blur-md transition flex items-center justify-center gap-2 tap-active">
                     <i class="fa-solid fa-compass"></i> Browse Verified Matches
                 </a>
             </div>

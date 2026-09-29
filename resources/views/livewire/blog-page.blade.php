@@ -42,7 +42,7 @@
                                 <span>{{ $featuredBlog->published_at ? $featuredBlog->published_at->format('M d, Y') : 'Recent' }}</span>
                             </div>
                             <h2 class="text-2xl font-black text-slate-900 leading-snug hover:text-rose-600 transition">
-                                <a href="{{ route('blog.detail', $featuredBlog->slug) }}">{{ $featuredBlog->title }}</a>
+                                <a wire:navigate href="{{ route('blog.detail', $featuredBlog->slug) }}">{{ $featuredBlog->title }}</a>
                             </h2>
                             <p class="text-sm text-slate-500 leading-normal line-clamp-3">
                                 {{ $featuredBlog->summary }}
@@ -50,7 +50,7 @@
                         </div>
 
                         <div>
-                            <a href="{{ route('blog.detail', $featuredBlog->slug) }}" class="btn btn-primary btn-sm rounded-xl font-bold shadow-md shadow-rose-200">
+                            <a wire:navigate href="{{ route('blog.detail', $featuredBlog->slug) }}" class="btn btn-primary btn-sm rounded-xl font-bold shadow-md shadow-rose-200">
                                 Read Full Article <i class="fa-solid fa-arrow-right ml-1"></i>
                             </a>
                         </div>
@@ -76,7 +76,7 @@
                                     <span>5 min read</span>
                                 </div>
                                 <h3 class="text-base font-black text-slate-900 line-clamp-2 leading-snug group-hover:text-rose-600 transition">
-                                    <a href="{{ route('blog.detail', $blog->slug) }}">{{ $blog->title }}</a>
+                                    <a wire:navigate href="{{ route('blog.detail', $blog->slug) }}">{{ $blog->title }}</a>
                                 </h3>
                                 <p class="text-sm text-slate-500 line-clamp-3 leading-normal">
                                     {{ $blog->summary }}
@@ -84,7 +84,7 @@
                             </div>
                             <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
                                 <span class="text-xs font-bold text-slate-700">By {{ $blog->author->name ?? 'MeroZodi Team' }}</span>
-                                <a href="{{ route('blog.detail', $blog->slug) }}" class="text-xs font-extrabold text-rose-600 group-hover:translate-x-1 transition inline-flex items-center gap-1">
+                                <a wire:navigate href="{{ route('blog.detail', $blog->slug) }}" class="text-xs font-extrabold text-rose-600 group-hover:translate-x-1 transition inline-flex items-center gap-1">
                                     Read <i class="fa-solid fa-angle-right"></i>
                                 </a>
                             </div>

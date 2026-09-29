@@ -67,7 +67,7 @@
 
         <!-- Back Button & Profile Meta -->
         <div class="mb-4 md:mb-6 flex flex-wrap items-center justify-between gap-3">
-            <a href="{{ route('browse') }}" class="text-xs font-bold text-slate-600 hover:text-rose-600 transition flex items-center gap-2 tap-active">
+            <a wire:navigate href="{{ route('browse') }}" class="text-xs font-bold text-slate-600 hover:text-rose-600 transition flex items-center gap-2 tap-active">
                 <i class="fa-solid fa-arrow-left"></i> Back to Browse
             </a>
             <div class="flex items-center gap-2.5">
@@ -266,11 +266,11 @@
                             </button>
 
                             @if($canChat)
-                                <a href="{{ route('messages', $user->id) }}" class="py-2.5 px-4 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-md shadow-indigo-100 tap-active">
+                                <a wire:navigate href="{{ route('messages', $user->id) }}" class="py-2.5 px-4 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-md shadow-indigo-100 tap-active">
                                     <i class="fa-solid fa-comments"></i> Send Message
                                 </a>
                             @else
-                                <a href="{{ route('pricing') }}" class="py-2.5 px-4 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition flex items-center justify-center gap-1.5 tap-active">
+                                <a wire:navigate href="{{ route('pricing') }}" class="py-2.5 px-4 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition flex items-center justify-center gap-1.5 tap-active">
                                     <i class="fa-solid fa-crown text-amber-400"></i> Unlock Chat
                                 </a>
                             @endif
@@ -312,7 +312,7 @@
                             @if(Auth::check() && Auth::user()->canViewContactDetails())
                                 <span class="font-bold text-slate-800">{{ $user->phone ?? 'Not provided' }}</span>
                             @else
-                                <a href="{{ route('pricing') }}" class="font-bold text-rose-600 hover:underline">Upgrade to View</a>
+                                <a wire:navigate href="{{ route('pricing') }}" class="font-bold text-rose-600 hover:underline">Upgrade to View</a>
                             @endif
                         </div>
                         <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50">
@@ -320,7 +320,7 @@
                             @if(Auth::check() && Auth::user()->canViewContactDetails())
                                 <span class="font-bold text-slate-800">{{ $user->email }}</span>
                             @else
-                                <a href="{{ route('pricing') }}" class="font-bold text-rose-600 hover:underline">Upgrade to View</a>
+                                <a wire:navigate href="{{ route('pricing') }}" class="font-bold text-rose-600 hover:underline">Upgrade to View</a>
                             @endif
                         </div>
                     </div>
@@ -533,11 +533,11 @@
 
             <!-- Message Button -->
             @if($canChat)
-                <a href="{{ route('messages', $user->id) }}" class="btn btn-circle btn-sm h-11 w-11 bg-indigo-600 text-white border-none shadow-md shadow-indigo-100 tap-active" aria-label="Chat">
+                <a wire:navigate href="{{ route('messages', $user->id) }}" class="btn btn-circle btn-sm h-11 w-11 bg-indigo-600 text-white border-none shadow-md shadow-indigo-100 tap-active" aria-label="Chat">
                     <i class="fa-solid fa-comment text-base"></i>
                 </a>
             @else
-                <a href="{{ route('pricing') }}" class="btn btn-circle btn-sm h-11 w-11 bg-slate-900 text-amber-400 border-none tap-active" aria-label="Unlock Chat">
+                <a wire:navigate href="{{ route('pricing') }}" class="btn btn-circle btn-sm h-11 w-11 bg-slate-900 text-amber-400 border-none tap-active" aria-label="Unlock Chat">
                     <i class="fa-solid fa-crown text-base"></i>
                 </a>
             @endif

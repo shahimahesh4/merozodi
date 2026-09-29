@@ -577,7 +577,7 @@
                                 <h4 class="text-xs font-black text-slate-900">Add 3+ Profile Photos</h4>
                                 <p class="text-[11px] text-slate-500 mt-1">Profiles with photos receive 10x more responses.</p>
                             </div>
-                            <a href="{{ route('my-gallery') }}" class="btn btn-xs bg-rose-600 hover:bg-rose-700 text-white rounded-lg mt-3 font-bold">
+                            <a wire:navigate href="{{ route('my-gallery') }}" class="btn btn-xs bg-rose-600 hover:bg-rose-700 text-white rounded-lg mt-3 font-bold">
                                 Upload Photos &rarr;
                             </a>
                         </div>
@@ -591,7 +591,7 @@
                                 <h4 class="text-xs font-black text-slate-900">100% ID KYC Verification</h4>
                                 <p class="text-[11px] text-slate-500 mt-1">Get the official Verified Trust Shield on your profile.</p>
                             </div>
-                            <a href="{{ route('my-kyc') }}" class="btn btn-xs bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg mt-3 font-bold">
+                            <a wire:navigate href="{{ route('my-kyc') }}" class="btn btn-xs bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg mt-3 font-bold">
                                 Verify ID &rarr;
                             </a>
                         </div>
@@ -605,7 +605,7 @@
                                 <h4 class="text-xs font-black text-slate-900">Vedic 36 Gun Milan</h4>
                                 <p class="text-[11px] text-slate-500 mt-1">Instantly see horoscope compatibility score with matches.</p>
                             </div>
-                            <a href="{{ route('my-profile') }}" class="btn btn-xs bg-amber-600 hover:bg-amber-700 text-white rounded-lg mt-3 font-bold">
+                            <a wire:navigate href="{{ route('my-profile') }}" class="btn btn-xs bg-amber-600 hover:bg-amber-700 text-white rounded-lg mt-3 font-bold">
                                 Check Kundali &rarr;
                             </a>
                         </div>
@@ -613,10 +613,10 @@
 
                     <!-- Primary Navigation Actions -->
                     <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-100">
-                        <a href="{{ route('dashboard') }}" class="btn btn-ghost text-xs font-bold text-slate-600 hover:text-slate-900 order-2 sm:order-1">
+                        <a wire:navigate href="{{ route('dashboard') }}" class="btn btn-ghost text-xs font-bold text-slate-600 hover:text-slate-900 order-2 sm:order-1">
                             <i class="fa-solid fa-gauge mr-1 text-slate-400"></i> Go to My Dashboard
                         </a>
-                        <a href="{{ route('browse') }}" class="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white font-black text-xs sm:text-sm rounded-2xl shadow-lg shadow-rose-200 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 order-1 sm:order-2">
+                        <a wire:navigate href="{{ route('browse') }}" class="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white font-black text-xs sm:text-sm rounded-2xl shadow-lg shadow-rose-200 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 order-1 sm:order-2">
                             <span>Explore Compatible Matches</span>
                             <i class="fa-solid fa-arrow-right text-xs"></i>
                         </a>

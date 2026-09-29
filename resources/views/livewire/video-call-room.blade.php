@@ -22,7 +22,7 @@
                     <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
                     <span x-text="new Date(seconds * 1000).toISOString().substr(14, 5)">00:00</span>
                 </div>
-                <a href="{{ route('messages') }}" class="btn btn-error btn-sm rounded-xl text-xs font-bold text-white shadow-lg shadow-rose-900/50">
+                <a wire:navigate href="{{ route('messages') }}" class="btn btn-error btn-sm rounded-xl text-xs font-bold text-white shadow-lg shadow-rose-900/50">
                     <i class="fa-solid fa-phone-slash"></i> Leave Date
                 </a>
             </div>

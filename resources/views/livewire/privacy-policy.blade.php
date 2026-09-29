@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
             <!-- Breadcrumbs -->
             <nav class="flex items-center gap-2 text-xs font-semibold text-rose-200/80 mb-5" aria-label="Breadcrumb">
-                <a href="{{ route('home') }}" class="hover:text-white transition flex items-center gap-1">
+                <a wire:navigate href="{{ route('home') }}" class="hover:text-white transition flex items-center gap-1">
                     <i class="fa-solid fa-house text-[11px]"></i> Home
                 </a>
                 <span class="text-rose-400/60">/</span>
@@ -145,7 +145,7 @@
                 <!-- Quick Navigation to Terms -->
                 <div class="bg-white rounded-2xl p-5 border border-slate-200/80 text-xs text-slate-600 space-y-2">
                     <span class="font-bold text-slate-800 block">Related Documents:</span>
-                    <a href="{{ route('terms') }}" class="flex items-center justify-between text-rose-600 hover:underline font-semibold">
+                    <a wire:navigate href="{{ route('terms') }}" class="flex items-center justify-between text-rose-600 hover:underline font-semibold">
                         <span><i class="fa-solid fa-scale-balanced mr-1.5"></i> Terms & Conditions</span>
                         <i class="fa-solid fa-arrow-right text-[10px]"></i>
                     </a>
@@ -177,7 +177,7 @@
                         </p>
                     </div>
                     <div class="flex items-center gap-3 shrink-0">
-                        <a href="{{ route('browse') }}" class="btn btn-primary bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 border-none text-white rounded-xl text-xs font-bold px-6 shadow-md shadow-rose-200 tap-active">
+                        <a wire:navigate href="{{ route('browse') }}" class="btn btn-primary bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 border-none text-white rounded-xl text-xs font-bold px-6 shadow-md shadow-rose-200 tap-active">
                             Explore Matches
                         </a>
                     </div>

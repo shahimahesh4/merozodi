@@ -33,7 +33,7 @@
             <button type="submit" class="w-full py-3.5 bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-xs rounded-xl shadow-lg shadow-rose-200 transition">
                 <i class="fa-solid fa-circle-check mr-1.5"></i> Simulate QR Scan & Complete
             </button>
-            <a href="{{ route('pricing') }}" class="btn btn-ghost btn-sm w-full text-xs text-slate-400">Cancel</a>
+            <a wire:navigate href="{{ route('pricing') }}" class="btn btn-ghost btn-sm w-full text-xs text-slate-400">Cancel</a>
         </form>
     </div>
 </body>

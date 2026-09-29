@@ -7,7 +7,7 @@
                 <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900">Manage Your Photo Album</h1>
                 <p class="text-xs text-slate-500 mt-1">Profiles with at least 3 high-quality photos receive 5x more connection requests</p>
             </div>
-            <a href="{{ route('my.profile') }}" class="btn btn-outline btn-sm rounded-xl text-xs font-bold border-slate-300">
+            <a wire:navigate href="{{ route('my.profile') }}" class="btn btn-outline btn-sm rounded-xl text-xs font-bold border-slate-300">
                 <i class="fa-solid fa-arrow-left"></i> Back to Profile
             </a>
         </div>

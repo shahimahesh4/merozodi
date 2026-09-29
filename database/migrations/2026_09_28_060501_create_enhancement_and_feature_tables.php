@@ -69,7 +69,7 @@ return new class extends Migration
 
         // 6. Update payments table with discount coupon tracking
         Schema::table('payments', function (Blueprint $table) {
-            $table->foreignId('coupon_id')->nullable()->after('subscription_plan_id')->constrained('coupons')->nullOnDelete();
+            $table->foreignId('coupon_id')->nullable()->after('subscription_id')->constrained('coupons')->nullOnDelete();
             $table->decimal('discount_amount', 10, 2)->default(0)->after('amount');
         });
 

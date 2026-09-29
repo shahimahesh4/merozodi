@@ -49,7 +49,7 @@ return new class extends Migration
         });
 
         Schema::table('matrimony_events', function (Blueprint $table) {
-            $table->index(['is_active', 'event_date'], 'events_active_perf_idx');
+            $table->index(['is_active', 'event_datetime'], 'events_active_perf_idx');
         });
     }
 

@@ -125,8 +125,8 @@
                     <span class="badge badge-primary bg-rose-600 border-none text-white text-xs font-bold">{{ $chatUsers->count() }}</span>
                 </div>
 
-                <!-- Chat Users List -->
-                <div class="flex-1 overflow-y-auto divide-y divide-slate-100 no-scrollbar">
+                <!-- Chat Users List with Real-Time Polling -->
+                <div wire:poll.4s class="flex-1 overflow-y-auto divide-y divide-slate-100 no-scrollbar">
                     @forelse($chatUsers as $u)
                         <div wire:click="selectUser({{ $u->id }})" class="p-3.5 sm:p-4 flex items-center gap-3.5 cursor-pointer hover:bg-white transition tap-active {{ $selectedUserId == $u->id ? 'bg-white shadow-xs border-l-4 border-rose-600' : '' }}">
                             <div class="relative shrink-0">
@@ -212,8 +212,8 @@
                         </div>
                     </div>
 
-                    <!-- Messages Stream with Auto-Scroll -->
-                    <div wire:poll.3s 
+                    <!-- Messages Stream with Auto-Scroll & Real-Time Polling -->
+                    <div wire:poll.2s 
                          x-data="{ scrollToBottom() { $el.scrollTop = $el.scrollHeight } }"
                          x-init="scrollToBottom()"
                          x-effect="$nextTick(() => scrollToBottom())"

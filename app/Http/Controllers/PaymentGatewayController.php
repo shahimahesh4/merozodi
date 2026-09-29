@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PaymentReceiptMail;
 use App\Models\Payment;
+use App\Models\SiteSetting;
 use App\Models\Subscription;
 use App\Models\SubscriptionPlan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class PaymentGatewayController extends Controller
 {
@@ -17,8 +21,10 @@ class PaymentGatewayController extends Controller
     public function initiateEsewa($paymentId)
     {
         $payment = Payment::with('user')->findOrFail($paymentId);
-        $productCode = env('ESEWA_PRODUCT_CODE', 'EPAYTEST');
-        $secretKey = env('ESEWA_SECRET_KEY', '8gBm/:&EnhH.1/q');
+        $productCode = SiteSetting::get('esewa_merchant_id', env('ESEWA_PRODUCT_CODE', 'EPAYTEST'));
+        $secretKey = SiteSetting::get('esewa_secret_key', env('ESEWA_SECRET_KEY', '8gBm/:&EnhH.1/q'));
+        $isSandbox = SiteSetting::get('esewa_sandbox', '1') == '1';
+        $formAction = $isSandbox ? 'https://rc-epay.esewa.com.np/api/epay/main/v2/form' : 'https://epay.esewa.com.np/api/epay/main/v2/form';
 
         $totalAmount = number_format($payment->total_amount, 2, '.', '');
         $transactionUuid = $payment->transaction_id;
@@ -38,6 +44,8 @@ class PaymentGatewayController extends Controller
             'signature' => $signature,
             'successUrl' => $successUrl,
             'failureUrl' => $failureUrl,
+            'formAction' => $formAction,
+            'isSandbox' => $isSandbox,
         ]);
     }
 
@@ -166,6 +174,13 @@ class PaymentGatewayController extends Controller
 
         // Upgrade user status
         $user->update(['is_premium' => true]);
+
+        // Send official Invoice & Payment Receipt email to customer
+        try {
+            Mail::to($user->email)->send(new PaymentReceiptMail($payment->load('user', 'subscription.plan')));
+        } catch (\Throwable $e) {
+            Log::warning("Failed to send payment receipt email for Payment #{$payment->id}: " . $e->getMessage());
+        }
 
         return redirect()->route('invoice.show', $payment->id)
             ->with('success', 'Payment successful! Your MeroZodi Premium Subscription is now ACTIVE.');

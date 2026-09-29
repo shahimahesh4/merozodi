@@ -38,6 +38,7 @@ class Dashboard extends Component
         $recommendedProfiles = User::with(['profile', 'education'])
             ->where('role', 'user')
             ->where('status', 'active')
+            ->where('is_verified', true)
             ->where('id', '!=', $user->id)
             ->where('gender', $user->gender === 'male' ? 'female' : 'male')
             ->latest()

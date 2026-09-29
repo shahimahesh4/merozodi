@@ -27,7 +27,7 @@
             <div class="mb-12 bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-xl hover:shadow-2xl transition duration-300">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
                     <div class="lg:col-span-7 relative h-72 lg:h-auto min-h-[320px]">
-                        <img src="{{ $featuredBlog->featured_image ?? 'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1200&fit=crop' }}" alt="{{ $featuredBlog->title }}" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&fit=crop';" class="w-full h-full object-cover">
+                        <img src="{{ !empty($featuredBlog->featured_image) ? (str_starts_with($featuredBlog->featured_image, 'http') || str_starts_with($featuredBlog->featured_image, 'images/') ? asset($featuredBlog->featured_image) : asset('storage/' . $featuredBlog->featured_image)) : asset('images/blogs/blog-kundali-matching.jpg') }}" alt="{{ $featuredBlog->title }}" onerror="this.onerror=null; this.src='{{ asset('images/blogs/blog-kundali-matching.jpg') }}';" class="w-full h-full object-cover">
                         <div class="absolute top-4 left-4">
                             <span class="badge badge-primary font-bold text-xs uppercase px-3 py-2 text-white shadow-md">
                                 <i class="fa-solid fa-star mr-1"></i> Featured Guide
@@ -44,7 +44,7 @@
                             <h2 class="text-2xl font-black text-slate-900 leading-snug hover:text-rose-600 transition">
                                 <a href="{{ route('blog.detail', $featuredBlog->slug) }}">{{ $featuredBlog->title }}</a>
                             </h2>
-                            <p class="text-xs text-slate-500 leading-relaxed line-clamp-3">
+                            <p class="text-sm text-slate-500 leading-normal line-clamp-3">
                                 {{ $featuredBlog->summary }}
                             </p>
                         </div>
@@ -65,7 +65,7 @@
                 @foreach($blogs as $blog)
                     <article class="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group">
                         <div class="relative h-48 overflow-hidden">
-                            <img src="{{ $blog->featured_image ?? 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&fit=crop' }}" alt="{{ $blog->title }}" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=800&fit=crop';" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <img src="{{ !empty($blog->featured_image) ? (str_starts_with($blog->featured_image, 'http') || str_starts_with($blog->featured_image, 'images/') ? asset($blog->featured_image) : asset('storage/' . $blog->featured_image)) : asset('images/blogs/blog-tradition-modernity.jpg') }}" alt="{{ $blog->title }}" onerror="this.onerror=null; this.src='{{ asset('images/blogs/blog-tradition-modernity.jpg') }}';" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                         </div>
                         <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
                             <div class="space-y-2">
@@ -78,7 +78,7 @@
                                 <h3 class="text-base font-black text-slate-900 line-clamp-2 leading-snug group-hover:text-rose-600 transition">
                                     <a href="{{ route('blog.detail', $blog->slug) }}">{{ $blog->title }}</a>
                                 </h3>
-                                <p class="text-xs text-slate-500 line-clamp-3 leading-relaxed">
+                                <p class="text-sm text-slate-500 line-clamp-3 leading-normal">
                                     {{ $blog->summary }}
                                 </p>
                             </div>

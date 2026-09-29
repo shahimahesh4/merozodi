@@ -1,9 +1,9 @@
 <div class="bg-slate-50 min-h-screen" x-data="{ activeSection: 'introduction' }">
     
-    <!-- Hero Header Banner with Authentic Nepali Marriage Background (Matching About Us) -->
-    <section class="relative bg-cover bg-no-repeat text-white pt-12 sm:pt-16 lg:pt-20 pb-14 sm:pb-18 lg:pb-20 overflow-hidden mb-10" style="background-image: url('{{ asset('images/about-us-banner.png') }}'); background-position: right 15%;">
-        <!-- Deep Multi-Layer Gradient Overlay (Dark on Left for Text, Crystal Clear on Right for Image) -->
-        <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/85 via-45% to-transparent backdrop-blur-[0.5px]"></div>
+    <!-- Hero Header Banner with Authentic Privacy & Security Artwork -->
+    <section class="relative bg-cover bg-no-repeat text-white pt-16 sm:pt-20 lg:pt-24 pb-20 sm:pb-28 lg:pb-32 overflow-hidden" style="background-image: url('{{ !empty($page?->banner_image) ? (str_starts_with($page->banner_image, 'http') || str_starts_with($page->banner_image, 'images/') ? asset($page->banner_image) : asset('storage/' . $page->banner_image)) : asset('images/privacy-policy-banner.png') }}'); background-position: center right;">
+        <!-- Deep Multi-Layer Gradient Overlay (Dark on Left for Text, Crystal Clear on Right for Artwork) -->
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/70 via-50% to-transparent backdrop-blur-[0.5px]"></div>
         <div class="absolute -top-32 -left-32 w-96 h-96 bg-rose-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -44,38 +44,38 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16">
 
-        <!-- 4 Key Data Safeguards Cards -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-            <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs hover:border-emerald-200 transition">
-                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg mb-3">
+        <!-- 4 Key Data Safeguards Cards (Floating Overlay above Banner) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 relative -mt-10 sm:-mt-14 z-20 mb-10 sm:mb-12">
+            <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-xl hover:shadow-2xl hover:border-emerald-300 transition-all duration-300 transform hover:-translate-y-1">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl shadow-xs mb-4">
                     <i class="fa-solid fa-eye-slash"></i>
                 </div>
-                <h2 class="text-xs font-black uppercase tracking-wider text-slate-900 mb-1">1. Contact Privacy</h2>
-                <p class="text-xs text-slate-500 leading-relaxed">Your phone number and email are concealed until you accept a connection request.</p>
+                <h2 class="text-base font-black uppercase tracking-wider text-slate-900 mb-1.5">1. Contact Privacy</h2>
+                <p class="text-sm text-slate-500 leading-relaxed">Your phone number and email are concealed until you accept a connection request.</p>
             </div>
 
-            <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs hover:border-indigo-200 transition">
-                <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-lg mb-3">
+            <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-xl hover:shadow-2xl hover:border-indigo-300 transition-all duration-300 transform hover:-translate-y-1">
+                <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl shadow-xs mb-4">
                     <i class="fa-solid fa-vault"></i>
                 </div>
-                <h2 class="text-xs font-black uppercase tracking-wider text-slate-900 mb-1">2. Isolated KYC Vault</h2>
-                <p class="text-xs text-slate-500 leading-relaxed">Citizenship and Passport documents are encrypted and never shown publicly.</p>
+                <h2 class="text-base font-black uppercase tracking-wider text-slate-900 mb-1.5">2. Isolated KYC Vault</h2>
+                <p class="text-sm text-slate-500 leading-relaxed">Citizenship and Passport documents are encrypted and never shown publicly.</p>
             </div>
 
-            <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs hover:border-rose-200 transition">
-                <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-lg mb-3">
+            <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-xl hover:shadow-2xl hover:border-rose-300 transition-all duration-300 transform hover:-translate-y-1">
+                <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center text-xl shadow-xs mb-4">
                     <i class="fa-solid fa-ban"></i>
                 </div>
-                <h2 class="text-xs font-black uppercase tracking-wider text-slate-900 mb-1">3. Zero Data Sales</h2>
-                <p class="text-xs text-slate-500 leading-relaxed">We never sell, rent, or trade your personal profile data to third-party advertisers.</p>
+                <h2 class="text-base font-black uppercase tracking-wider text-slate-900 mb-1.5">3. Zero Data Sales</h2>
+                <p class="text-sm text-slate-500 leading-relaxed">We never sell, rent, or trade your personal profile data to third-party advertisers.</p>
             </div>
 
-            <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs hover:border-amber-200 transition">
-                <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg mb-3">
+            <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-xl hover:shadow-2xl hover:border-amber-300 transition-all duration-300 transform hover:-translate-y-1">
+                <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl shadow-xs mb-4">
                     <i class="fa-solid fa-trash-can"></i>
                 </div>
-                <h2 class="text-xs font-black uppercase tracking-wider text-slate-900 mb-1">4. Right to Erasure</h2>
-                <p class="text-xs text-slate-500 leading-relaxed">Delete your account anytime; all photos, messages, and biodata are purged in 48 hours.</p>
+                <h2 class="text-base font-black uppercase tracking-wider text-slate-900 mb-1.5">4. Right to Erasure</h2>
+                <p class="text-sm text-slate-500 leading-relaxed">Delete your account anytime; all photos, messages, and biodata are purged in 48 hours.</p>
             </div>
         </div>
 
@@ -92,33 +92,33 @@
                         <span class="text-[11px] text-slate-400 font-semibold">7 Sections</span>
                     </div>
 
-                    <nav class="space-y-1 text-xs font-medium text-slate-600">
-                        <a href="#introduction" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-emerald-50 hover:text-emerald-700 transition group">
-                            <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-500 group-hover:bg-emerald-100 group-hover:text-emerald-700 text-[10px] font-bold flex items-center justify-center">1</span>
+                    <nav class="space-y-1.5 text-[15px] font-medium text-slate-700">
+                        <a href="#introduction" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 hover:text-emerald-700 transition group">
+                            <span class="w-6 h-6 rounded-full bg-slate-100 text-slate-500 group-hover:bg-emerald-100 group-hover:text-emerald-700 text-xs font-bold flex items-center justify-center shrink-0">1</span>
                             <span>Introduction & Scope</span>
                         </a>
-                        <a href="#data-collected" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-emerald-50 hover:text-emerald-700 transition group">
-                            <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-500 group-hover:bg-emerald-100 group-hover:text-emerald-700 text-[10px] font-bold flex items-center justify-center">2</span>
+                        <a href="#data-collected" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 hover:text-emerald-700 transition group">
+                            <span class="w-6 h-6 rounded-full bg-slate-100 text-slate-500 group-hover:bg-emerald-100 group-hover:text-emerald-700 text-xs font-bold flex items-center justify-center shrink-0">2</span>
                             <span>Information We Collect</span>
                         </a>
-                        <a href="#data-usage" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-emerald-50 hover:text-emerald-700 transition group">
-                            <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-500 group-hover:bg-emerald-100 group-hover:text-emerald-700 text-[10px] font-bold flex items-center justify-center">3</span>
+                        <a href="#data-usage" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 hover:text-emerald-700 transition group">
+                            <span class="w-6 h-6 rounded-full bg-slate-100 text-slate-500 group-hover:bg-emerald-100 group-hover:text-emerald-700 text-xs font-bold flex items-center justify-center shrink-0">3</span>
                             <span>How We Use Your Data</span>
                         </a>
-                        <a href="#privacy-controls" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-emerald-50 hover:text-emerald-700 transition group">
-                            <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-500 group-hover:bg-emerald-100 group-hover:text-emerald-700 text-[10px] font-bold flex items-center justify-center">4</span>
+                        <a href="#privacy-controls" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 hover:text-emerald-700 transition group">
+                            <span class="w-6 h-6 rounded-full bg-slate-100 text-slate-500 group-hover:bg-emerald-100 group-hover:text-emerald-700 text-xs font-bold flex items-center justify-center shrink-0">4</span>
                             <span>Privacy & Visibility Controls</span>
                         </a>
-                        <a href="#security-measures" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-emerald-50 hover:text-emerald-700 transition group">
-                            <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-500 group-hover:bg-emerald-100 group-hover:text-emerald-700 text-[10px] font-bold flex items-center justify-center">5</span>
+                        <a href="#security-measures" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 hover:text-emerald-700 transition group">
+                            <span class="w-6 h-6 rounded-full bg-slate-100 text-slate-500 group-hover:bg-emerald-100 group-hover:text-emerald-700 text-xs font-bold flex items-center justify-center shrink-0">5</span>
                             <span>Data Security Architecture</span>
                         </a>
-                        <a href="#account-deletion" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-emerald-50 hover:text-emerald-700 transition group">
-                            <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-500 group-hover:bg-emerald-100 group-hover:text-emerald-700 text-[10px] font-bold flex items-center justify-center">6</span>
+                        <a href="#account-deletion" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 hover:text-emerald-700 transition group">
+                            <span class="w-6 h-6 rounded-full bg-slate-100 text-slate-500 group-hover:bg-emerald-100 group-hover:text-emerald-700 text-xs font-bold flex items-center justify-center shrink-0">6</span>
                             <span>Account Erasure Rights</span>
                         </a>
-                        <a href="#contact-dpo" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-emerald-50 hover:text-emerald-700 transition group">
-                            <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-500 group-hover:bg-emerald-100 group-hover:text-emerald-700 text-[10px] font-bold flex items-center justify-center">7</span>
+                        <a href="#contact-dpo" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-50 hover:text-emerald-700 transition group">
+                            <span class="w-6 h-6 rounded-full bg-slate-100 text-slate-500 group-hover:bg-emerald-100 group-hover:text-emerald-700 text-xs font-bold flex items-center justify-center shrink-0">7</span>
                             <span>Data Protection Officer</span>
                         </a>
                     </nav>
@@ -155,7 +155,7 @@
             <!-- Right: Spacious Main Legal Body Content -->
             <div class="lg:col-span-8 order-1 lg:order-2">
                 @if($page)
-                    <div class="bg-white rounded-3xl p-6 sm:p-10 lg:p-14 border border-slate-200/80 shadow-xs legal-prose">
+                    <div class="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/80 shadow-xs legal-prose">
                         {!! $page->content !!}
                     </div>
                 @else

@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\MatrimonyEvent;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -11,15 +12,14 @@ class EventsPage extends Component
 {
     use WithPagination;
 
+    #[Url(as: 'type', except: 'all')]
     public $filterType = 'all';
+
+    #[Url(except: '')]
     public $search = '';
+
     public $registeredEvents = [];
     public $selectedEventForModal = null;
-
-    protected $queryString = [
-        'filterType' => ['except' => 'all'],
-        'search' => ['except' => ''],
-    ];
 
     public function mount()
     {
@@ -85,6 +85,6 @@ class EventsPage extends Component
 
         return view('livewire.events-page', [
             'events' => $events,
-        ])->layout('layouts.app', ['title' => 'Matrimonial Events & Speed Dating - MeroZodi']);
+        ])->layout('components.layouts.app', ['title' => 'Matrimonial Events & Speed Dating - MeroZodi']);
     }
 }

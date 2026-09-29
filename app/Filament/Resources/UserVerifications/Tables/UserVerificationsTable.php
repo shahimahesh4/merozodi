@@ -90,11 +90,14 @@ class UserVerificationsTable
                             'verified_at' => now(),
                             'verified_by' => auth()->id(),
                         ]);
-                        $record->user->update(['is_verified' => true]);
+                        $record->user->update([
+                            'is_verified' => true,
+                            'status' => 'active',
+                        ]);
 
                         Notification::make()
                             ->title('KYC Approved')
-                            ->body("User {$record->user->name} has been verified.")
+                            ->body("User {$record->user->name} has been verified and profile is now active.")
                             ->success()
                             ->send();
                     }),
@@ -109,7 +112,10 @@ class UserVerificationsTable
                             'status' => 'rejected',
                             'verified_at' => null,
                         ]);
-                        $record->user->update(['is_verified' => false]);
+                        $record->user->update([
+                            'is_verified' => false,
+                            'status' => 'pending_approval',
+                        ]);
 
                         Notification::make()
                             ->title('KYC Rejected')

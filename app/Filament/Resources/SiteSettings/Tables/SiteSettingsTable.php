@@ -33,13 +33,17 @@ class SiteSettingsTable
                 TextColumn::make('group')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
-                        'contact' => 'info',
+                        'general' => 'primary',
+                        'footer' => 'info',
+                        'contact' => 'success',
                         'social' => 'warning',
+                        'homepage' => 'danger',
+                        'homepage_stats' => 'info',
                         'payment' => 'success',
-                        'astrology' => 'primary',
+                        'astrology' => 'warning',
                         default => 'gray',
                     })
-                    ->formatStateUsing(fn (string $state): string => ucfirst($state)),
+                    ->formatStateUsing(fn (string $state): string => ucfirst(str_replace('_', ' ', $state))),
                 TextColumn::make('updated_at')
                     ->label('Last Updated')
                     ->dateTime('M d, Y h:i A')
@@ -48,9 +52,12 @@ class SiteSettingsTable
             ->filters([
                 SelectFilter::make('group')
                     ->options([
-                        'general' => 'General',
+                        'general' => 'General Information',
+                        'footer' => 'Footer & Legal',
                         'contact' => 'Contact & Support',
                         'social' => 'Social Media',
+                        'homepage' => 'Homepage Sections',
+                        'homepage_stats' => 'Homepage Stats',
                         'payment' => 'Payment Gateways',
                         'astrology' => 'Astrology',
                     ]),

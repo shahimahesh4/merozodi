@@ -6,10 +6,12 @@ use App\Models\ConnectRequest;
 use App\Models\ProfileView;
 use App\Models\UserLike;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class MyActivity extends Component
 {
+    #[Url(as: 'tab', except: 'received_connects')]
     public $activeTab = 'received_connects'; // 'received_connects', 'sent_connects', 'likes', 'visitors'
 
     public function acceptConnect($requestId)

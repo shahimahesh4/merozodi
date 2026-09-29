@@ -62,7 +62,7 @@
                     <div class="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group">
                         <!-- Image Banner -->
                         <div class="relative h-48 overflow-hidden">
-                            <img src="{{ $event->banner_image ?? 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&fit=crop' }}" alt="{{ $event->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <img src="{{ !empty($event->banner_image) ? (str_starts_with($event->banner_image, 'http') || str_starts_with($event->banner_image, 'images/') ? asset($event->banner_image) : asset('storage/' . $event->banner_image)) : asset('images/nepali-wedding-banner.png') }}" alt="{{ $event->title }}" onerror="this.onerror=null; this.src='{{ asset('images/nepali-wedding-banner.png') }}';" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                             
                             <!-- Badges -->

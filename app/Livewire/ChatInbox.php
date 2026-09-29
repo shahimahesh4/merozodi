@@ -7,6 +7,8 @@ use App\Models\Message;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Livewire\Attributes\On;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -14,7 +16,9 @@ class ChatInbox extends Component
 {
     use WithFileUploads;
 
+    #[Url(as: 'user', except: null)]
     public $selectedUserId = null;
+
     public $newMessage = '';
     public $attachment = null;
 
@@ -23,6 +27,8 @@ class ChatInbox extends Component
         if ($selectedUserId) {
             $this->selectedUserId = $selectedUserId;
             $this->markAsRead($selectedUserId);
+        } elseif ($this->selectedUserId) {
+            $this->markAsRead($this->selectedUserId);
         }
     }
 
@@ -30,6 +36,7 @@ class ChatInbox extends Component
     {
         $this->selectedUserId = $userId;
         $this->markAsRead($userId);
+        $this->dispatch('chat-updated');
     }
 
     public function markAsRead($userId)
@@ -41,6 +48,8 @@ class ChatInbox extends Component
                 'is_read' => true,
                 'read_at' => now(),
             ]);
+
+        $this->dispatch('chat-updated');
     }
 
     public function removeAttachment()
@@ -98,6 +107,8 @@ class ChatInbox extends Component
                     'audio_duration' => (int)$duration,
                     'is_read' => false,
                 ]);
+
+                $this->dispatch('chat-updated');
             }
         }
     }
@@ -155,6 +166,7 @@ class ChatInbox extends Component
 
         $this->newMessage = '';
         $this->attachment = null;
+        $this->dispatch('chat-updated');
     }
 
     public function sendVideoInvite()
@@ -194,20 +206,26 @@ class ChatInbox extends Component
 
         $allChatUserIds = $connectedUserIds->merge($messagedUserIds)->unique()->values();
 
-        $chatUsers = User::with(['profile'])->whereIn('id', $allChatUserIds)->get()->map(function ($u) use ($currentUserId) {
-            $lastMessage = Message::where(function ($q) use ($currentUserId, $u) {
-                $q->where('sender_id', $currentUserId)->where('receiver_id', $u->id);
-            })->orWhere(function ($q) use ($currentUserId, $u) {
-                $q->where('sender_id', $u->id)->where('receiver_id', $currentUserId);
-            })->latest()->first();
+        $unreadCounts = Message::where('receiver_id', $currentUserId)
+            ->where('is_read', false)
+            ->whereIn('sender_id', $allChatUserIds)
+            ->selectRaw('sender_id, count(*) as total')
+            ->groupBy('sender_id')
+            ->pluck('total', 'sender_id')
+            ->toArray();
 
-            $unreadCount = Message::where('sender_id', $u->id)
-                ->where('receiver_id', $currentUserId)
-                ->where('is_read', false)
-                ->count();
+        // Fetch latest messages for all contacts in a single query
+        $latestMessages = Message::where(function($q) use ($currentUserId, $allChatUserIds) {
+            $q->where('sender_id', $currentUserId)->whereIn('receiver_id', $allChatUserIds);
+        })->orWhere(function($q) use ($currentUserId, $allChatUserIds) {
+            $q->where('receiver_id', $currentUserId)->whereIn('sender_id', $allChatUserIds);
+        })->latest('id')->get()->groupBy(function($m) use ($currentUserId) {
+            return $m->sender_id == $currentUserId ? $m->receiver_id : $m->sender_id;
+        })->map->first();
 
-            $u->last_message = $lastMessage;
-            $u->unread_count = $unreadCount;
+        $chatUsers = User::with(['profile'])->whereIn('id', $allChatUserIds)->get()->map(function ($u) use ($unreadCounts, $latestMessages) {
+            $u->last_message = $latestMessages[$u->id] ?? null;
+            $u->unread_count = $unreadCounts[$u->id] ?? 0;
             return $u;
         })->sortByDesc(fn($u) => $u->last_message?->created_at);
 

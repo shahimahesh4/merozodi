@@ -2,12 +2,13 @@
 
 namespace App\Filament\Resources\CmsPages\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Str;
 
@@ -25,21 +26,38 @@ class PageForm
                             ->required()
                             ->maxLength(255)
                             ->live(onBlur: true)
-                            ->afterStateUpdated(fn (string $operation, $state, callable $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
+                            ->afterStateUpdated(function (string $operation, ?string $state, callable $set, callable $get) {
+                                if ($operation === 'create' || blank($get('slug'))) {
+                                    $set('slug', Str::slug($state ?? ''));
+                                }
+                            }),
                         TextInput::make('slug')
                             ->label('URL Slug')
                             ->required()
                             ->unique(ignoreRecord: true)
                             ->maxLength(255)
-                            ->helperText('e.g. contact-us, about-us, privacy-policy, terms-and-conditions'),
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(fn (?string $state, callable $set) => $set('slug', Str::slug($state ?? '')))
+                            ->suffixAction(
+                                \Filament\Actions\Action::make('regenerateSlug')
+                                    ->icon('heroicon-m-arrow-path')
+                                    ->tooltip('Regenerate slug from title')
+                                    ->action(fn (callable $set, callable $get) => $set('slug', Str::slug($get('title') ?? '')))
+                            )
+                            ->helperText('Auto-generated from title and fully editable. (e.g. contact-us, about-us, privacy-policy)'),
                         TextInput::make('subtitle')
                             ->label('Subtitle / Tagline')
                             ->maxLength(500)
                             ->columnSpanFull(),
-                        TextInput::make('banner_image')
-                            ->label('Header Banner Image URL')
-                            ->url()
-                            ->columnSpanFull(),
+                        FileUpload::make('banner_image')
+                            ->label('Header Banner Image')
+                            ->image()
+                            ->directory('pages/banners')
+                            ->visibility('public')
+                            ->imageEditor()
+                            ->maxSize(5120)
+                            ->columnSpanFull()
+                            ->helperText('Upload a high-resolution header banner image (PNG, JPG, WebP) for this page. If empty, the default platform banner will be used.'),
                     ])->columns(2),
 
                 Section::make('Page Content & Body')

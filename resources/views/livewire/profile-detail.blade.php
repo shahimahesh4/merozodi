@@ -1,4 +1,54 @@
-<div class="py-4 md:py-10 bg-slate-50 min-h-[90vh] pb-32 md:pb-12">
+@php
+    $lightboxPhotos = [];
+    if (!$isPhotoBlurred || $hasPhotoAccess) {
+        $lightboxPhotos[] = [
+            'url' => $user->avatar_url,
+            'caption' => $user->name . ' - Profile Photo',
+            'type' => 'avatar'
+        ];
+        foreach ($user->galleries as $idx => $photo) {
+            $photoUrl = (str_starts_with($photo->image_path, 'http://') || str_starts_with($photo->image_path, 'https://'))
+                ? $photo->image_path
+                : (str_starts_with($photo->image_path, 'images/') || str_starts_with($photo->image_path, '/images/')
+                    ? asset(ltrim($photo->image_path, '/'))
+                    : asset('storage/' . $photo->image_path));
+            
+            $lightboxPhotos[] = [
+                'url' => $photoUrl,
+                'caption' => $user->name . ' - Photo Album #' . ($idx + 1),
+                'type' => 'gallery'
+            ];
+        }
+    }
+@endphp
+
+<div class="py-4 md:py-10 bg-slate-50 min-h-[90vh] pb-32 md:pb-12"
+     x-data="{
+         lightboxOpen: false,
+         lightboxIndex: 0,
+         photos: @js($lightboxPhotos),
+         openLightbox(index) {
+             if (!this.photos || this.photos.length === 0) return;
+             this.lightboxIndex = Math.max(0, Math.min(index, this.photos.length - 1));
+             this.lightboxOpen = true;
+             document.body.classList.add('overflow-hidden');
+         },
+         closeLightbox() {
+             this.lightboxOpen = false;
+             document.body.classList.remove('overflow-hidden');
+         },
+         nextPhoto() {
+             if (this.photos.length <= 1) return;
+             this.lightboxIndex = (this.lightboxIndex + 1) % this.photos.length;
+         },
+         prevPhoto() {
+             if (this.photos.length <= 1) return;
+             this.lightboxIndex = (this.lightboxIndex - 1 + this.photos.length) % this.photos.length;
+         }
+     }"
+     @keydown.escape.window="if(lightboxOpen) closeLightbox()"
+     @keydown.arrow-right.window="if(lightboxOpen) nextPhoto()"
+     @keydown.arrow-left.window="if(lightboxOpen) prevPhoto()">
     <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         
         <!-- Flash Alerts -->
@@ -16,12 +66,18 @@
         @endif
 
         <!-- Back Button & Profile Meta -->
-        <div class="mb-4 md:mb-6 flex items-center justify-between">
+        <div class="mb-4 md:mb-6 flex flex-wrap items-center justify-between gap-3">
             <a href="{{ route('browse') }}" class="text-xs font-bold text-slate-600 hover:text-rose-600 transition flex items-center gap-2 tap-active">
                 <i class="fa-solid fa-arrow-left"></i> Back to Browse
             </a>
-            <div class="text-[11px] text-slate-400">
-                ID: <span class="font-mono font-bold text-slate-700">#MZ-{{ str_pad($user->id, 5, '0', STR_PAD_LEFT) }}</span>
+            <div class="flex items-center gap-2.5">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold bg-emerald-50 text-emerald-700 border border-emerald-200/90 shadow-2xs">
+                    <i class="fa-solid fa-circle-check text-emerald-500"></i>
+                    <span>Profile {{ $user->profile_completion_percentage }}% Completed</span>
+                </div>
+                <div class="text-[11px] text-slate-400">
+                    ID: <span class="font-mono font-bold text-slate-700">#MZ-{{ str_pad($user->id, 5, '0', STR_PAD_LEFT) }}</span>
+                </div>
             </div>
         </div>
 
@@ -33,11 +89,19 @@
                     <div class="absolute top-0 left-0 right-0 h-24 bg-gradient-to-r from-rose-600 via-pink-600 to-indigo-700"></div>
                     
                     <!-- Avatar with Verified & Online Status Badge + Privacy Shield Blur -->
-                    <div class="relative w-28 h-28 sm:w-32 sm:h-32 mx-auto mt-4 sm:mt-6 mb-4 group">
-                        <div class="w-full h-full rounded-3xl overflow-hidden ring-4 ring-white shadow-xl bg-slate-100 relative">
-                            <img src="{{ $user->avatar_url }}" alt="{{ $user->name }}" class="w-full h-full object-cover {{ ($isPhotoBlurred && !$hasPhotoAccess) ? 'blur-lg scale-110 filter' : '' }}">
+                    <div class="relative w-28 h-28 sm:w-32 sm:h-32 mx-auto mt-4 sm:mt-6 mb-4 group {{ (!$isPhotoBlurred || $hasPhotoAccess) ? 'cursor-pointer' : '' }}"
+                         @if(!$isPhotoBlurred || $hasPhotoAccess) @click="openLightbox(0)" title="Click to view full photo" @endif>
+                        <div class="w-full h-full rounded-3xl overflow-hidden ring-4 ring-white shadow-xl bg-slate-100 relative transition-transform duration-300 group-hover:scale-105 group-hover:shadow-2xl">
+                            <img src="{{ $user->avatar_url }}" alt="{{ $user->name }}" class="w-full h-full object-cover transition duration-300 {{ ($isPhotoBlurred && !$hasPhotoAccess) ? 'blur-lg scale-110 filter' : 'group-hover:scale-105' }}">
                             
-                            @if($isPhotoBlurred && !$hasPhotoAccess)
+                            @if(!$isPhotoBlurred || $hasPhotoAccess)
+                                <!-- Hover Zoom Overlay Icon -->
+                                <div class="absolute inset-0 bg-slate-900/35 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                                    <div class="w-10 h-10 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white border border-white/40 shadow-lg">
+                                        <i class="fa-solid fa-magnifying-glass-plus text-sm"></i>
+                                    </div>
+                                </div>
+                            @else
                                 <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-xs flex flex-col items-center justify-center text-white p-2 text-center">
                                     <i class="fa-solid fa-lock text-xl mb-1 text-rose-300"></i>
                                     <span class="text-[9px] font-black uppercase tracking-wider">Photo Protected</span>
@@ -111,8 +175,24 @@
                         </span>
                     </div>
 
+                    <!-- Profile Completed % Meter -->
+                    <div class="mt-6 p-4 rounded-2xl bg-gradient-to-br from-emerald-50/90 via-teal-50/50 to-slate-50 border border-emerald-200/80 text-left shadow-2xs">
+                        <div class="flex justify-between items-center text-xs font-bold mb-1.5">
+                            <span class="text-emerald-950 flex items-center gap-1.5 font-black">
+                                <i class="fa-solid fa-circle-check text-emerald-600"></i> Profile Completed
+                            </span>
+                            <div class="text-right">
+                                <span class="text-emerald-700 font-black text-sm">{{ $user->profile_completion_percentage }}%</span>
+                                <span class="text-[10px] text-slate-400 font-bold">/ 100%</span>
+                            </div>
+                        </div>
+                        <div class="w-full bg-emerald-200/60 rounded-full h-2 overflow-hidden">
+                            <div class="bg-gradient-to-r from-emerald-500 to-teal-500 h-2 rounded-full transition-all duration-500 shadow-xs" style="width: {{ $user->profile_completion_percentage }}%"></div>
+                        </div>
+                    </div>
+
                     <!-- Compatibility Match Meter -->
-                    <div class="mt-6 p-4 rounded-2xl bg-rose-50/80 border border-rose-100 text-left">
+                    <div class="mt-[15px] p-4 rounded-2xl bg-rose-50/80 border border-rose-100 text-left">
                         <div class="flex justify-between items-center text-xs font-bold mb-1.5">
                             <span class="text-rose-950 flex items-center gap-1.5">
                                 <i class="fa-solid fa-heart-pulse text-rose-600"></i> Lifestyle Compatibility
@@ -124,7 +204,7 @@
 
                     <!-- Astrological Kundali Gun Milan Widget -->
                     @if($kundaliMatch)
-                        <div class="mt-4 p-4 rounded-2xl bg-indigo-50/70 border border-indigo-100 text-left" x-data="{ openMilan: false }">
+                        <div class="mt-[15px] p-4 rounded-2xl bg-indigo-50/70 border border-indigo-100 text-left" x-data="{ openMilan: false }">
                             <div class="flex justify-between items-center cursor-pointer" @click="openMilan = !openMilan">
                                 <div>
                                     <span class="text-[10px] font-black uppercase tracking-wider text-indigo-600 block">Vedic Kundali Milan</span>
@@ -389,14 +469,42 @@
                 <!-- Tab 7: Photo Gallery -->
                 @if($activeTab === 'photos')
                     <div class="bg-white rounded-3xl p-5 sm:p-8 shadow-xs border border-slate-200/80 space-y-6">
-                        <h3 class="text-sm sm:text-base font-extrabold text-slate-900 flex items-center gap-2">
-                            <i class="fa-solid fa-images text-rose-500"></i> Photo Album
-                        </h3>
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <h3 class="text-sm sm:text-base font-extrabold text-slate-900 flex items-center gap-2">
+                                <i class="fa-solid fa-images text-rose-500"></i> Photo Album ({{ $user->galleries->count() }})
+                            </h3>
+                            <span class="text-xs text-slate-400 font-medium">Click any photo to view full size</span>
+                        </div>
                         @if($user->galleries->count() > 0)
                             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
-                                @foreach($user->galleries as $photo)
-                                    <div class="relative group rounded-2xl overflow-hidden shadow-xs bg-slate-100 aspect-square">
-                                        <img src="{{ asset('storage/' . $photo->image_path) }}" alt="Photo" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                                @foreach($user->galleries as $idx => $photo)
+                                    @php
+                                        $pUrl = (str_starts_with($photo->image_path, 'http://') || str_starts_with($photo->image_path, 'https://'))
+                                            ? $photo->image_path
+                                            : (str_starts_with($photo->image_path, 'images/') || str_starts_with($photo->image_path, '/images/')
+                                                ? asset(ltrim($photo->image_path, '/'))
+                                                : asset('storage/' . $photo->image_path));
+                                    @endphp
+                                    <div class="relative group rounded-2xl overflow-hidden shadow-xs bg-slate-100 aspect-square cursor-pointer border border-slate-200/70"
+                                         @if(!$isPhotoBlurred || $hasPhotoAccess) @click="openLightbox({{ $idx + 1 }})" title="Click to view full photo" @endif>
+                                        <img src="{{ $pUrl }}" alt="Photo" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 {{ ($isPhotoBlurred && !$hasPhotoAccess) ? 'blur-lg scale-110 filter' : '' }}">
+                                        
+                                        @if(!$isPhotoBlurred || $hasPhotoAccess)
+                                            <!-- Hover Overlay with Zoom Icon & Label -->
+                                            <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3 text-white">
+                                                <div class="self-end w-8 h-8 rounded-full bg-white/25 backdrop-blur-md flex items-center justify-center text-white border border-white/40 shadow-sm">
+                                                    <i class="fa-solid fa-expand text-xs"></i>
+                                                </div>
+                                                <div class="text-[11px] font-bold tracking-wide flex items-center gap-1.5">
+                                                    <i class="fa-solid fa-camera text-rose-400"></i> Photo {{ $idx + 1 }}
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-xs flex flex-col items-center justify-center text-white p-2 text-center">
+                                                <i class="fa-solid fa-lock text-xl mb-1 text-rose-300"></i>
+                                                <span class="text-[9px] font-black uppercase tracking-wider">Photo Protected</span>
+                                            </div>
+                                        @endif
                                     </div>
                                 @endforeach
                             </div>
@@ -653,5 +761,110 @@
             </div>
         </div>
     @endif
+
+    <!-- ======================================================== -->
+    <!-- Full-Screen Interactive Photo Lightbox Modal (Popup)     -->
+    <!-- ======================================================== -->
+    <div x-show="lightboxOpen"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 backdrop-blur-none"
+         x-transition:enter-end="opacity-100 backdrop-blur-xl"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100 backdrop-blur-xl"
+         x-transition:leave-end="opacity-0 backdrop-blur-none"
+         style="display: none;"
+         class="fixed inset-0 z-[9999] bg-slate-950/95 flex flex-col justify-between select-none"
+         @click.self="closeLightbox()">
+        
+        <!-- Top Bar Header -->
+        <div class="w-full px-4 py-3 sm:px-6 sm:py-4 flex items-center justify-between z-20 bg-gradient-to-b from-black/85 via-black/50 to-transparent">
+            <!-- Left: Profile Info & Caption -->
+            <div class="flex items-center gap-3">
+                <img src="{{ $user->avatar_url }}" alt="{{ $user->name }}" class="w-9 h-9 rounded-full object-cover ring-2 ring-white/30 hidden sm:block">
+                <div>
+                    <h4 class="text-white text-xs sm:text-sm font-black flex items-center gap-1.5">
+                        {{ $user->name }}
+                        <span class="text-[10px] text-rose-400 font-bold bg-rose-950/70 border border-rose-500/30 px-2 py-0.5 rounded-full">#MZ-{{ str_pad($user->id, 5, '0', STR_PAD_LEFT) }}</span>
+                    </h4>
+                    <span class="text-slate-300 text-[11px] font-medium" x-text="photos[lightboxIndex]?.caption || 'Photo Viewer'"></span>
+                </div>
+            </div>
+
+            <!-- Center: Photo Count Pill -->
+            <div class="px-3.5 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-white text-xs font-black shadow-inner">
+                <i class="fa-regular fa-images text-rose-400 mr-1.5"></i>
+                <span x-text="lightboxIndex + 1"></span> / <span x-text="photos.length"></span>
+            </div>
+
+            <!-- Right: Close Button (✕) -->
+            <div class="flex items-center gap-2">
+                <button type="button"
+                        @click="closeLightbox()"
+                        class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/15 hover:bg-rose-600 text-white border border-white/25 hover:border-rose-500 flex items-center justify-center transition-all duration-200 hover:rotate-90 hover:scale-105 active:scale-95 cursor-pointer shadow-lg backdrop-blur-md"
+                        title="Close (Esc)">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Center Image Stage with Left & Right Navigation Arrows -->
+        <div class="relative flex-1 w-full flex items-center justify-center px-3 sm:px-20 py-2 min-h-0"
+             @click.self="closeLightbox()">
+            
+            <!-- Previous Arrow (◀) -->
+            <button type="button"
+                    x-show="photos.length > 1"
+                    @click.stop="prevPhoto()"
+                    class="absolute left-2 sm:left-6 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/15 hover:bg-white/30 border border-white/25 hover:border-white/50 text-white flex items-center justify-center transition-all duration-200 active:scale-90 backdrop-blur-md shadow-2xl cursor-pointer group"
+                    title="Previous Photo (Left Arrow Key)">
+                <i class="fa-solid fa-chevron-left text-base sm:text-xl group-hover:-translate-x-0.5 transition-transform"></i>
+            </button>
+
+            <!-- Active High-Res Photo -->
+            <div class="relative max-h-[72vh] sm:max-h-[78vh] max-w-full flex items-center justify-center">
+                <template x-for="(photo, idx) in photos" :key="idx">
+                    <img x-show="lightboxIndex === idx"
+                         :src="photo.url"
+                         :alt="photo.caption"
+                         class="max-h-[70vh] sm:max-h-[76vh] max-w-[92vw] sm:max-w-[80vw] object-contain rounded-2xl shadow-2xl ring-1 ring-white/15 transition-all duration-300 select-none pointer-events-auto"
+                         x-transition:enter="transition ease-out duration-200"
+                         x-transition:enter-start="opacity-0 scale-95"
+                         x-transition:enter-end="opacity-100 scale-100">
+                </template>
+            </div>
+
+            <!-- Next Arrow (▶) -->
+            <button type="button"
+                    x-show="photos.length > 1"
+                    @click.stop="nextPhoto()"
+                    class="absolute right-2 sm:right-6 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/15 hover:bg-white/30 border border-white/25 hover:border-white/50 text-white flex items-center justify-center transition-all duration-200 active:scale-90 backdrop-blur-md shadow-2xl cursor-pointer group"
+                    title="Next Photo (Right Arrow Key)">
+                <i class="fa-solid fa-chevron-right text-base sm:text-xl group-hover:translate-x-0.5 transition-transform"></i>
+            </button>
+        </div>
+
+        <!-- Bottom Thumbnails Ribbon & Navigation Hints -->
+        <div class="w-full px-4 py-3 sm:py-4 z-20 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col items-center gap-2">
+            <!-- Thumbnail Navigation Strip -->
+            <div x-show="photos.length > 1" class="flex items-center justify-center gap-2 max-w-full overflow-x-auto py-1 px-2 no-scrollbar">
+                <template x-for="(p, i) in photos" :key="i">
+                    <button type="button"
+                            @click.stop="lightboxIndex = i"
+                            class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden border-2 transition-all duration-200 shrink-0 cursor-pointer shadow-md"
+                            :class="lightboxIndex === i ? 'border-rose-500 ring-2 ring-rose-500/60 scale-105 opacity-100' : 'border-white/25 opacity-50 hover:opacity-100 hover:border-white/60'">
+                        <img :src="p.url" class="w-full h-full object-cover">
+                    </button>
+                </template>
+            </div>
+
+            <!-- Footer Keyboard Navigation Hint -->
+            <div class="text-[10px] sm:text-[11px] text-slate-400 flex items-center gap-3 font-medium">
+                <span class="hidden sm:inline-flex items-center gap-1"><kbd class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono text-[10px]">ESC</kbd> Close</span>
+                <span x-show="photos.length > 1" class="hidden sm:inline-flex items-center gap-1"><kbd class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono text-[10px]">◀</kbd> <kbd class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono text-[10px]">▶</kbd> Navigate</span>
+                <span class="text-rose-400 font-bold" x-text="photos[lightboxIndex]?.caption"></span>
+            </div>
+        </div>
+
+    </div>
 
 </div>

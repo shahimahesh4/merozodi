@@ -11,6 +11,7 @@ use App\Models\Religion;
 use App\Models\User;
 use App\Models\UserLike;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -18,42 +19,74 @@ class BrowseProfiles extends Component
 {
     use WithPagination;
 
+    #[Url(as: 'q', except: '')]
     public $searchQuery = '';
+
+    #[Url(except: '')]
     public $gender = '';
+
+    #[Url(as: 'creator', except: '')]
     public $profile_created_by = '';
+
+    #[Url(as: 'status', except: '')]
     public $marital_status = '';
+
+    #[Url(as: 'religion', except: '')]
     public $religion = '';
+
+    #[Url(as: 'caste', except: '')]
     public $caste = '';
+
+    #[Url(as: 'city', except: '')]
     public $city = '';
+
+    #[Url(as: 'min_age', except: 18)]
     public $minAge = 18;
+
+    #[Url(as: 'max_age', except: 50)]
     public $maxAge = 50;
+
+    #[Url(as: 'edu', except: '')]
     public $education_level = '';
+
+    #[Url(as: 'occ', except: '')]
     public $occupation = '';
+
+    #[Url(as: 'diet', except: '')]
     public $diet = '';
+
+    #[Url(as: 'manglik', except: '')]
     public $manglik = '';
+
+    #[Url(as: 'verified', except: false)]
     public $verifiedOnly = false;
+
+    #[Url(as: 'tab', except: 'all')]
     public $tierTab = 'all'; // 'all', 'mutual', 'reverse', 'verified', 'newest'
 
     // Selected profile for inspection modal
     public $selectedProfileId = null;
 
-    protected $queryString = [
-        'gender' => ['except' => ''],
-        'profile_created_by' => ['except' => ''],
-        'marital_status' => ['except' => ''],
-        'tierTab' => ['except' => 'all'],
-        'religion' => ['except' => ''],
-        'caste' => ['except' => ''],
-        'city' => ['except' => ''],
-        'minAge' => ['except' => 18],
-        'maxAge' => ['except' => 50],
-    ];
-
     public function mount()
     {
-        if (Auth::check() && empty($this->gender)) {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        if (empty($this->gender)) {
             // Default to opposite gender of logged in user
             $this->gender = Auth::user()->gender === 'male' ? 'female' : 'male';
+        }
+    }
+
+    public function updated($propertyName)
+    {
+        if (in_array($propertyName, [
+            'searchQuery', 'gender', 'profile_created_by', 'marital_status', 'religion', 'caste',
+            'city', 'minAge', 'maxAge', 'education_level', 'occupation', 'diet', 'manglik',
+            'verifiedOnly', 'tierTab'
+        ])) {
+            $this->resetPage();
         }
     }
 
@@ -124,7 +157,8 @@ class BrowseProfiles extends Component
             'family', 'sentLikes', 'receivedConnects'
         ])
         ->where('role', 'user')
-        ->where('status', 'active');
+        ->where('status', 'active')
+        ->where('is_verified', true);
 
         if (Auth::check()) {
             $query->where('id', '!=', Auth::id());
@@ -210,19 +244,19 @@ class BrowseProfiles extends Component
             $query->whereHas('physical', fn($q) => $q->where('diet', $this->diet));
         }
 
-        $profiles = $query->latest()->paginate(9);
+        $profiles = $query->latest()->paginate(30);
 
         $selectedProfile = $this->selectedProfileId
             ? User::with(['profile', 'profile.religion', 'profile.caste', 'physical', 'education', 'family'])->find($this->selectedProfileId)
             : null;
 
-        $religions = Religion::all();
+        $religions = \Illuminate\Support\Facades\Cache::remember('master_religions', 86400, fn() => Religion::all());
         $castes = $this->religion
             ? Caste::where('religion_id', $this->religion)->get()
-            : Caste::all();
-        $cities = City::all();
-        $eduLevels = EducationLevel::all();
-        $occupations = Occupation::all();
+            : \Illuminate\Support\Facades\Cache::remember('master_castes', 86400, fn() => Caste::all());
+        $cities = \Illuminate\Support\Facades\Cache::remember('master_cities', 86400, fn() => City::all());
+        $eduLevels = \Illuminate\Support\Facades\Cache::remember('master_edu_levels', 86400, fn() => EducationLevel::all());
+        $occupations = \Illuminate\Support\Facades\Cache::remember('master_occupations', 86400, fn() => Occupation::all());
 
         $myLikes = Auth::check()
             ? UserLike::where('liker_id', Auth::id())->pluck('liked_id')->toArray()

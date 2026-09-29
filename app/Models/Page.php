@@ -11,6 +11,15 @@ class Page extends Model
 
     protected $guarded = ['id'];
 
+    protected static function booted(): void
+    {
+        static::saving(function (Page $page) {
+            if (empty($page->slug) && !empty($page->title)) {
+                $page->slug = \Illuminate\Support\Str::slug($page->title);
+            }
+        });
+    }
+
     protected function casts(): array
     {
         return [

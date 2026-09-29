@@ -181,7 +181,7 @@
                             <div>
                                 <!-- Image Container with App-like Gradient Header -->
                                 <div class="relative h-64 sm:h-60 bg-slate-100 overflow-hidden cursor-pointer" wire:click="viewProfile({{ $profile->id }})">
-                                    <img src="{{ $profile->avatar_url }}" alt="{{ $profile->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                    <img src="{{ $profile->avatar_url }}" alt="{{ $profile->name }}" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
 
                                     <!-- Top Badges -->
@@ -241,10 +241,6 @@
                                     <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
                                         <span class="text-slate-400 font-medium">Education:</span>
                                         <span class="font-bold text-slate-800 truncate max-w-[160px]">{{ $profile->education->educationLevel->name ?? "Bachelor's" }}</span>
-                                    </div>
-                                    <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
-                                        <span class="text-slate-400 font-medium">Created By:</span>
-                                        <span class="font-bold text-rose-600 truncate max-w-[160px]">{{ $profile->profile_created_by_label }}</span>
                                     </div>
                                     @if($profile->profile && $profile->profile->rashi)
                                         <div class="flex items-center justify-between">
@@ -434,31 +430,31 @@
                 </button>
 
                 <!-- Profile Cover & Avatar Header -->
-                <div class="relative h-48 sm:h-56 bg-gradient-to-r from-rose-800 via-pink-800 to-indigo-900">
+                <div class="relative h-28 sm:h-32 bg-gradient-to-r from-rose-800 via-pink-800 to-indigo-900">
                     <div class="absolute bottom-3 left-4 sm:left-6 flex items-end gap-3 sm:gap-4 text-white">
                         <div class="relative shrink-0">
-                            <img src="{{ $selectedProfile->avatar_url }}" alt="{{ $selectedProfile->name }}" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover border-4 border-white shadow-lg">
+                            <img src="{{ $selectedProfile->avatar_url }}" alt="{{ $selectedProfile->name }}" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border-4 border-white shadow-lg">
                             @if($selectedProfile->isOnline())
-                                <span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-emerald-500 rounded-full ring-2 ring-white shadow-xs" title="Online Now"></span>
+                                <span class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-500 rounded-full ring-2 ring-white shadow-xs" title="Online Now"></span>
                             @else
-                                <span class="absolute -top-1.5 -right-1.5 w-4 h-4 bg-slate-400 rounded-full ring-2 ring-white shadow-xs" title="Offline"></span>
+                                <span class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-slate-400 rounded-full ring-2 ring-white shadow-xs" title="Offline"></span>
                             @endif
                         </div>
                         <div>
-                            <div class="flex items-center gap-1.5">
-                                <h2 class="text-lg sm:text-2xl font-black">{{ $selectedProfile->name }}, {{ $selectedProfile->age }}</h2>
+                            <div class="flex items-center gap-1.5 flex-wrap">
+                                <h2 class="text-base sm:text-xl font-black">{{ $selectedProfile->name }}, {{ $selectedProfile->age }}</h2>
                                 @if($selectedProfile->is_verified)
                                     <span class="bg-emerald-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full"><i class="fa-solid fa-check"></i> Verified</span>
                                 @endif
                             </div>
-                            <p class="text-xs text-slate-200">
+                            <p class="text-xs text-slate-200 mt-0.5">
                                 <i class="fa-solid fa-location-dot text-rose-400 mr-1"></i> {{ $selectedProfile->profile->living_city ?? 'Kathmandu' }}, {{ $selectedProfile->profile->living_country ?? 'Nepal' }}
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <div class="p-4 sm:p-6 space-y-5">
+                <div class="p-4 sm:p-5 space-y-4">
                     @if($selectedProfile->profile && $selectedProfile->profile->about_me)
                         <div>
                             <h4 class="text-[10px] font-bold uppercase text-slate-400 mb-1 tracking-wider">About Myself</h4>
@@ -470,7 +466,7 @@
 
                     <!-- Cultural & Astrological Grid -->
                     <div>
-                        <h4 class="text-[10px] font-bold uppercase text-slate-400 mb-2 tracking-wider">Cultural & Astrological Details</h4>
+                        <h4 class="text-[10px] font-bold uppercase text-slate-400 mb-1.5 tracking-wider">Cultural & Astrological Details</h4>
                         <div class="grid grid-cols-2 md:grid-cols-3 gap-2.5 text-xs bg-slate-50 p-3 sm:p-4 rounded-2xl border border-slate-100">
                             <div><span class="text-slate-400 block text-[10px]">Religion:</span> <span class="font-bold text-slate-800">{{ $selectedProfile->profile->religion->name ?? 'Hindu' }}</span></div>
                             <div><span class="text-slate-400 block text-[10px]">Caste:</span> <span class="font-bold text-slate-800">{{ $selectedProfile->profile->caste->name ?? 'Brahmin' }}</span></div>
@@ -482,7 +478,7 @@
                     </div>
 
                     <!-- Modal Actions -->
-                    <div class="pt-3 border-t border-slate-100 flex justify-between items-center gap-2">
+                    <div class="pt-2.5 border-t border-slate-100 flex justify-between items-center gap-2">
                         <a href="{{ route('profile.show', $selectedProfile->id) }}" class="btn btn-outline btn-sm rounded-xl text-xs font-bold">
                             View Full Profile
                         </a>

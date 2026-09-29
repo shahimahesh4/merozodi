@@ -2,13 +2,17 @@
 
 namespace App\Filament\Resources\Users\Tables;
 
+use App\Models\User;
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Notifications\Notification;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 
 class UsersTable
@@ -37,9 +41,17 @@ class UsersTable
                     }),
                 TextColumn::make('role')
                     ->badge()
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'super_admin' => 'Super Admin',
+                        'admin' => 'Admin',
+                        'staff' => 'Staff / Support',
+                        'moderator' => 'Moderator',
+                        default => 'User',
+                    })
                     ->color(fn (string $state): string => match ($state) {
+                        'super_admin' => 'danger',
                         'admin' => 'primary',
-                        'moderator' => 'warning',
+                        'staff', 'moderator' => 'warning',
                         default => 'gray',
                     }),
                 IconColumn::make('is_verified')
@@ -73,6 +85,10 @@ class UsersTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
+                TernaryFilter::make('is_verified')
+                    ->label('Verification Status')
+                    ->trueLabel('Verified Profiles Only')
+                    ->falseLabel('Pending / Unverified Profiles'),
                 SelectFilter::make('gender')
                     ->options([
                         'male' => 'Male',
@@ -80,9 +96,10 @@ class UsersTable
                     ]),
                 SelectFilter::make('role')
                     ->options([
-                        'user' => 'User',
-                        'moderator' => 'Moderator',
+                        'super_admin' => 'Super Admin',
                         'admin' => 'Admin',
+                        'staff' => 'Staff / Support',
+                        'user' => 'User',
                     ]),
                 SelectFilter::make('status')
                     ->options([
@@ -92,6 +109,46 @@ class UsersTable
                     ]),
             ])
             ->recordActions([
+                Action::make('verify')
+                    ->label('Verify & Approve')
+                    ->icon('heroicon-m-check-badge')
+                    ->color('success')
+                    ->requiresConfirmation()
+                    ->modalHeading('Verify & Approve Member Profile')
+                    ->modalDescription('Are you sure you want to verify this member? Once approved, their profile will be publicly visible to prospective matches on the browse directory.')
+                    ->visible(fn (User $record) => !$record->is_verified || $record->status !== 'active')
+                    ->action(function (User $record) {
+                        $record->update([
+                            'is_verified' => true,
+                            'status' => 'active',
+                        ]);
+
+                        Notification::make()
+                            ->title('Profile Approved & Verified')
+                            ->body("Member {$record->name} is now verified and active on MeroZodi.")
+                            ->success()
+                            ->send();
+                    }),
+                Action::make('unverify')
+                    ->label('Revoke Verification')
+                    ->icon('heroicon-m-x-circle')
+                    ->color('danger')
+                    ->requiresConfirmation()
+                    ->modalHeading('Revoke Verification')
+                    ->modalDescription('Are you sure you want to revoke verification for this member? Their profile will be hidden from public browsing.')
+                    ->visible(fn (User $record) => $record->is_verified)
+                    ->action(function (User $record) {
+                        $record->update([
+                            'is_verified' => false,
+                            'status' => 'pending_approval',
+                        ]);
+
+                        Notification::make()
+                            ->title('Verification Revoked')
+                            ->body("Member {$record->name} verification revoked. Profile status set to Pending Review.")
+                            ->warning()
+                            ->send();
+                    }),
                 EditAction::make(),
             ])
             ->toolbarActions([

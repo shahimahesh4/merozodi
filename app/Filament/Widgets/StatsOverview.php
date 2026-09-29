@@ -38,28 +38,28 @@ class StatsOverview extends BaseWidget
                 ->descriptionIcon('heroicon-m-arrow-trending-up')
                 ->color('primary')
                 ->chart([3, 5, 8, 12, 10, 15, 18, max(5, $totalUsers)])
-                ->url(url('/admin/users')),
+                ->url(url('/stnapanel/users')),
 
             Stat::make('Verified Matchseekers', number_format($verifiedProfiles))
                 ->description($pendingKyc . ' KYC verifications pending')
                 ->descriptionIcon('heroicon-m-shield-check')
                 ->color($pendingKyc > 0 ? 'warning' : 'success')
                 ->chart([2, 4, 6, 8, 9, 12, 14, max(2, $verifiedProfiles)])
-                ->url(url('/admin/user-verifications')),
+                ->url(url('/stnapanel/user-verifications')),
 
             Stat::make('Total Monetization', 'NPR ' . number_format($totalRevenue, 2))
                 ->description($recentTransactions . ' completed transactions')
                 ->descriptionIcon('heroicon-m-banknotes')
                 ->color('success')
                 ->chart([500, 1200, 2400, 3500, 5000, 6800, max(1000, (int) $totalRevenue)])
-                ->url(url('/admin/payments')),
+                ->url(url('/stnapanel/payments')),
 
             Stat::make('Trust & Moderation', number_format($pendingReports))
                 ->description($pendingReports > 0 ? 'Urgent reports pending review' : 'Zero safety escalations')
                 ->descriptionIcon($pendingReports > 0 ? 'heroicon-m-exclamation-triangle' : 'heroicon-m-check-circle')
                 ->color($pendingReports > 0 ? 'danger' : 'success')
                 ->chart([$pendingReports, 1, 0, 2, 1, 0, $pendingReports])
-                ->url(url('/admin/user-reports')),
+                ->url(url('/stnapanel/user-reports')),
         ];
     }
 }

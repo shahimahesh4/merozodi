@@ -4,47 +4,60 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
     
+    @php
+        $siteFavicon = !empty($globalSettings['site_favicon']) ? (str_starts_with($globalSettings['site_favicon'], 'http') ? $globalSettings['site_favicon'] : asset($globalSettings['site_favicon'])) : asset('images/logo.png');
+        $siteLogo = !empty($globalSettings['site_logo']) ? (str_starts_with($globalSettings['site_logo'], 'http') ? $globalSettings['site_logo'] : asset($globalSettings['site_logo'])) : asset('images/logo.png');
+        $siteName = $globalSettings['site_name'] ?? 'MeroZodi';
+        $siteTagline = $globalSettings['tagline'] ?? "Nepal's Leading Matrimony & Matchmaking Platform";
+        $defaultTitle = $siteName . ' - ' . $siteTagline;
+        $defaultDesc = $globalSettings['site_description'] ?? 'Find your ideal life partner with MeroZodi. 100% KYC ID-verified Nepali singles across Nepal, Australia, USA, UK, and worldwide with photo privacy shield and private video dating.';
+    @endphp
+
     <!-- Primary SEO Meta Tags -->
-    <title>{{ $title ?? "MeroZodi - Nepal's Leading Matrimony & Matchmaking Platform" }}</title>
-    <meta name="description" content="{{ $description ?? 'Find your ideal life partner with MeroZodi. 100% KYC ID-verified Nepali singles across Nepal, Australia, USA, UK, and worldwide with authentic 36 Gun Milan and private video dating.' }}">
+    <title>{{ $title ?? $defaultTitle }}</title>
+    <meta name="description" content="{{ $description ?? $defaultDesc }}">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="theme-color" content="#e11d48">
     <link rel="canonical" href="{{ url()->current() }}">
-    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ $siteFavicon }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ $siteFavicon }}">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="{{ $ogType ?? 'website' }}">
-    <meta property="og:title" content="{{ $title ?? "MeroZodi - Nepal's Leading Matrimony & Matchmaking Platform" }}">
-    <meta property="og:description" content="{{ $description ?? 'Find your ideal life partner with MeroZodi. 100% KYC ID-verified Nepali singles across Nepal, Australia, USA, UK, and worldwide with authentic 36 Gun Milan and private video dating.' }}">
+    <meta property="og:title" content="{{ $title ?? $defaultTitle }}">
+    <meta property="og:description" content="{{ $description ?? $defaultDesc }}">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:site_name" content="MeroZodi">
+    <meta property="og:site_name" content="{{ $siteName }}">
     <meta property="og:locale" content="en_NP">
-    <meta property="og:image" content="{{ $ogImage ?? 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80' }}">
+    <meta property="og:image" content="{{ $ogImage ?? asset('images/nepali-wedding-banner.png') }}">
     <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:alt" content="{{ $title ?? "MeroZodi - Nepal's Leading Matrimony & Matchmaking Platform" }}">
+    <meta property="og:image:alt" content="{{ $title ?? $defaultTitle }}">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ $title ?? "MeroZodi - Nepal's Leading Matrimony & Matchmaking Platform" }}">
-    <meta name="twitter:description" content="{{ $description ?? 'Find your ideal life partner with MeroZodi. 100% KYC ID-verified Nepali singles across Nepal, Australia, USA, UK, and worldwide with authentic 36 Gun Milan and private video dating.' }}">
-    <meta name="twitter:image" content="{{ $ogImage ?? 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80' }}">
-    <meta name="twitter:image:alt" content="{{ $title ?? "MeroZodi - Nepal's Leading Matrimony & Matchmaking Platform" }}">
+    <meta name="twitter:title" content="{{ $title ?? $defaultTitle }}">
+    <meta name="twitter:description" content="{{ $description ?? $defaultDesc }}">
+    <meta name="twitter:image" content="{{ $ogImage ?? asset('images/nepali-wedding-banner.png') }}">
+    <meta name="twitter:image:alt" content="{{ $title ?? $defaultTitle }}">
 
     <!-- Mobile Web App & PWA Meta -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="MeroZodi">
+    <meta name="apple-mobile-web-app-title" content="{{ $siteName }}">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
 
-    <!-- Google Fonts -->
+    <!-- DNS Prefetch & Preconnect for External CDNs -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
     <!-- Dynamic Page Meta & SEO Schema -->
     @stack('meta')
@@ -68,8 +81,8 @@
                 </div>
 
                 <!-- Brand Logo -->
-                <a href="{{ route('home') }}" class="flex items-center gap-2 group py-1">
-                    <img src="{{ asset('images/logo.png') }}" alt="MeroZodi Nepal Matrimony" class="h-9 sm:h-11 md:h-14 w-auto object-contain transition transform group-hover:scale-105">
+                <a href="{{ route('home') }}" class="flex items-center gap-2 group py-1" title="{{ $siteName }}">
+                    <img src="{{ $siteLogo }}" alt="{{ $siteName }}" class="h-9 sm:h-11 md:h-14 w-auto object-contain transition transform group-hover:scale-105">
                 </a>
 
                 <!-- Desktop Navigation Links -->
@@ -94,17 +107,10 @@
                 <!-- Header Actions (Desktop & Mobile) -->
                 <div class="flex items-center gap-2 sm:gap-3">
                     @auth
-                        <!-- Message Icon with Unread Counter -->
+                        <!-- Message Icon with Real-Time Livewire Unread Counter -->
                         <a href="{{ route('messages') }}" class="btn btn-ghost btn-circle btn-sm text-slate-700 hover:text-rose-600 relative tap-active" title="Messages">
                             <i class="fa-solid fa-comments text-base"></i>
-                            @php
-                                $unreadCount = auth()->user()->unreadMessagesCount();
-                            @endphp
-                            @if($unreadCount > 0)
-                                <span class="badge badge-error badge-xs absolute -top-0.5 -right-0.5 text-white font-black text-[9px] px-1 py-0.5 animate-pulse">
-                                    {{ $unreadCount > 9 ? '9+' : $unreadCount }}
-                                </span>
-                            @endif
+                            @livewire('unread-counter', ['type' => 'header'])
                         </a>
 
                         <!-- Dashboard Shortcut for Desktop -->
@@ -144,11 +150,7 @@
                                 <li><a href="{{ route('my-activity') }}"><i class="fa-solid fa-heart text-rose-500"></i> Activity & Interests</a></li>
                                 <li><a href="{{ route('messages') }}"><i class="fa-solid fa-comments text-rose-500"></i> Chat Messages</a></li>
                                 <li><a href="{{ route('browse') }}"><i class="fa-solid fa-compass text-slate-500"></i> Browse Matches</a></li>
-                                @if(in_array(auth()->user()->role, ['admin', 'moderator']))
-                                    <li class="border-t border-slate-100 mt-1">
-                                        <a href="/admin"><i class="fa-solid fa-shield-halved text-indigo-600"></i> Filament Admin Backoffice</a>
-                                    </li>
-                                @endif
+
                                 <li class="border-t border-slate-100 mt-1">
                                     <form method="POST" action="{{ route('logout') }}" class="w-full">
                                         @csrf
@@ -231,9 +233,9 @@
                     @else
                         <div class="mt-2 space-y-3">
                             <div class="inline-flex bg-white px-3.5 py-2 rounded-2xl shadow-md">
-                                <img src="{{ asset('images/logo.png') }}" alt="MeroZodi Logo" class="h-8 sm:h-9 w-auto object-contain">
+                                <img src="{{ $siteLogo }}" alt="{{ $siteName }}" class="h-8 sm:h-9 w-auto object-contain">
                             </div>
-                            <p class="text-xs text-rose-100 font-medium">Welcome to Nepal's Premier Matrimonial Platform.</p>
+                            <p class="text-xs text-rose-100 font-medium">Welcome to {{ $siteName }} - {{ $siteTagline }}</p>
                             <div class="flex gap-2 pt-1">
                                 <a href="{{ route('login') }}" class="btn btn-sm bg-white hover:bg-rose-50 text-rose-600 font-bold border-none rounded-xl flex-1 shadow-sm flex items-center justify-center gap-1.5">
                                     <i class="fa-solid fa-right-to-bracket text-xs"></i> Log In
@@ -304,13 +306,6 @@
                         </div>
                     @endauth
 
-                    @if(auth()->check() && in_array(auth()->user()->role, ['admin', 'moderator']))
-                        <div class="border-t border-slate-100 my-2 pt-2">
-                            <a href="/admin" class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-indigo-50 text-indigo-700 font-bold hover:bg-indigo-100 transition">
-                                <i class="fa-solid fa-shield-halved w-5 text-center"></i> Filament Admin Panel
-                            </a>
-                        </div>
-                    @endif
                 </div>
             </div>
 
@@ -328,6 +323,13 @@
                         Need Help? <a href="{{ route('contact') }}" class="text-rose-600 font-bold">Contact Support</a>
                     </div>
                 @endauth
+                <div class="mt-3 pt-2.5 border-t border-slate-200/60 flex items-center justify-between text-[11px] text-slate-400">
+                    <span>{{ $siteName }} &copy; {{ date('Y') }}</span>
+                    <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-rose-100 text-rose-600">
+                        <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>
+                        {{ $globalSettings['app_version'] ?? 'Beta Version 1.0' }}
+                    </span>
+                </div>
             </div>
         </div>
     </div>
@@ -353,19 +355,12 @@
                 <span class="text-[10px] tracking-tight">Discover</span>
             </a>
 
-            <!-- Tab 3: Messages with Badge -->
+            <!-- Tab 3: Messages with Real-Time Badge -->
             <a href="{{ route('messages') }}" class="flex flex-col items-center justify-center text-center tap-active relative py-1 {{ request()->routeIs('messages*') ? 'text-rose-600 font-extrabold' : 'text-slate-400 hover:text-slate-600 font-medium' }}">
                 <div class="relative">
                     <i class="fa-solid fa-comments text-lg mb-0.5"></i>
                     @auth
-                        @php
-                            $mobileUnread = auth()->user()->unreadMessagesCount();
-                        @endphp
-                        @if($mobileUnread > 0)
-                            <span class="badge badge-error badge-xs absolute -top-1 -right-2 text-white font-black text-[8px] px-1 py-0.5">
-                                {{ $mobileUnread > 9 ? '9+' : $mobileUnread }}
-                            </span>
-                        @endif
+                        @livewire('unread-counter', ['type' => 'bottom_nav'])
                     @endauth
                 </div>
                 <span class="text-[10px] tracking-tight">Messages</span>
@@ -398,20 +393,72 @@
         </div>
     </nav>
 
-    <!-- Desktop Footer -->
-    <footer class="bg-slate-900 text-slate-400 pt-16 pb-12 border-t border-slate-800 hidden md:block">
+    <!-- Main Footer -->
+    <footer class="bg-slate-900 text-slate-400 pt-16 pb-24 md:pb-12 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-                <!-- Col 1: About Us Info -->
+                <!-- Col 1: About Us Info & Dynamic Social Icons -->
                 <div class="space-y-4">
-                    <h4 class="text-white font-bold text-sm tracking-wider uppercase mb-4">About Us</h4>
+                    <h4 class="text-white font-bold text-sm tracking-wider uppercase mb-4">{{ $globalSettings['footer_about_title'] ?? 'About Us' }}</h4>
                     <p class="text-sm text-slate-400 leading-relaxed">
-                        Nepal's most trusted matrimonial platform connecting Nepali singles at home and abroad with cultural accuracy, privacy and security.
+                        {{ $globalSettings['footer_about_text'] ?? "Nepal's most trusted matrimonial platform connecting Nepali singles at home and abroad with cultural accuracy, privacy and security." }}
                     </p>
-                    <div class="text-xs text-slate-500 space-y-1">
-                        <p><i class="fa-solid fa-location-dot text-rose-500 mr-2"></i> Lazimpat, Kathmandu, Nepal</p>
-                        <p><i class="fa-solid fa-phone text-rose-500 mr-2"></i> +977 1 4420000 / +977 9801234567</p>
-                        <p><i class="fa-solid fa-envelope text-rose-500 mr-2"></i> support@merozodi.com</p>
+                    <div class="text-xs text-slate-500 space-y-1.5">
+                        @if(!empty($globalSettings['office_address']))
+                            <p><i class="fa-solid fa-location-dot text-rose-500 mr-2"></i> {{ $globalSettings['office_address'] }}</p>
+                        @endif
+                        @if(!empty($globalSettings['helpline_phone']) || !empty($globalSettings['whatsapp_desk']))
+                            <p>
+                                <i class="fa-solid fa-phone text-rose-500 mr-2"></i> 
+                                <a href="tel:{{ preg_replace('/[^0-9+]/', '', $globalSettings['helpline_phone'] ?? '') }}" class="hover:text-rose-400 transition">{{ $globalSettings['helpline_phone'] ?? '' }}</a>
+                                @if(!empty($globalSettings['helpline_phone']) && !empty($globalSettings['whatsapp_desk'])) / @endif
+                                @if(!empty($globalSettings['whatsapp_desk']))
+                                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $globalSettings['whatsapp_desk']) }}" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition">
+                                        <i class="fa-brands fa-whatsapp text-emerald-400 ml-1"></i> {{ $globalSettings['whatsapp_desk'] }}
+                                    </a>
+                                @endif
+                            </p>
+                        @endif
+                        @if(!empty($globalSettings['support_email']))
+                            <p>
+                                <i class="fa-solid fa-envelope text-rose-500 mr-2"></i> 
+                                <a href="mailto:{{ $globalSettings['support_email'] }}" class="hover:text-rose-400 transition">{{ $globalSettings['support_email'] }}</a>
+                            </p>
+                        @endif
+                    </div>
+
+                    <!-- Social Icons -->
+                    <div class="flex items-center gap-2.5 pt-2 flex-wrap">
+                        @if(!empty($globalSettings['facebook_url']))
+                            <a href="{{ $globalSettings['facebook_url'] }}" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-rose-600 text-slate-400 hover:text-white flex items-center justify-center transition shadow-xs" aria-label="Facebook">
+                                <i class="fa-brands fa-facebook-f text-xs"></i>
+                            </a>
+                        @endif
+                        @if(!empty($globalSettings['instagram_url']))
+                            <a href="{{ $globalSettings['instagram_url'] }}" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-pink-600 text-slate-400 hover:text-white flex items-center justify-center transition shadow-xs" aria-label="Instagram">
+                                <i class="fa-brands fa-instagram text-xs"></i>
+                            </a>
+                        @endif
+                        @if(!empty($globalSettings['youtube_url']))
+                            <a href="{{ $globalSettings['youtube_url'] }}" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-red-600 text-slate-400 hover:text-white flex items-center justify-center transition shadow-xs" aria-label="YouTube">
+                                <i class="fa-brands fa-youtube text-xs"></i>
+                            </a>
+                        @endif
+                        @if(!empty($globalSettings['tiktok_url']))
+                            <a href="{{ $globalSettings['tiktok_url'] }}" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition shadow-xs" aria-label="TikTok">
+                                <i class="fa-brands fa-tiktok text-xs"></i>
+                            </a>
+                        @endif
+                        @if(!empty($globalSettings['twitter_url']))
+                            <a href="{{ $globalSettings['twitter_url'] }}" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition shadow-xs" aria-label="Twitter / X">
+                                <i class="fa-brands fa-x-twitter text-xs"></i>
+                            </a>
+                        @endif
+                        @if(!empty($globalSettings['linkedin_url']))
+                            <a href="{{ $globalSettings['linkedin_url'] }}" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-blue-600 text-slate-400 hover:text-white flex items-center justify-center transition shadow-xs" aria-label="LinkedIn">
+                                <i class="fa-brands fa-linkedin-in text-xs"></i>
+                            </a>
+                        @endif
                     </div>
                 </div>
 
@@ -419,11 +466,11 @@
                 <div>
                     <h4 class="text-white font-bold text-sm tracking-wider uppercase mb-4">Explore</h4>
                     <ul class="space-y-2.5 text-sm">
-                        <li><a href="{{ route('browse') }}" class="hover:text-white transition">Browse Profiles</a></li>
-                        <li><a href="{{ route('events') }}" class="hover:text-white transition">Matrimonial Events</a></li>
-                        <li><a href="{{ route('blog') }}" class="hover:text-white transition">Guides & Advice</a></li>
-                        <li><a href="{{ route('pricing') }}" class="hover:text-white transition">Membership Packages</a></li>
-                        <li><a href="{{ route('register') }}" class="hover:text-white transition">Free Registration</a></li>
+                        <li><a href="{{ route('browse') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-xs text-rose-500"></i> Browse Profiles</a></li>
+                        <li><a href="{{ route('events') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-xs text-rose-500"></i> Matrimonial Events</a></li>
+                        <li><a href="{{ route('blog') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-xs text-rose-500"></i> Guides & Advice</a></li>
+                        <li><a href="{{ route('pricing') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-xs text-rose-500"></i> Membership Packages</a></li>
+                        <li><a href="{{ route('register') }}" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-xs text-rose-500"></i> Free Registration</a></li>
                     </ul>
                 </div>
 
@@ -440,8 +487,8 @@
 
                 <!-- Col 4: Payments & Security -->
                 <div>
-                    <h4 class="text-white font-bold text-sm tracking-wider uppercase mb-4">Secure Local Payments</h4>
-                    <p class="text-xs text-slate-400 mb-3">Instant automated activation via Nepal's digital wallets:</p>
+                    <h4 class="text-white font-bold text-sm tracking-wider uppercase mb-4">{{ $globalSettings['footer_payment_title'] ?? 'Secure Local Payments' }}</h4>
+                    <p class="text-xs text-slate-400 mb-3">{{ $globalSettings['footer_payment_text'] ?? "Instant automated activation via Nepal's digital wallets:" }}</p>
                     <div class="flex flex-wrap gap-2 text-xs font-semibold text-slate-300">
                         <span class="inline-flex items-center gap-1.5 bg-slate-800 border border-slate-700/80 px-2.5 py-1.5 rounded-xl hover:border-emerald-500/50 hover:bg-slate-800/90 transition shadow-xs">
                             <img src="{{ asset('images/payments/esewa-icon.svg') }}" alt="eSewa" class="w-4 h-4 rounded object-contain shrink-0">
@@ -464,7 +511,13 @@
             </div>
 
             <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-4">
-                <p>&copy; {{ date('Y') }} MeroZodi. All rights reserved.</p>
+                <div class="flex items-center gap-3 flex-wrap justify-center md:justify-start">
+                    <p>{{ $globalSettings['copyright_text'] ?? ('© ' . date('Y') . ' ' . $siteName . '. All rights reserved.') }} Powered By: <a href="{{ $globalSettings['powered_by_url'] ?? 'https://siddhitechnepal.com' }}" target="_blank" rel="noopener noreferrer" class="text-rose-400 hover:text-rose-300 font-semibold transition hover:underline">{{ $globalSettings['powered_by_text'] ?? 'Siddhi Tech Nepal' }}</a></p>
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-rose-500/10 text-rose-400 border border-rose-500/20">
+                        <span class="w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse"></span>
+                        {{ $globalSettings['app_version'] ?? 'Beta Version 1.0' }}
+                    </span>
+                </div>
                 <div class="flex gap-6">
                     <a href="{{ route('privacy') }}" class="hover:text-white transition">Privacy Policy</a>
                     <a href="{{ route('terms') }}" class="hover:text-white transition">Terms of Service</a>

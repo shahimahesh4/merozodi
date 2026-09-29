@@ -1,7 +1,7 @@
 <div class="bg-slate-50 min-h-screen">
     
     <!-- Hero Header Banner with Authentic Nepali Marriage Background (Matching About Us) -->
-    <section class="relative bg-cover bg-no-repeat text-white pt-12 sm:pt-16 lg:pt-20 pb-14 sm:pb-18 lg:pb-20 overflow-hidden mb-10" style="background-image: url('{{ asset('images/about-us-banner.png') }}'); background-position: right 15%;">
+    <section class="relative bg-cover bg-no-repeat text-white pt-12 sm:pt-16 lg:pt-20 pb-14 sm:pb-18 lg:pb-20 overflow-hidden mb-10" style="background-image: url('{{ !empty($page?->banner_image) ? (str_starts_with($page->banner_image, 'http') || str_starts_with($page->banner_image, 'images/') ? asset($page->banner_image) : asset('storage/' . $page->banner_image)) : asset('images/about-us-banner.png') }}'); background-position: right 15%;">
         <!-- Deep Multi-Layer Gradient Overlay (Dark on Left for Text, Crystal Clear on Right for Image) -->
         <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/85 via-45% to-transparent backdrop-blur-[0.5px]"></div>
         <div class="absolute -top-32 -left-32 w-96 h-96 bg-rose-500/20 rounded-full blur-3xl pointer-events-none"></div>

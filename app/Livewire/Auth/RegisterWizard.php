@@ -149,7 +149,7 @@ class RegisterWizard extends Component
             'role' => 'user',
             'is_verified' => false,
             'is_premium' => false,
-            'status' => 'active',
+            'status' => 'pending_approval',
         ]);
 
         // 2. Create UserProfile

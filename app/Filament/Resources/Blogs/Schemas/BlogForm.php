@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Blogs\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -17,13 +18,29 @@ class BlogForm
         return $schema
             ->components([
                 TextInput::make('title')
+                    ->label('Article Title')
                     ->required()
                     ->maxLength(255)
                     ->live(onBlur: true)
-                    ->afterStateUpdated(fn (string $operation, $state, callable $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
+                    ->afterStateUpdated(function (string $operation, ?string $state, callable $set, callable $get) {
+                        if ($operation === 'create' || blank($get('slug'))) {
+                            $set('slug', Str::slug($state ?? ''));
+                        }
+                    }),
                 TextInput::make('slug')
+                    ->label('URL Slug')
                     ->required()
-                    ->maxLength(255),
+                    ->unique(ignoreRecord: true)
+                    ->maxLength(255)
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(fn (?string $state, callable $set) => $set('slug', Str::slug($state ?? '')))
+                    ->suffixAction(
+                        \Filament\Actions\Action::make('regenerateSlug')
+                            ->icon('heroicon-m-arrow-path')
+                            ->tooltip('Regenerate slug from title')
+                            ->action(fn (callable $set, callable $get) => $set('slug', Str::slug($get('title') ?? '')))
+                    )
+                    ->helperText('Auto-generated from title and fully editable.'),
                 Select::make('author_id')
                     ->relationship('author', 'name')
                     ->searchable()
@@ -31,10 +48,15 @@ class BlogForm
                 DateTimePicker::make('published_at')
                     ->label('Publication Date')
                     ->default(now()),
-                TextInput::make('featured_image')
-                    ->label('Featured Image URL')
-                    ->url()
-                    ->columnSpanFull(),
+                FileUpload::make('featured_image')
+                    ->label('Featured Header Banner Image')
+                    ->image()
+                    ->directory('blogs/banners')
+                    ->visibility('public')
+                    ->imageEditor()
+                    ->maxSize(5120)
+                    ->columnSpanFull()
+                    ->helperText('Upload a high-quality cover / header banner image for this matrimonial article.'),
                 Textarea::make('summary')
                     ->label('Short Summary / Excerpt')
                     ->rows(2)

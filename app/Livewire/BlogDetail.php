@@ -33,7 +33,7 @@ class BlogDetail extends Component
     {
         $seoTitle = $this->blog->title . ' - Nepali Matrimony Guides | MeroZodi';
         $seoDescription = $this->blog->summary ?: Str::limit(strip_tags($this->blog->content), 160);
-        $seoImage = $this->blog->featured_image ?: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80';
+        $seoImage = $this->blog->featured_image ?: asset('images/nepali-wedding-banner.png');
 
         return view('livewire.blog-detail', [
             'readingMinutes' => $this->readingMinutes,

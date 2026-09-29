@@ -37,7 +37,7 @@ class Login extends Component
             session()->regenerate();
 
             if (in_array(Auth::user()->role, ['admin', 'moderator'])) {
-                return redirect()->intended('/admin');
+                return redirect()->intended('/stnapanel');
             }
 
             return redirect()->intended(route('browse'));

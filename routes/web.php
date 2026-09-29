@@ -33,8 +33,6 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 Route::get('/', HomePage::class)->name('home');
-Route::get('/browse', BrowseProfiles::class)->name('browse');
-Route::get('/profile/{id}', ProfileDetail::class)->name('profile.show');
 Route::get('/pricing', PricingPage::class)->name('pricing');
 Route::get('/events', EventsPage::class)->name('events');
 Route::get('/blog', BlogPage::class)->name('blog');
@@ -63,10 +61,14 @@ Route::middleware('guest')->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| Authenticated User Routes
+| Authenticated User Routes (Profiles only displayed when logged in)
 |--------------------------------------------------------------------------
 */
 Route::middleware('auth')->group(function () {
+    // Matrimonial Profiles Directory & Detail
+    Route::get('/browse', BrowseProfiles::class)->name('browse');
+    Route::get('/profile/{id}', ProfileDetail::class)->name('profile.show');
+
     // Session Termination
     Route::post('/logout', function () {
         Auth::logout();
@@ -117,3 +119,49 @@ Route::middleware('auth')->group(function () {
         Route::post('/connectips/callback/{paymentId}', [PaymentGatewayController::class, 'connectipsCallback'])->name('connectips.callback');
     });
 });
+
+/*
+|--------------------------------------------------------------------------
+| Email Templates Live Browser Preview (For Design & Testing)
+|--------------------------------------------------------------------------
+*/
+Route::get('/email-preview/{template?}', function ($template = 'welcome') {
+    $user = \App\Models\User::first() ?? new \App\Models\User([
+        'name' => 'Aayush Sharma',
+        'email' => 'aayush.sharma@example.com',
+    ]);
+
+    $sender = \App\Models\User::where('id', '!=', $user->id)->first() ?? new \App\Models\User([
+        'name' => 'Pooja Shrestha',
+        'email' => 'pooja.shrestha@example.com',
+    ]);
+
+    $payment = \App\Models\Payment::with('user', 'plan')->first() ?? new \App\Models\Payment([
+        'user_id' => $user->id,
+        'amount' => 2500.00,
+        'payment_method' => 'esewa',
+        'transaction_id' => 'MZ-TXN-' . strtoupper(bin2hex(random_bytes(4))),
+        'status' => 'completed',
+        'created_at' => now(),
+    ]);
+
+    return match ($template) {
+        'welcome' => new \App\Mail\WelcomeMemberMail($user),
+        'notification' => new \App\Mail\GeneralNotificationMail(
+            title: 'Your Matrimonial Profile is Gaining High Attention!',
+            messageBody: '<p>Great news! Your profile was viewed by <strong>14 verified matchseekers</strong> in Kathmandu and Pokhara this week.</p><p>Keep your profile active by updating your partner preferences or adding recent festive photos.</p>',
+            userName: $user->name,
+            subtitle: 'Weekly Activity Summary & Match Recommendations',
+            badge: '🔥 Profile Highlight',
+            highlightText: '💡 <strong>Recommendation:</strong> Verified matchseekers with Kundali details receive 3x higher connection responses.',
+            actionUrl: url('/browse'),
+            actionText: 'Browse Suggested Matches'
+        ),
+        'payment', 'receipt' => new \App\Mail\PaymentReceiptMail($payment),
+        'match', 'interest' => new \App\Mail\MatchInterestMail($user, $sender),
+        'kyc-approved', 'kyc' => new \App\Mail\KycStatusMail($user, 'approved'),
+        'kyc-rejected' => new \App\Mail\KycStatusMail($user, 'rejected', 'The Citizenship card photo was partially cropped. Please upload a clear photo showing full name and citizen number.'),
+        default => new \App\Mail\WelcomeMemberMail($user),
+    };
+})->name('email.preview');
+

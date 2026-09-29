@@ -1,4 +1,4 @@
-<div class="py-10 bg-slate-50 min-h-[90vh]">
+<div wire:poll.10s class="py-10 bg-slate-50 min-h-[90vh]">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <!-- Header -->

@@ -18,13 +18,7 @@ class SiteSettingResource extends Resource
 {
     protected static ?string $model = SiteSetting::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
-
-    protected static \UnitEnum|string|null $navigationGroup = 'Settings & Configuration';
-
-    protected static ?string $navigationLabel = 'Site Settings';
-
-    protected static ?int $navigationSort = 10;
+    protected static bool $shouldRegisterNavigation = false;
 
     public static function form(Schema $schema): Schema
     {

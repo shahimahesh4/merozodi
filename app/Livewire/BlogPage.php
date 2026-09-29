@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Blog;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -10,11 +11,8 @@ class BlogPage extends Component
 {
     use WithPagination;
 
+    #[Url(except: '')]
     public $search = '';
-
-    protected $queryString = [
-        'search' => ['except' => ''],
-    ];
 
     public function updatingSearch()
     {
@@ -45,6 +43,6 @@ class BlogPage extends Component
         return view('livewire.blog-page', [
             'blogs' => $blogs,
             'featuredBlog' => $featuredBlog,
-        ])->layout('layouts.app', ['title' => 'Matrimonial Advice, Culture & Guides - MeroZodi Blog']);
+        ])->layout('components.layouts.app', ['title' => 'Matrimonial Advice, Culture & Guides - MeroZodi Blog']);
     }
 }

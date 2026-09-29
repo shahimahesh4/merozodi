@@ -27,9 +27,12 @@ class SiteSettingForm
                 Select::make('group')
                     ->label('Settings Group')
                     ->options([
-                        'general' => 'General Information',
+                        'general' => 'General Information & Branding',
+                        'footer' => 'Footer & Legal',
                         'contact' => 'Contact & Support Desk',
                         'social' => 'Social Media Links',
+                        'homepage' => 'Homepage Sections & Trust Badges',
+                        'homepage_stats' => 'Homepage Numerical Stats',
                         'payment' => 'Payment & Billing Gateways',
                         'astrology' => 'Vedic Astrology Parameters',
                     ])
@@ -42,6 +45,7 @@ class SiteSettingForm
                         'textarea' => 'Multi-Line Text / Address',
                         'boolean' => 'Boolean Switch (true/false)',
                         'number' => 'Numeric Value',
+                        'json' => 'JSON Structured Data',
                     ])
                     ->default('text')
                     ->required(),

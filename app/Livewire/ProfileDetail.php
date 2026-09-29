@@ -36,11 +36,24 @@ class ProfileDetail extends Component
 
     public function mount($id)
     {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
         $this->user = User::with([
             'profile', 'profile.religion', 'profile.caste',
             'physical', 'education', 'education.educationLevel', 'education.educationField', 'education.occupation',
             'family', 'preferences', 'galleries'
         ])->findOrFail($id);
+
+        // Only allow profile viewing if verified by admin (unless viewer is self or admin/moderator)
+        if (!$this->user->is_verified || $this->user->status !== 'active') {
+            $isSelf = Auth::check() && Auth::id() === $this->user->id;
+            $isAdmin = Auth::check() && in_array(Auth::user()->role, ['admin', 'moderator']);
+            if (!$isSelf && !$isAdmin) {
+                abort(404, 'This matrimonial profile is pending verification by admin.');
+            }
+        }
 
         if (Auth::check() && Auth::id() !== $this->user->id) {
             $view = ProfileView::firstOrNew([

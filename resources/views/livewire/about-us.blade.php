@@ -46,7 +46,7 @@
 <div class="bg-slate-50 min-h-screen">
     
     <!-- Hero Header Banner with Authentic Nepali Marriage Background -->
-    <section class="relative bg-cover bg-no-repeat text-white pt-16 sm:pt-24 lg:pt-28 pb-24 sm:pb-32 lg:pb-36 overflow-hidden min-h-[460px] sm:min-h-[500px] lg:min-h-[520px] flex flex-col justify-center" style="background-image: url('{{ asset('images/about-us-banner.png') }}'); background-position: right 15%;">
+    <section class="relative bg-cover bg-no-repeat text-white pt-16 sm:pt-24 lg:pt-28 pb-24 sm:pb-32 lg:pb-36 overflow-hidden min-h-[460px] sm:min-h-[500px] lg:min-h-[520px] flex flex-col justify-center" style="background-image: url('{{ !empty($page?->banner_image) ? (str_starts_with($page->banner_image, 'http') || str_starts_with($page->banner_image, 'images/') ? asset($page->banner_image) : asset('storage/' . $page->banner_image)) : asset('images/about-us-banner.png') }}'); background-position: right 15%;">
         <!-- Deep Multi-Layer Gradient Overlay (Dark on Left for Text, Crystal Clear on Right for Image) -->
         <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 via-40% to-transparent backdrop-blur-[0.5px]"></div>
         <div class="absolute -top-32 -left-32 w-96 h-96 bg-rose-500/20 rounded-full blur-3xl pointer-events-none"></div>
@@ -89,12 +89,12 @@
         <div class="px-4 sm:px-8">
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-center divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
                 <div class="p-2 sm:p-4">
-                    <p class="text-3xl sm:text-4xl lg:text-5xl font-black text-rose-600 tracking-tight whitespace-nowrap">50,000+</p>
+                    <p class="text-3xl sm:text-4xl lg:text-5xl font-black text-rose-600 tracking-tight whitespace-nowrap">2,000+</p>
                     <p class="text-xs font-bold text-slate-800 uppercase tracking-wider mt-1.5 whitespace-nowrap">Verified Singles</p>
                     <p class="text-[11px] text-slate-500 mt-0.5 whitespace-nowrap">Across Nepal & Abroad</p>
                 </div>
                 <div class="p-2 sm:p-4 pt-4 sm:pt-4">
-                    <p class="text-3xl sm:text-4xl lg:text-5xl font-black text-indigo-600 tracking-tight whitespace-nowrap">12,000+</p>
+                    <p class="text-3xl sm:text-4xl lg:text-5xl font-black text-indigo-600 tracking-tight whitespace-nowrap">1,200+</p>
                     <p class="text-xs font-bold text-slate-800 uppercase tracking-wider mt-1.5 whitespace-nowrap">Happy Marriages</p>
                     <p class="text-[11px] text-slate-500 mt-0.5 whitespace-nowrap">Sacred Lifelong Unions</p>
                 </div>
@@ -137,8 +137,8 @@
             <!-- Right Visual Image Card -->
             <div class="lg:col-span-5 relative">
                 <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-900 aspect-4/5 group">
-                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1000&q=80" alt="Nepali Wedding Celebration" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                    <img src="{{ asset('images/about-us-ceremony.jpg') }}" alt="Authentic Traditional Nepali Wedding Ceremony" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
                     
                     <!-- Floating Stat Badge 1 -->
                     <div class="absolute top-4 left-4 bg-white/95 backdrop-blur-md p-3 rounded-2xl shadow-xl border border-white/40 flex items-center gap-3">
@@ -146,7 +146,7 @@
                             <i class="fa-solid fa-heart"></i>
                         </div>
                         <div>
-                            <p class="text-xs font-black text-slate-900">12,000+ Couples</p>
+                            <p class="text-xs font-black text-slate-900">1,200+ Couples</p>
                             <p class="text-[10px] text-rose-600 font-bold">Happily Married</p>
                         </div>
                     </div>
@@ -229,7 +229,7 @@
     </section>
 
     <!-- High-Converting Bottom Parallax CTA Section -->
-    <section class="relative bg-fixed bg-cover bg-center text-white py-16 sm:py-20 overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1920&q=80');">
+    <section class="relative bg-fixed bg-cover bg-center text-white py-16 sm:py-20 overflow-hidden" style="background-image: url('{{ asset('images/terms-conditions-banner.png') }}');">
         <!-- Parallax Dark Gradient Overlay -->
         <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-rose-950/90 to-slate-950/95 backdrop-blur-[2px]"></div>
 

@@ -1,9 +1,9 @@
 <div class="bg-slate-50/70 min-h-screen">
     
-    <!-- Hero Header Banner with Authentic Nepali Marriage Background (Matching About Us) -->
-    <section class="relative bg-cover bg-no-repeat text-white pt-12 sm:pt-16 lg:pt-20 pb-14 sm:pb-18 lg:pb-20 overflow-hidden mb-10" style="background-image: url('{{ asset('images/about-us-banner.png') }}'); background-position: right 15%;">
-        <!-- Deep Multi-Layer Gradient Overlay (Dark on Left for Text, Crystal Clear on Right for Image) -->
-        <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/85 via-45% to-transparent backdrop-blur-[0.5px]"></div>
+    <!-- Hero Header Banner with Authentic Contact & Support Artwork -->
+    <section class="relative bg-cover bg-no-repeat text-white pt-16 sm:pt-20 lg:pt-24 pb-20 sm:pb-28 lg:pb-32 overflow-hidden" style="background-image: url('{{ !empty($page?->banner_image) ? (str_starts_with($page->banner_image, 'http') || str_starts_with($page->banner_image, 'images/') ? asset($page->banner_image) : asset('storage/' . $page->banner_image)) : asset('images/contact-us-banner.png') }}'); background-position: center right;">
+        <!-- Deep Multi-Layer Gradient Overlay (Dark on Left for Text, Crystal Clear on Right for Artwork) -->
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/70 via-50% to-transparent backdrop-blur-[0.5px]"></div>
         <div class="absolute -top-32 -left-32 w-96 h-96 bg-rose-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -35,7 +35,7 @@
                         <i class="fa-solid fa-shield-halved text-emerald-400"></i> 100% Confidential
                     </span>
                     <span class="flex items-center gap-1.5 bg-white/10 px-3.5 py-1.5 rounded-xl border border-white/10 backdrop-blur-sm">
-                        <i class="fa-solid fa-location-dot text-rose-400"></i> {{ $address }}
+                        <i class="fa-solid fa-location-dot text-rose-400"></i> {{ $helpdeskAddress }}
                     </span>
                 </div>
             </div>
@@ -44,14 +44,14 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16">
 
-        <!-- 4 Fast Support Channel Cards (Uniform Design) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-10">
+        <!-- 4 Fast Support Channel Cards (Floating Overlay above Banner) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 relative -mt-10 sm:-mt-14 z-20 mb-10 sm:mb-12">
             
             <!-- 1. Phone Helpline -->
-            <a href="tel:{{ preg_replace('/[^0-9+]/', '', $phone) }}" class="group bg-white p-6 rounded-3xl border border-slate-200/80 shadow-xs hover:shadow-lg hover:border-rose-300 transition-all duration-300 flex flex-col justify-between transform hover:-translate-y-1">
+            <a href="tel:{{ preg_replace('/[^0-9+]/', '', $helpdeskPhone) }}" class="group bg-white p-6 rounded-3xl border border-slate-200/80 shadow-xl hover:shadow-2xl hover:border-rose-300 transition-all duration-300 flex flex-col justify-between transform hover:-translate-y-1">
                 <div>
                     <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center text-xl shadow-xs group-hover:bg-rose-600 group-hover:text-white transition-colors duration-300">
+                        <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center text-xl shadow-xs group-hover:scale-105 transition-transform duration-300">
                             <i class="fa-solid fa-phone-volume"></i>
                         </div>
                         <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
@@ -59,7 +59,7 @@
                         </span>
                     </div>
                     <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Member Helpline</h3>
-                    <p class="text-base font-black text-slate-900 mt-1 group-hover:text-rose-600 transition">{{ $phone }}</p>
+                    <p class="text-base font-black text-slate-900 mt-1 group-hover:text-rose-600 transition">{{ $helpdeskPhone }}</p>
                     <p class="text-xs text-slate-500 mt-1">Sun – Fri: 9:00 AM – 6:00 PM</p>
                 </div>
                 <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-rose-600">
@@ -70,12 +70,12 @@
 
             <!-- 2. WhatsApp Instant Desk -->
             @php
-                $cleanWa = preg_replace('/[^0-9]/', '', $whatsapp);
+                $cleanWa = preg_replace('/[^0-9]/', '', $helpdeskWhatsapp);
             @endphp
-            <a href="https://wa.me/{{ $cleanWa }}?text={{ urlencode('Namaste MeroZodi Team, I need assistance regarding my matrimonial account.') }}" target="_blank" rel="noopener noreferrer" class="group bg-white p-6 rounded-3xl border border-slate-200/80 shadow-xs hover:shadow-lg hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between transform hover:-translate-y-1">
+            <a href="https://wa.me/{{ $cleanWa }}?text={{ urlencode('Namaste MeroZodi Team, I need assistance regarding my matrimonial account.') }}" target="_blank" rel="noopener noreferrer" class="group bg-white p-6 rounded-3xl border border-slate-200/80 shadow-xl hover:shadow-2xl hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between transform hover:-translate-y-1">
                 <div>
                     <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl shadow-xs group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl shadow-xs group-hover:scale-105 transition-transform duration-300">
                             <i class="fa-brands fa-whatsapp"></i>
                         </div>
                         <span class="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
@@ -83,7 +83,7 @@
                         </span>
                     </div>
                     <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">WhatsApp Desk</h3>
-                    <p class="text-base font-black text-slate-900 mt-1 group-hover:text-emerald-600 transition">{{ $whatsapp }}</p>
+                    <p class="text-base font-black text-slate-900 mt-1 group-hover:text-emerald-600 transition">{{ $helpdeskWhatsapp }}</p>
                     <p class="text-xs text-slate-500 mt-1">24/7 Priority Support Desk</p>
                 </div>
                 <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-600">
@@ -93,10 +93,10 @@
             </a>
 
             <!-- 3. Official Email -->
-            <a href="mailto:{{ $email }}" class="group bg-white p-6 rounded-3xl border border-slate-200/80 shadow-xs hover:shadow-lg hover:border-indigo-300 transition-all duration-300 flex flex-col justify-between transform hover:-translate-y-1">
+            <a href="mailto:{{ $helpdeskEmail }}" class="group bg-white p-6 rounded-3xl border border-slate-200/80 shadow-xl hover:shadow-2xl hover:border-indigo-300 transition-all duration-300 flex flex-col justify-between transform hover:-translate-y-1">
                 <div>
                     <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl shadow-xs group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300">
+                        <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl shadow-xs group-hover:scale-105 transition-transform duration-300">
                             <i class="fa-solid fa-envelope-open-text"></i>
                         </div>
                         <span class="inline-flex items-center gap-1 text-[11px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-200 px-2.5 py-0.5 rounded-full">
@@ -104,7 +104,7 @@
                         </span>
                     </div>
                     <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Support Email</h3>
-                    <p class="text-base font-black text-slate-900 mt-1 truncate group-hover:text-indigo-600 transition">{{ $email }}</p>
+                    <p class="text-base font-black text-slate-900 mt-1 truncate group-hover:text-indigo-600 transition">{{ $helpdeskEmail }}</p>
                     <p class="text-xs text-slate-500 mt-1">Billing, KYC & Match Inquiries</p>
                 </div>
                 <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-indigo-600">
@@ -114,10 +114,10 @@
             </a>
 
             <!-- 4. Kathmandu Head Office -->
-            <a href="{{ $mapDirectionsUrl }}" target="_blank" rel="noopener noreferrer" class="group bg-white p-6 rounded-3xl border border-slate-200/80 shadow-xs hover:shadow-lg hover:border-amber-300 transition-all duration-300 flex flex-col justify-between transform hover:-translate-y-1">
+            <a href="{{ $mapDirectionsUrl }}" target="_blank" rel="noopener noreferrer" class="group bg-white p-6 rounded-3xl border border-slate-200/80 shadow-xl hover:shadow-2xl hover:border-amber-300 transition-all duration-300 flex flex-col justify-between transform hover:-translate-y-1">
                 <div>
                     <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl shadow-xs group-hover:bg-amber-600 group-hover:text-white transition-colors duration-300">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl shadow-xs group-hover:scale-105 transition-transform duration-300">
                             <i class="fa-solid fa-location-dot"></i>
                         </div>
                         <span class="inline-flex items-center gap-1 text-[11px] font-bold text-amber-700 bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full">
@@ -125,7 +125,7 @@
                         </span>
                     </div>
                     <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Office Location</h3>
-                    <p class="text-base font-black text-slate-900 mt-1 line-clamp-1 group-hover:text-amber-600 transition">{{ $address }}</p>
+                    <p class="text-base font-black text-slate-900 mt-1 line-clamp-1 group-hover:text-amber-600 transition">{{ $helpdeskAddress }}</p>
                     <p class="text-xs text-slate-500 mt-1">Bagmati Province, Nepal</p>
                 </div>
                 <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-amber-600">

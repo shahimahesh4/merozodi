@@ -103,10 +103,10 @@ class ContactUs extends Component
 
         return view('livewire.contact-us', [
             'page' => $page,
-            'phone' => $phone,
-            'whatsapp' => $whatsapp,
-            'email' => $email,
-            'address' => $address,
+            'helpdeskPhone' => $phone,
+            'helpdeskWhatsapp' => $whatsapp,
+            'helpdeskEmail' => $email,
+            'helpdeskAddress' => $address,
             'heroBadge' => $heroBadge,
             'weekdayHours' => $weekdayHours,
             'weekendHours' => $weekendHours,

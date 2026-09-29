@@ -5,6 +5,7 @@
 .env.production
 .phpactor.json
 .phpunit.result.cache
+MeroZodi_2.0_Project_Planning_and_Implementation
 /.fleet
 /.idea
 /.nova

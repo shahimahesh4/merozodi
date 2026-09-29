@@ -16,7 +16,14 @@
             <p class="text-xs text-slate-500 mt-1">Please wait while we transfer you securely to eSewa...</p>
         </div>
 
-        <form id="esewa-form" action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST">
+        @if(!empty($isSandbox))
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-[10px] font-black uppercase tracking-wider">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                eSewa Test / Sandbox Mode
+            </div>
+        @endif
+
+        <form id="esewa-form" action="{{ $formAction ?? 'https://rc-epay.esewa.com.np/api/epay/main/v2/form' }}" method="POST">
             <input type="hidden" name="amount" value="{{ number_format($payment->amount, 2, '.', '') }}">
             <input type="hidden" name="tax_amount" value="{{ number_format($payment->tax_amount, 2, '.', '') }}">
             <input type="hidden" name="total_amount" value="{{ $totalAmount }}">

@@ -14,7 +14,7 @@ class PageSeeder extends Seeder
                 'title' => 'About Us',
                 'slug' => 'about-us',
                 'subtitle' => "Connecting Nepali hearts worldwide through trust, cultural harmony, and modern matchmaking.",
-                'banner_image' => 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200&h=600&fit=crop',
+                'banner_image' => 'images/about-us-banner.png',
                 'meta_title' => 'About MeroZodi - Nepal’s Leading Matrimonial Platform',
                 'meta_description' => 'Discover how MeroZodi is transforming Nepali matrimony with 100% verified profiles, Vedic Kundali matching, and encrypted video dates.',
                 'is_published' => true,
@@ -23,7 +23,7 @@ class PageSeeder extends Seeder
                 'contact_address' => 'Lazimpat, Kathmandu, Nepal',
                 'content' => <<<HTML
 <h2>Welcome to MeroZodi Matrimonial</h2>
-<p class="lead">MeroZodi is Nepal’s premier matrimonial and matchmaking platform, created specifically for modern Nepali singles, Non-Resident Nepalis (NRIs), and families worldwide who value cultural harmony, genuine compatibility, and verified authenticity.</p>
+<p>MeroZodi is Nepal’s premier matrimonial and matchmaking platform, created specifically for modern Nepali singles, Non-Resident Nepalis (NRIs), and families worldwide who value cultural harmony, genuine compatibility, and verified authenticity.</p>
 
 <h3>Our Vision & Purpose</h3>
 <p>In Nepali culture, marriage is not merely the union of two individuals—it is the sacred communion of two families, shared traditions, and lifelong companionship. As our generation embraces global careers, higher education, and independent values, the traditional methods of finding a life partner required a contemporary, dignified, and secure evolution.</p>
@@ -60,7 +60,7 @@ HTML
                 'title' => 'Contact Us',
                 'slug' => 'contact-us',
                 'subtitle' => "Have questions or need matchmaking assistance? Our dedicated relationship team is here for you.",
-                'banner_image' => 'https://images.unsplash.com/photo-1516726817505-f5ed825624d8?w=1200&h=600&fit=crop',
+                'banner_image' => 'images/contact-us-banner.png',
                 'meta_title' => 'Contact MeroZodi - Member Support & Office Helpdesk',
                 'meta_description' => 'Get in touch with MeroZodi customer support, relationship managers, and office helpdesk in Kathmandu, Nepal.',
                 'is_published' => true,
@@ -69,7 +69,7 @@ HTML
                 'contact_address' => 'Lazimpat, Kathmandu, Nepal',
                 'content' => <<<HTML
 <h2>Get in Touch with Our Team</h2>
-<p class="lead">Whether you need help completing your KYC verification, have billing inquiries regarding subscription plans, or need personalized matchmaking guidance, our dedicated relationship managers are ready to assist you.</p>
+<p>Whether you need help completing your KYC verification, have billing inquiries regarding subscription plans, or need personalized matchmaking guidance, our dedicated relationship managers are ready to assist you.</p>
 
 <h3>Support Channels & Working Hours</h3>
 <div class="my-6 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -93,7 +93,7 @@ HTML
                 'title' => 'Privacy Policy',
                 'slug' => 'privacy-policy',
                 'subtitle' => "Your privacy, biodata, and personal communications are protected under strict security standards.",
-                'banner_image' => 'https://images.unsplash.com/photo-1450133064473-71024230f91b?w=1200&h=600&fit=crop',
+                'banner_image' => 'images/privacy-policy-banner.png',
                 'meta_title' => 'Privacy Policy & Data Security - MeroZodi',
                 'meta_description' => 'Read how MeroZodi safeguards your personal profile, biodata, photographs, KYC documents, and chat messages.',
                 'is_published' => true,
@@ -103,7 +103,7 @@ HTML
                 'content' => <<<HTML
 <div class="legal-section" id="introduction">
     <h2>1. Introduction & Scope</h2>
-    <p class="lead">At MeroZodi (accessible at https://merozodi.com), we respect and protect the privacy of every individual who registers on our platform. This Privacy Policy details how we collect, use, store, and safeguard your personal information, matrimonial biodata, horoscope details, and communications.</p>
+    <p>At MeroZodi (accessible at https://merozodi.com), we respect and protect the privacy of every individual who registers on our platform. This Privacy Policy details how we collect, use, store, and safeguard your personal information, matrimonial biodata, horoscope details, and communications.</p>
     <p>By accessing MeroZodi, creating a member profile, or utilizing any of our matchmaking features, you consent to the data collection and processing practices described in this document.</p>
 </div>
 
@@ -176,7 +176,7 @@ HTML
                 'title' => 'Terms & Conditions',
                 'slug' => 'terms-and-conditions',
                 'subtitle' => "Please review the terms and community standards governing the use of MeroZodi matrimonial services.",
-                'banner_image' => 'https://images.unsplash.com/photo-1450133064473-71024230f91b?w=1200&h=600&fit=crop',
+                'banner_image' => 'images/terms-conditions-banner.png',
                 'meta_title' => 'Terms & Conditions of Service - MeroZodi',
                 'meta_description' => 'Review the official Terms of Service, member eligibility requirements, and code of conduct for MeroZodi.',
                 'is_published' => true,
@@ -186,7 +186,7 @@ HTML
                 'content' => <<<HTML
 <div class="legal-section" id="acceptance">
     <h2>1. Acceptance of Agreement</h2>
-    <p class="lead">Welcome to MeroZodi. This document constitutes a legally binding agreement between you ("Member", "User", or "You") and MeroZodi Matrimonial Services ("MeroZodi", "We", "Our", or "Us").</p>
+    <p>Welcome to MeroZodi. This document constitutes a legally binding agreement between you ("Member", "User", or "You") and MeroZodi Matrimonial Services ("MeroZodi", "We", "Our", or "Us").</p>
     <p>By creating an account, browsing profiles, submitting KYC documents, or purchasing premium subscriptions on MeroZodi, you acknowledge that you have read, understood, and agreed to be bound by these Terms & Conditions in their entirety.</p>
 </div>
 

@@ -18,13 +18,29 @@ class MatrimonyEventForm
         return $schema
             ->components([
                 TextInput::make('title')
+                    ->label('Event Title')
                     ->required()
                     ->maxLength(255)
                     ->live(onBlur: true)
-                    ->afterStateUpdated(fn (string $operation, $state, callable $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
+                    ->afterStateUpdated(function (string $operation, ?string $state, callable $set, callable $get) {
+                        if ($operation === 'create' || blank($get('slug'))) {
+                            $set('slug', Str::slug($state ?? ''));
+                        }
+                    }),
                 TextInput::make('slug')
+                    ->label('URL Slug')
                     ->required()
-                    ->maxLength(255),
+                    ->unique(ignoreRecord: true)
+                    ->maxLength(255)
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(fn (?string $state, callable $set) => $set('slug', Str::slug($state ?? '')))
+                    ->suffixAction(
+                        \Filament\Actions\Action::make('regenerateSlug')
+                            ->icon('heroicon-m-arrow-path')
+                            ->tooltip('Regenerate slug from title')
+                            ->action(fn (callable $set, callable $get) => $set('slug', Str::slug($get('title') ?? '')))
+                    )
+                    ->helperText('Auto-generated from title and fully editable.'),
                 Select::make('type')
                     ->options([
                         'physical' => 'In-Person Physical Mixer',
@@ -45,10 +61,15 @@ class MatrimonyEventForm
                 TextInput::make('max_participants')
                     ->numeric()
                     ->label('Max Capacity'),
-                TextInput::make('banner_image')
-                    ->label('Banner Image URL')
-                    ->url()
-                    ->columnSpanFull(),
+                FileUpload::make('banner_image')
+                    ->label('Event Header Banner Poster')
+                    ->image()
+                    ->directory('events/banners')
+                    ->visibility('public')
+                    ->imageEditor()
+                    ->maxSize(5120)
+                    ->columnSpanFull()
+                    ->helperText('Upload an event promotional banner / poster image.'),
                 Textarea::make('description')
                     ->rows(4)
                     ->columnSpanFull(),

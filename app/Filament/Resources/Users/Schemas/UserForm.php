@@ -48,11 +48,14 @@ class UserForm
                     ])
                     ->default('unmarried'),
                 Select::make('role')
+                    ->label('Access Role & Permissions')
                     ->options([
-                        'user' => 'User',
-                        'moderator' => 'Moderator',
-                        'admin' => 'Admin',
+                        'super_admin' => 'Super Administrator (Full System Control)',
+                        'admin' => 'Administrator (Operations & Billing)',
+                        'staff' => 'Staff / Support (KYC & Inquiries)',
+                        'user' => 'Matchseeker (Standard User)',
                     ])
+                    ->default('user')
                     ->required(),
                 Select::make('status')
                     ->options([

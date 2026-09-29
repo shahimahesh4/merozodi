@@ -433,6 +433,24 @@
                     </div>
                 </div>
 
+                <!-- Admin Verification Pending Notice Banner -->
+                <div class="bg-amber-50 border border-amber-200/90 rounded-3xl p-6 sm:p-7 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl shrink-0 shadow-2xs">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <div>
+                            <span class="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wider text-amber-800 bg-amber-200/60 px-2.5 py-0.5 rounded-full mb-1">
+                                <i class="fa-solid fa-clock"></i> Verification Pending
+                            </span>
+                            <h3 class="text-base sm:text-lg font-black text-amber-950">Profile Pending Admin Review & Verification</h3>
+                            <p class="text-xs sm:text-sm text-amber-800/90 mt-1 leading-relaxed">
+                                To protect our matrimonial community and maintain 100% genuine singles, your profile will be reviewed by our moderation team before appearing in public search results. You can access your Dashboard immediately and submit KYC documents for priority verification!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Official Login Details & Matrimony ID Box (Amber/Gold Card) -->
                 <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80">
                     <h3 class="text-xs font-black uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-2">

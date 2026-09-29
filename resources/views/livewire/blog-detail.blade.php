@@ -117,7 +117,7 @@
             <!-- Featured Image -->
             @if($blog->featured_image)
                 <div class="rounded-2xl sm:rounded-3xl overflow-hidden shadow-md border border-slate-100 max-h-[480px] aspect-16/9 sm:aspect-21/9 bg-slate-900">
-                    <img src="{{ $blog->featured_image }}" 
+                    <img src="{{ str_starts_with($blog->featured_image, 'http') || str_starts_with($blog->featured_image, 'images/') ? asset($blog->featured_image) : asset('storage/' . $blog->featured_image) }}" 
                          alt="{{ $blog->title }}" 
                          class="w-full h-full object-cover">
                 </div>
@@ -136,7 +136,7 @@
                     </span>
                     <h3 class="text-xl sm:text-2xl font-black text-white">Find Your Verified Life Partner</h3>
                     <p class="text-xs text-rose-100/90 max-w-md">
-                        Join over 50,000+ verified Nepali singles across Nepal, Australia, USA, and UK. Free registration with 100% privacy control.
+                        Join over 2,000+ verified Nepali singles across Nepal, Australia, USA, and UK. Free registration with 100% privacy control.
                     </p>
                 </div>
                 <div class="relative z-10 shrink-0 w-full sm:w-auto">
@@ -195,8 +195,9 @@
                         <a href="{{ route('blog.detail', $rel->slug) }}" class="bg-white rounded-3xl p-4 border border-slate-200/80 shadow-2xs hover:shadow-xl hover:border-rose-300 transition-all duration-300 block group flex flex-col justify-between transform hover:-translate-y-1">
                             <div>
                                 <div class="h-44 rounded-2xl overflow-hidden mb-3.5 relative bg-slate-100">
-                                    <img src="{{ $rel->featured_image ?? 'https://images.unsplash.com/photo-1519741497674-611481863552?w=600&fit=crop' }}" 
+                                    <img src="{{ $rel->featured_image }}" 
                                          alt="{{ $rel->title }}" 
+                                         onerror="this.onerror=null; this.src='{{ asset('images/blogs/blog-tradition-modernity.jpg') }}';"
                                          class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                                     <span class="absolute top-2.5 left-2.5 bg-white/95 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-bold text-slate-700 shadow-xs border border-white/40">
                                         Guide

@@ -1,4 +1,4 @@
-<div class="py-4 md:py-10 bg-slate-50 min-h-[90vh]">
+<div wire:poll.10s class="py-4 md:py-10 bg-slate-50 min-h-[90vh]">
     <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
 
         <!-- Flash messages -->
@@ -37,6 +37,14 @@
                     <p class="text-xs text-rose-100 mt-0.5 truncate">
                         Status: <span class="font-bold uppercase">{{ $user->status }}</span> &bull; ID: #MZ-{{ str_pad($user->id, 5, '0', STR_PAD_LEFT) }}
                     </p>
+                    <!-- Profile Completion Progress -->
+                    <div class="mt-2 flex items-center gap-2">
+                        <span class="text-rose-200 text-[11px] font-bold">Profile Completion:</span>
+                        <div class="w-28 sm:w-36 bg-white/20 rounded-full h-2 overflow-hidden shadow-inner">
+                            <div class="bg-amber-300 h-2 rounded-full transition-all duration-500" style="width: {{ $user->profile_completion_percentage }}%"></div>
+                        </div>
+                        <span class="font-black text-amber-300 text-xs">{{ $user->profile_completion_percentage }}%</span>
+                    </div>
                 </div>
             </div>
 
@@ -53,6 +61,34 @@
                 @endif
             </div>
         </div>
+
+        <!-- Pending Admin Verification Alert (When not yet verified) -->
+        @if(!$user->is_verified)
+            <div class="mb-6 md:mb-8 p-5 sm:p-6 rounded-3xl bg-amber-50 border border-amber-200/90 text-amber-900 shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl shrink-0 shadow-2xs">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wider text-amber-800 bg-amber-200/70 px-2.5 py-0.5 rounded-full">
+                                <i class="fa-solid fa-clock"></i> Verification In Progress
+                            </span>
+                            <span class="text-xs font-bold text-amber-900">Admin Review Pending</span>
+                        </div>
+                        <h3 class="text-base sm:text-lg font-black text-amber-950">Your Matrimonial Profile is Under Admin Review</h3>
+                        <p class="text-xs sm:text-sm text-amber-800/90 mt-0.5 leading-relaxed">
+                            To ensure 100% verified members, profiles are visible to prospective matches after admin approval. Submit your government ID or citizenship to fast-track verification!
+                        </p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 w-full md:w-auto shrink-0">
+                    <a href="{{ route('my-kyc') }}" class="w-full md:w-auto px-5 py-2.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-black rounded-xl shadow-md transition flex items-center justify-center gap-1.5 tap-active">
+                        <i class="fa-solid fa-id-card"></i> Submit KYC for Quick Verification
+                    </a>
+                </div>
+            </div>
+        @endif
 
         <!-- Metric Stat Cards -->
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 md:mb-8">

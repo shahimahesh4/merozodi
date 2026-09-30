@@ -286,4 +286,17 @@
         color: #bae6fd;
         border: 1px solid rgba(56, 189, 248, 0.35);
     }
+
+    /* --- Filament Header Clock Widget --- */
+    .dark .fi-header-clock {
+        background-color: rgba(255, 255, 255, 0.06) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        color: #e2e8f0 !important;
+    }
+    .dark .fi-header-clock span[x-text="date"] {
+        color: #94a3b8 !important;
+    }
+    .dark .fi-header-clock span[x-text="time"] {
+        color: #ffffff !important;
+    }
 </style>

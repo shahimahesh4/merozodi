@@ -70,42 +70,42 @@
     
     <!-- Navigation Header -->
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16 md:h-20">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-15 sm:h-16 md:h-20 gap-2 sm:gap-4">
                 
-                <!-- Mobile Left: Drawer Toggle Button -->
-                <div class="flex items-center gap-2 md:hidden">
-                    <button @click="mobileDrawerOpen = true" class="btn btn-ghost btn-circle btn-sm text-slate-700 hover:text-rose-600 tap-active" aria-label="Open Navigation Menu">
-                        <i class="fa-solid fa-bars-staggered text-lg"></i>
+                <!-- Left: Drawer Toggle Button (Mobile only) + Brand Logo -->
+                <div class="flex items-center gap-1.5 sm:gap-3 min-w-0">
+                    <button @click="mobileDrawerOpen = true" class="btn btn-ghost btn-circle btn-sm text-slate-700 hover:text-rose-600 tap-active md:hidden shrink-0" aria-label="Open Navigation Menu">
+                        <i class="fa-solid fa-bars-staggered text-base sm:text-lg"></i>
                     </button>
+
+                    <!-- Brand Logo -->
+                    <a wire:navigate href="{{ route('home') }}" class="flex items-center py-1 shrink-0" title="{{ $siteName }}">
+                        <img src="{{ $siteLogo }}" alt="{{ $siteName }}" class="h-9 sm:h-11 md:h-14 lg:h-15 max-h-16 w-auto object-contain transition transform hover:scale-105">
+                    </a>
                 </div>
 
-                <!-- Brand Logo -->
-                <a wire:navigate href="{{ route('home') }}" class="flex items-center gap-2 group py-1" title="{{ $siteName }}">
-                    <img src="{{ $siteLogo }}" alt="{{ $siteName }}" class="h-9 sm:h-11 md:h-14 w-auto object-contain transition transform group-hover:scale-105">
-                </a>
-
-                <!-- Desktop Navigation Links -->
-                <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-600">
-                    <a wire:navigate href="{{ route('home') }}" class="group hover:text-rose-600 transition flex items-center gap-1.5 {{ request()->routeIs('home') ? 'text-rose-600 font-bold' : '' }}">
-                        <i class="fa-solid fa-house text-xs transition-colors {{ request()->routeIs('home') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Home
+                <!-- Desktop Navigation Links (Visible on Desktop / Tablet md: 768px+) -->
+                <nav class="hidden md:flex items-center gap-5 lg:gap-8 xl:gap-10 text-sm lg:text-[15px] xl:text-base font-bold text-slate-700">
+                    <a wire:navigate href="{{ route('home') }}" class="group hover:text-rose-600 transition flex items-center gap-2 {{ request()->routeIs('home') ? 'text-rose-600 font-extrabold' : '' }}">
+                        <i class="fa-solid fa-house text-sm transition-colors {{ request()->routeIs('home') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Home
                     </a>
-                    <a wire:navigate href="{{ route('browse') }}" class="group hover:text-rose-600 transition flex items-center gap-1.5 {{ request()->routeIs('browse') ? 'text-rose-600 font-bold' : '' }}">
-                        <i class="fa-solid fa-compass text-xs transition-colors {{ request()->routeIs('browse') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Find Matches
+                    <a wire:navigate href="{{ route('browse') }}" class="group hover:text-rose-600 transition flex items-center gap-2 {{ request()->routeIs('browse') ? 'text-rose-600 font-extrabold' : '' }}">
+                        <i class="fa-solid fa-compass text-sm transition-colors {{ request()->routeIs('browse') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Find Matches
                     </a>
-                    <a wire:navigate href="{{ route('events') }}" class="group hover:text-rose-600 transition flex items-center gap-1.5 {{ request()->routeIs('events') ? 'text-rose-600 font-bold' : '' }}">
-                        <i class="fa-solid fa-calendar-days text-xs transition-colors {{ request()->routeIs('events') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Events
+                    <a wire:navigate href="{{ route('events') }}" class="group hover:text-rose-600 transition flex items-center gap-2 {{ request()->routeIs('events') ? 'text-rose-600 font-extrabold' : '' }}">
+                        <i class="fa-solid fa-calendar-days text-sm transition-colors {{ request()->routeIs('events') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Events
                     </a>
-                    <a wire:navigate href="{{ route('blog') }}" class="group hover:text-rose-600 transition flex items-center gap-1.5 {{ request()->routeIs('blog*') ? 'text-rose-600 font-bold' : '' }}">
-                        <i class="fa-solid fa-book-open text-xs transition-colors {{ request()->routeIs('blog*') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Guides & Stories
+                    <a wire:navigate href="{{ route('blog') }}" class="group hover:text-rose-600 transition flex items-center gap-2 {{ request()->routeIs('blog*') ? 'text-rose-600 font-extrabold' : '' }}">
+                        <i class="fa-solid fa-book-open text-sm transition-colors {{ request()->routeIs('blog*') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Guides & Stories
                     </a>
-                    <a wire:navigate href="{{ route('pricing') }}" class="group hover:text-rose-600 transition flex items-center gap-1.5 {{ request()->routeIs('pricing') ? 'text-rose-600 font-bold' : '' }}">
-                        <i class="fa-solid fa-crown text-xs transition-colors {{ request()->routeIs('pricing') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Membership
+                    <a wire:navigate href="{{ route('pricing') }}" class="group hover:text-rose-600 transition flex items-center gap-2 {{ request()->routeIs('pricing') ? 'text-rose-600 font-extrabold' : '' }}">
+                        <i class="fa-solid fa-crown text-sm transition-colors {{ request()->routeIs('pricing') ? 'text-rose-600' : 'text-slate-400 group-hover:text-rose-600' }}"></i> Membership
                     </a>
                 </nav>
 
                 <!-- Header Actions (Desktop & Mobile) -->
-                <div class="flex items-center gap-2 sm:gap-3">
+                <div class="flex items-center gap-1.5 sm:gap-2.5 lg:gap-3 shrink-0">
                     @auth
                         <!-- Message Icon with Real-Time Livewire Unread Counter -->
                         <a wire:navigate href="{{ route('messages') }}" class="btn btn-ghost btn-circle btn-sm text-slate-700 hover:text-rose-600 relative tap-active" title="Messages">
@@ -121,10 +121,10 @@
                         <!-- User Profile Dropdown -->
                         <div class="dropdown dropdown-end">
                             <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar tap-active relative">
-                                <div class="w-9 sm:w-10 rounded-full ring-2 ring-rose-500 ring-offset-2">
+                                <div class="w-8 sm:w-10 rounded-full ring-2 ring-rose-500 ring-offset-2">
                                     <img src="{{ auth()->user()->avatar_url }}" alt="{{ auth()->user()->name }}" class="object-cover" />
                                 </div>
-                                <span class="absolute top-0 right-0 w-3 h-3 bg-emerald-500 rounded-full ring-2 ring-white shadow-xs" title="Online Now"></span>
+                                <span class="absolute top-0 right-0 w-2.5 sm:w-3 h-2.5 sm:h-3 bg-emerald-500 rounded-full ring-2 ring-white shadow-xs" title="Online Now"></span>
                             </div>
                             <ul tabindex="0" class="mt-3 z-50 p-2 shadow-2xl menu menu-sm dropdown-content bg-base-100 rounded-2xl w-64 border border-slate-100">
                                 <li class="menu-title px-4 py-3 border-b border-slate-100">
@@ -162,11 +162,11 @@
                             </ul>
                         </div>
                     @else
-                        <a wire:navigate href="{{ route('login') }}" class="px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold text-slate-700 hover:text-rose-600 transition tap-active inline-flex items-center gap-1.5">
+                        <a wire:navigate href="{{ route('login') }}" class="px-2 sm:px-3.5 py-1.5 sm:py-2 text-xs sm:text-sm font-bold text-slate-700 hover:text-rose-600 hover:bg-rose-50/50 rounded-xl transition tap-active inline-flex items-center gap-1 sm:gap-1.5 shrink-0">
                             <i class="fa-solid fa-right-to-bracket text-xs text-rose-500"></i>
                             <span>Log In</span>
                         </a>
-                        <a wire:navigate href="{{ route('register') }}" class="px-3.5 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 rounded-xl shadow-md shadow-rose-200 transition transform hover:-translate-y-0.5 tap-active inline-flex items-center gap-1.5">
+                        <a wire:navigate href="{{ route('register') }}" class="px-2.5 sm:px-4.5 py-1.5 sm:py-2 text-xs sm:text-sm font-black text-white bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 rounded-xl shadow-xs shadow-rose-200 transition transform hover:-translate-y-0.5 tap-active inline-flex items-center gap-1 sm:gap-1.5 shrink-0 whitespace-nowrap">
                             <i class="fa-solid fa-user-plus text-xs"></i>
                             <span>Register Free</span>
                         </a>

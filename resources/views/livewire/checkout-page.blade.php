@@ -255,11 +255,11 @@
 
                         <button wire:click="processPayment" 
                                 wire:loading.attr="disabled"
-                                class="w-full py-4 px-6 bg-gradient-to-r from-rose-600 via-pink-600 to-rose-600 hover:from-rose-700 hover:via-pink-700 hover:to-rose-700 active:scale-[0.99] text-white font-black text-sm sm:text-base rounded-2xl shadow-xl shadow-rose-500/25 transition-all duration-200 transform hover:-translate-y-0.5 flex items-center justify-center gap-2 tap-active cursor-pointer">
-                            <span wire:loading.remove wire:target="processPayment" class="flex items-center gap-2">
-                                <i class="fa-solid fa-lock text-sm"></i>
-                                <span>Pay RS. {{ number_format($total, 2) }} with {{ $selectedGatewayData['name'] ?? ucfirst($gateway) }}</span>
-                                <i class="fa-solid fa-arrow-right text-xs ml-1"></i>
+                                class="w-full py-3.5 sm:py-4 px-4 sm:px-6 bg-gradient-to-r from-rose-600 via-pink-600 to-rose-600 hover:from-rose-700 hover:via-pink-700 hover:to-rose-700 active:scale-[0.99] text-white font-black text-xs sm:text-base rounded-xl sm:rounded-2xl shadow-xl shadow-rose-500/25 transition-all duration-200 transform hover:-translate-y-0.5 flex items-center justify-center gap-2 tap-active cursor-pointer">
+                            <span wire:loading.remove wire:target="processPayment" class="flex items-center gap-1.5 sm:gap-2">
+                                <i class="fa-solid fa-lock text-xs sm:text-sm"></i>
+                                <span>Pay RS. {{ number_format($total, 2) }} <span class="hidden xs:inline sm:inline">with {{ $selectedGatewayData['name'] ?? ucfirst($gateway) }}</span></span>
+                                <i class="fa-solid fa-arrow-right text-xs ml-0.5 sm:ml-1"></i>
                             </span>
                             <span wire:loading wire:target="processPayment" class="flex items-center gap-2">
                                 <i class="fa-solid fa-circle-notch fa-spin text-base"></i>

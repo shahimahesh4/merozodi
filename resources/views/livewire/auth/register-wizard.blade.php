@@ -18,12 +18,12 @@
             </div>
 
             <!-- Steps indicators -->
-            <ul class="steps steps-horizontal w-full text-xs font-semibold">
-                <li class="step {{ $currentStep >= 1 ? 'step-primary text-rose-600' : 'text-slate-400' }}">Account</li>
-                <li class="step {{ $currentStep >= 2 ? 'step-primary text-rose-600' : 'text-slate-400' }}">Cultural</li>
-                <li class="step {{ $currentStep >= 3 ? 'step-primary text-rose-600' : 'text-slate-400' }}">Lifestyle</li>
-                <li class="step {{ $currentStep >= 4 ? 'step-primary text-rose-600' : 'text-slate-400' }}">Career</li>
-                <li class="step {{ $currentStep >= 5 ? 'step-primary text-rose-600' : 'text-slate-400' }}">Family</li>
+            <ul class="steps steps-horizontal w-full text-[10px] sm:text-xs font-semibold">
+                <li class="step {{ $currentStep >= 1 ? 'step-primary text-rose-600' : 'text-slate-400' }}"><span class="hidden sm:inline">Account</span></li>
+                <li class="step {{ $currentStep >= 2 ? 'step-primary text-rose-600' : 'text-slate-400' }}"><span class="hidden sm:inline">Cultural</span></li>
+                <li class="step {{ $currentStep >= 3 ? 'step-primary text-rose-600' : 'text-slate-400' }}"><span class="hidden sm:inline">Lifestyle</span></li>
+                <li class="step {{ $currentStep >= 4 ? 'step-primary text-rose-600' : 'text-slate-400' }}"><span class="hidden sm:inline">Career</span></li>
+                <li class="step {{ $currentStep >= 5 ? 'step-primary text-rose-600' : 'text-slate-400' }}"><span class="hidden sm:inline">Family</span></li>
             </ul>
         </div>
 

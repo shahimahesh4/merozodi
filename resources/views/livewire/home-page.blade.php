@@ -132,15 +132,19 @@
             </div>
 
             <!-- Elevated Luxury Search Widget with Frosted Glassmorphism -->
-            <div class="max-w-4xl mx-auto bg-white/95 backdrop-blur-2xl rounded-3xl p-6 sm:p-8 text-slate-800 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] border border-white/80 ring-1 ring-black/5" x-data="{ mode: 'quick' }">
+            <div class="max-w-4xl mx-auto bg-white/95 backdrop-blur-2xl rounded-2xl sm:rounded-3xl p-4 sm:p-8 text-slate-800 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] border border-white/80 ring-1 ring-black/5" x-data="{ mode: 'quick' }">
                 
                 <!-- Search Mode Tabs -->
-                <div class="flex items-center gap-2 border-b border-slate-200 pb-3.5 mb-6">
-                    <button type="button" @click="mode = 'quick'" :class="mode === 'quick' ? 'bg-slate-900 text-white shadow-md shadow-slate-900/20 font-black' : 'text-slate-700 font-bold hover:bg-slate-100'" class="px-4 py-2.5 rounded-xl text-xs transition duration-200 flex items-center gap-2 tap-active">
-                        <i class="fa-solid fa-magnifying-glass text-rose-400"></i> Quick Match Search
+                <div class="flex items-center gap-1.5 sm:gap-2 border-b border-slate-200 pb-3 mb-5 sm:mb-6 overflow-x-auto no-scrollbar">
+                    <button type="button" @click="mode = 'quick'" :class="mode === 'quick' ? 'bg-slate-900 text-white shadow-md shadow-slate-900/20 font-black' : 'text-slate-700 font-bold hover:bg-slate-100'" class="px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs transition duration-200 flex items-center gap-1.5 sm:gap-2 tap-active shrink-0">
+                        <i class="fa-solid fa-magnifying-glass text-rose-400"></i>
+                        <span class="hidden sm:inline">Quick Match Search</span>
+                        <span class="sm:hidden">Quick Search</span>
                     </button>
-                    <button type="button" @click="mode = 'astrology'" :class="mode === 'astrology' ? 'bg-gradient-to-r from-indigo-600 via-purple-600 to-rose-600 text-white shadow-md shadow-purple-900/20 font-black' : 'text-slate-700 font-bold hover:bg-slate-100'" class="px-4 py-2.5 rounded-xl text-xs transition duration-200 flex items-center gap-2 tap-active">
-                        <i class="fa-solid fa-moon text-amber-300"></i> Kundali & Milan Search
+                    <button type="button" @click="mode = 'astrology'" :class="mode === 'astrology' ? 'bg-gradient-to-r from-indigo-600 via-purple-600 to-rose-600 text-white shadow-md shadow-purple-900/20 font-black' : 'text-slate-700 font-bold hover:bg-slate-100'" class="px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs transition duration-200 flex items-center gap-1.5 sm:gap-2 tap-active shrink-0">
+                        <i class="fa-solid fa-moon text-amber-300"></i>
+                        <span class="hidden sm:inline">Kundali & Milan Search</span>
+                        <span class="sm:hidden">Kundali Match</span>
                     </button>
                 </div>
 
@@ -251,7 +255,7 @@
                             <span class="flex items-center gap-1.5"><i class="fa-solid fa-id-card text-emerald-600"></i> Government ID Verified</span>
                             <span class="hidden md:flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-indigo-600"></i> Photo Privacy Shield</span>
                         </div>
-                        <button type="submit" class="w-full sm:w-auto px-9 py-3.5 bg-gradient-to-r from-rose-600 via-pink-600 to-rose-600 hover:from-rose-500 hover:to-pink-500 text-white font-black text-xs sm:text-sm rounded-xl sm:rounded-2xl shadow-[0_10px_25px_-5px_rgba(225,29,72,0.5)] transition duration-300 transform hover:-translate-y-0.5 hover:shadow-[0_15px_30px_-5px_rgba(225,29,72,0.6)] flex items-center justify-center gap-2 tap-active">
+                        <button type="submit" class="w-full sm:w-auto px-6 sm:px-9 py-3 sm:py-3.5 bg-gradient-to-r from-rose-600 via-pink-600 to-rose-600 hover:from-rose-500 hover:to-pink-500 text-white font-black text-xs sm:text-sm rounded-xl sm:rounded-2xl shadow-[0_10px_25px_-5px_rgba(225,29,72,0.5)] transition duration-300 transform hover:-translate-y-0.5 hover:shadow-[0_15px_30px_-5px_rgba(225,29,72,0.6)] flex items-center justify-center gap-2 tap-active">
                             <i class="fa-solid fa-magnifying-glass text-amber-200"></i> Search Matches
                         </button>
                     </div>
@@ -800,10 +804,8 @@
 
     <!-- Why Choose MeroZodi & Safety Pillars (Parallax Trust Section) -->
     <section class="relative bg-fixed bg-cover bg-center text-white py-16 sm:py-24 overflow-hidden" style="background-image: url('{{ asset('images/about-us-banner.png') }}');">
-        <!-- Parallax Dark Gradient Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/95 via-slate-900/90 to-slate-950/95"></div>
-        <div class="absolute -top-32 -left-32 w-96 h-96 bg-rose-600/20 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none"></div>
+        <!-- Top-Focused Dark Gradient Overlay: Matching Main Hero Banner -->
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/95 via-slate-950/60 via-40% to-slate-950/15 pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
@@ -895,11 +897,11 @@
             <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed drop-shadow-sm">
                 {{ $settings['bottom_cta_subtitle'] ?? 'Join over 2,000+ verified Nepali singles across Kathmandu, Sydney, Dallas, London, Toronto, and worldwide. Create your free matrimony profile today.' }}
             </p>
-            <div class="pt-4 flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a wire:navigate href="{{ route('register') }}" class="w-full sm:w-auto px-9 py-4 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white font-black text-sm rounded-2xl shadow-xl shadow-rose-950 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 tap-active">
+            <div class="pt-4 flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4">
+                <a wire:navigate href="{{ route('register') }}" class="w-full sm:w-auto px-6 sm:px-9 py-3 sm:py-4 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white font-black text-xs sm:text-sm rounded-xl sm:rounded-2xl shadow-xl shadow-rose-950 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 tap-active">
                     <i class="fa-solid fa-user-plus"></i> Register Free Today
                 </a>
-                <a wire:navigate href="{{ route('browse') }}" class="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold text-sm rounded-2xl border border-white/20 backdrop-blur-md transition flex items-center justify-center gap-2 tap-active">
+                <a wire:navigate href="{{ route('browse') }}" class="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm rounded-xl sm:rounded-2xl border border-white/20 backdrop-blur-md transition flex items-center justify-center gap-2 tap-active">
                     <i class="fa-solid fa-compass"></i> Browse Verified Matches
                 </a>
             </div>

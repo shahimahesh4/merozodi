@@ -75,7 +75,8 @@
                             </a>
                         @else
                             <a wire:navigate href="{{ route('checkout', $plan->id) }}" class="btn btn-block rounded-2xl text-xs font-bold tap-active {{ $plan->is_popular ? 'bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white shadow-lg shadow-rose-200' : 'bg-slate-900 hover:bg-slate-800 text-white' }}">
-                                Upgrade via eSewa / Khalti / Fonepay
+                                <span class="hidden sm:inline">Upgrade via eSewa / Khalti / Fonepay</span>
+                                <span class="sm:hidden">Upgrade Plan</span>
                             </a>
                         @endif
                     </div>

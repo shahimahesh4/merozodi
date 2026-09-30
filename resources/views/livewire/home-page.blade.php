@@ -539,22 +539,22 @@
                 <p class="text-xs sm:text-sm text-slate-500 mt-2 max-w-2xl mx-auto">Connect with verified Nepali singles based on caste heritage, international residence, or profession.</p>
             </div>
 
-            <!-- Modern Interactive Tabs -->
-            <div class="flex justify-center mb-8 sm:mb-10 overflow-x-auto no-scrollbar pb-1">
-                <div class="inline-flex p-1.5 bg-white rounded-2xl shadow-xs border border-slate-200/80 gap-1.5">
-                    <button type="button" @click="activeExploreTab = 'caste'" :class="activeExploreTab === 'caste' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'" class="px-4 py-2.5 rounded-xl text-xs font-black transition flex items-center gap-2 tap-active shrink-0">
+            <!-- Modern Interactive Tabs (Contained Swipe on Mobile) -->
+            <div class="flex justify-center mb-8 sm:mb-10 px-2 sm:px-0">
+                <div class="max-w-full overflow-x-auto no-scrollbar scroll-smooth touch-pan-x inline-flex p-1.5 bg-white rounded-2xl shadow-xs border border-slate-200/80 gap-1.5 whitespace-nowrap">
+                    <button type="button" @click="activeExploreTab = 'caste'" :class="activeExploreTab === 'caste' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'" class="px-4 py-2.5 rounded-xl text-xs font-black transition flex items-center gap-2 tap-active shrink-0 whitespace-nowrap select-none">
                         <i class="fa-solid fa-users text-rose-400"></i>
                         <span>Caste & Community</span>
                     </button>
-                    <button type="button" @click="activeExploreTab = 'diaspora'" :class="activeExploreTab === 'diaspora' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'" class="px-4 py-2.5 rounded-xl text-xs font-black transition flex items-center gap-2 tap-active shrink-0">
+                    <button type="button" @click="activeExploreTab = 'diaspora'" :class="activeExploreTab === 'diaspora' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'" class="px-4 py-2.5 rounded-xl text-xs font-black transition flex items-center gap-2 tap-active shrink-0 whitespace-nowrap select-none">
                         <i class="fa-solid fa-earth-asia text-indigo-400"></i>
                         <span>Global Diaspora Hubs</span>
                     </button>
-                    <button type="button" @click="activeExploreTab = 'profession'" :class="activeExploreTab === 'profession' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'" class="px-4 py-2.5 rounded-xl text-xs font-black transition flex items-center gap-2 tap-active shrink-0">
+                    <button type="button" @click="activeExploreTab = 'profession'" :class="activeExploreTab === 'profession' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'" class="px-4 py-2.5 rounded-xl text-xs font-black transition flex items-center gap-2 tap-active shrink-0 whitespace-nowrap select-none">
                         <i class="fa-solid fa-briefcase text-amber-400"></i>
                         <span>By Profession</span>
                     </button>
-                    <button type="button" @click="activeExploreTab = 'religion'" :class="activeExploreTab === 'religion' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'" class="px-4 py-2.5 rounded-xl text-xs font-black transition flex items-center gap-2 tap-active shrink-0">
+                    <button type="button" @click="activeExploreTab = 'religion'" :class="activeExploreTab === 'religion' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'" class="px-4 py-2.5 rounded-xl text-xs font-black transition flex items-center gap-2 tap-active shrink-0 whitespace-nowrap select-none">
                         <i class="fa-solid fa-om text-purple-400"></i>
                         <span>By Religion</span>
                     </button>

@@ -330,8 +330,8 @@
             <!-- Right Column: Profile Detailed Tabs -->
             <div class="lg:col-span-2 space-y-6">
                 
-                <!-- Tab Buttons (Horizontal swipe on mobile) -->
-                <div class="bg-white rounded-2xl md:rounded-3xl p-2 shadow-xs border border-slate-200/80 flex items-center gap-1 overflow-x-auto no-scrollbar">
+                <!-- Tab Buttons (Horizontal swipe on mobile, clean bar on desktop) -->
+                <div class="bg-white rounded-2xl md:rounded-3xl p-2 shadow-xs border border-slate-200/80 flex items-center gap-1 overflow-x-auto no-scrollbar scroll-smooth touch-pan-x">
                     <button wire:click="$set('activeTab', 'about')" class="px-3.5 py-2 md:px-4 md:py-2.5 rounded-xl md:rounded-2xl text-xs font-bold transition shrink-0 flex items-center gap-1.5 tap-active {{ $activeTab === 'about' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-100' }}">
                         <i class="fa-solid fa-user text-[11px]"></i> About
                     </button>

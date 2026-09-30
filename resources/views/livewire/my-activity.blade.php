@@ -26,17 +26,17 @@
         @endif
 
         <!-- Tab Selector -->
-        <div class="bg-white rounded-3xl p-2 shadow-xs border border-slate-200/80 mb-8 flex flex-wrap gap-2">
-            <button wire:click="$set('activeTab', 'received_connects')" class="px-5 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 {{ $activeTab === 'received_connects' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50' }}">
+        <div class="bg-white rounded-3xl p-2 shadow-xs border border-slate-200/80 mb-8 flex flex-nowrap sm:flex-wrap gap-2 overflow-x-auto no-scrollbar scroll-smooth touch-pan-x">
+            <button wire:click="$set('activeTab', 'received_connects')" class="px-5 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 shrink-0 {{ $activeTab === 'received_connects' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50' }}">
                 <i class="fa-solid fa-inbox"></i> Received Requests ({{ $receivedConnects->count() }})
             </button>
-            <button wire:click="$set('activeTab', 'sent_connects')" class="px-5 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 {{ $activeTab === 'sent_connects' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50' }}">
+            <button wire:click="$set('activeTab', 'sent_connects')" class="px-5 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 shrink-0 {{ $activeTab === 'sent_connects' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50' }}">
                 <i class="fa-solid fa-paper-plane"></i> Sent Requests ({{ $sentConnects->count() }})
             </button>
-            <button wire:click="$set('activeTab', 'likes')" class="px-5 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 {{ $activeTab === 'likes' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50' }}">
+            <button wire:click="$set('activeTab', 'likes')" class="px-5 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 shrink-0 {{ $activeTab === 'likes' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50' }}">
                 <i class="fa-solid fa-heart text-rose-500"></i> My Shortlist ({{ $likedProfiles->count() }})
             </button>
-            <button wire:click="$set('activeTab', 'visitors')" class="px-5 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 {{ $activeTab === 'visitors' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50' }}">
+            <button wire:click="$set('activeTab', 'visitors')" class="px-5 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 shrink-0 {{ $activeTab === 'visitors' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50' }}">
                 <i class="fa-solid fa-eye text-indigo-500"></i> Profile Visitors ({{ $profileVisitors->count() }})
             </button>
         </div>

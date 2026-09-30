@@ -26,25 +26,25 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
             
-            <!-- Left Side Navigation Tabs (Horizontal scroll on mobile, vertical on desktop) -->
+            <!-- Left Side Navigation Tabs (Horizontal scroll on mobile, vertical sidebar on desktop) -->
             <div class="lg:col-span-1">
-                <div class="bg-white rounded-2xl lg:rounded-3xl p-2 lg:p-3 shadow-xs border border-slate-200/80 flex flex-row lg:flex-col gap-1 overflow-x-auto no-scrollbar">
-                    <button type="button" wire:click="$set('activeSection', 'basic')" class="shrink-0 text-left px-3.5 py-2 lg:p-3 rounded-xl lg:rounded-2xl text-xs font-bold transition flex items-center gap-2 tap-active {{ $activeSection === 'basic' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50' }}">
+                <div class="bg-white rounded-2xl lg:rounded-3xl p-2 lg:p-3 shadow-xs border border-slate-200/80 flex flex-row lg:flex-col gap-1 overflow-x-auto lg:overflow-visible no-scrollbar scroll-smooth touch-pan-x">
+                    <button type="button" wire:click="$set('activeSection', 'basic')" class="shrink-0 lg:shrink text-left px-3.5 py-2 lg:p-3 rounded-xl lg:rounded-2xl text-xs font-bold transition flex items-center gap-2 tap-active whitespace-nowrap lg:whitespace-normal {{ $activeSection === 'basic' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50' }}">
                         <i class="fa-solid fa-user text-[11px]"></i> <span>Basic & Living</span>
                     </button>
-                    <button type="button" wire:click="$set('activeSection', 'cultural')" class="shrink-0 text-left px-3.5 py-2 lg:p-3 rounded-xl lg:rounded-2xl text-xs font-bold transition flex items-center gap-2 tap-active {{ $activeSection === 'cultural' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50' }}">
+                    <button type="button" wire:click="$set('activeSection', 'cultural')" class="shrink-0 lg:shrink text-left px-3.5 py-2 lg:p-3 rounded-xl lg:rounded-2xl text-xs font-bold transition flex items-center gap-2 tap-active whitespace-nowrap lg:whitespace-normal {{ $activeSection === 'cultural' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50' }}">
                         <i class="fa-solid fa-moon text-[11px]"></i> <span>Cultural & Rashi</span>
                     </button>
-                    <button type="button" wire:click="$set('activeSection', 'lifestyle')" class="shrink-0 text-left px-3.5 py-2 lg:p-3 rounded-xl lg:rounded-2xl text-xs font-bold transition flex items-center gap-2 tap-active {{ $activeSection === 'lifestyle' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50' }}">
+                    <button type="button" wire:click="$set('activeSection', 'lifestyle')" class="shrink-0 lg:shrink text-left px-3.5 py-2 lg:p-3 rounded-xl lg:rounded-2xl text-xs font-bold transition flex items-center gap-2 tap-active whitespace-nowrap lg:whitespace-normal {{ $activeSection === 'lifestyle' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50' }}">
                         <i class="fa-solid fa-heart-pulse text-[11px]"></i> <span>Lifestyle</span>
                     </button>
-                    <button type="button" wire:click="$set('activeSection', 'career')" class="shrink-0 text-left px-3.5 py-2 lg:p-3 rounded-xl lg:rounded-2xl text-xs font-bold transition flex items-center gap-2 tap-active {{ $activeSection === 'career' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50' }}">
+                    <button type="button" wire:click="$set('activeSection', 'career')" class="shrink-0 lg:shrink text-left px-3.5 py-2 lg:p-3 rounded-xl lg:rounded-2xl text-xs font-bold transition flex items-center gap-2 tap-active whitespace-nowrap lg:whitespace-normal {{ $activeSection === 'career' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50' }}">
                         <i class="fa-solid fa-graduation-cap text-[11px]"></i> <span>Career</span>
                     </button>
-                    <button type="button" wire:click="$set('activeSection', 'family')" class="shrink-0 text-left px-3.5 py-2 lg:p-3 rounded-xl lg:rounded-2xl text-xs font-bold transition flex items-center gap-2 tap-active {{ $activeSection === 'family' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50' }}">
+                    <button type="button" wire:click="$set('activeSection', 'family')" class="shrink-0 lg:shrink text-left px-3.5 py-2 lg:p-3 rounded-xl lg:rounded-2xl text-xs font-bold transition flex items-center gap-2 tap-active whitespace-nowrap lg:whitespace-normal {{ $activeSection === 'family' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50' }}">
                         <i class="fa-solid fa-people-roof text-[11px]"></i> <span>Family</span>
                     </button>
-                    <button type="button" wire:click="$set('activeSection', 'preferences')" class="shrink-0 text-left px-3.5 py-2 lg:p-3 rounded-xl lg:rounded-2xl text-xs font-bold transition flex items-center gap-2 tap-active {{ $activeSection === 'preferences' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50' }}">
+                    <button type="button" wire:click="$set('activeSection', 'preferences')" class="shrink-0 lg:shrink text-left px-3.5 py-2 lg:p-3 rounded-xl lg:rounded-2xl text-xs font-bold transition flex items-center gap-2 tap-active whitespace-nowrap lg:whitespace-normal {{ $activeSection === 'preferences' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50' }}">
                         <i class="fa-solid fa-sliders text-[11px]"></i> <span>Preferences</span>
                     </button>
                 </div>

@@ -135,7 +135,7 @@ class ManageSiteSettings extends Page
                                             ->placeholder('+977-9801234567'),
                                         TextInput::make('app_version')
                                             ->label('Application Version Tag')
-                                            ->placeholder('Beta Version 1.0'),
+                                            ->placeholder('Beta Version 2.0'),
                                         TextInput::make('office_address')
                                             ->label('Physical Office Address')
                                             ->placeholder('Lazimpat, Kathmandu, Nepal')

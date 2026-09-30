@@ -327,7 +327,7 @@
                     <span>{{ $siteName }} &copy; {{ date('Y') }}</span>
                     <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-rose-100 text-rose-600">
                         <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>
-                        {{ $globalSettings['app_version'] ?? 'Beta Version 1.0' }}
+                        {{ $globalSettings['app_version'] ?? 'Beta Version 2.0' }}
                     </span>
                 </div>
             </div>
@@ -515,7 +515,7 @@
                     <p>{{ $globalSettings['copyright_text'] ?? ('© ' . date('Y') . ' ' . $siteName . '. All rights reserved.') }} Powered By: <a href="{{ $globalSettings['powered_by_url'] ?? 'https://siddhitechnepal.com' }}" target="_blank" rel="noopener noreferrer" class="text-rose-400 hover:text-rose-300 font-semibold transition hover:underline">{{ $globalSettings['powered_by_text'] ?? 'Siddhi Tech Nepal' }}</a></p>
                     <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-rose-500/10 text-rose-400 border border-rose-500/20">
                         <span class="w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse"></span>
-                        {{ $globalSettings['app_version'] ?? 'Beta Version 1.0' }}
+                        {{ $globalSettings['app_version'] ?? 'Beta Version 2.0' }}
                     </span>
                 </div>
                 <div class="flex gap-6">

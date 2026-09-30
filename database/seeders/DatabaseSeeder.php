@@ -160,9 +160,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // 8. Create Super Admin, Operations Admin, and Staff Support Users
-        $superAdmin = User::updateOrCreate(['email' => 'admin@merozodi.com'], [
+        $superAdmin = User::updateOrCreate(['email' => 'shahimahesh4@gmail.com'], [
             'name' => 'MeroZodi Super Administrator',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('Mahesh@9843##'),
             'gender' => 'male',
             'phone' => '+977-9800000000',
             'dob' => '1990-01-01',

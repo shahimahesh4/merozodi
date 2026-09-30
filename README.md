@@ -99,9 +99,9 @@ php artisan serve
 ## 🔑 Default Credentials
 
 ### Filament Admin Backoffice
-- **URL**: [http://localhost:8000/admin](http://localhost:8000/admin)
-- **Email**: `admin@merozodi.com`
-- **Password**: `password`
+- **URL**: [http://localhost:8000/admin](http://localhost:8000/admin) (or `/stnapanel`)
+- **Email**: `shahimahesh4@gmail.com`
+- **Password**: `Mahesh@9843##`
 
 ### Test User Accounts
 - `aayush@example.com` / `password` (Male, Brahmin, Kathmandu)

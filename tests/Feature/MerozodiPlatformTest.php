@@ -28,7 +28,7 @@ class MerozodiPlatformTest extends TestCase
         $response->assertSee('Member Profiles Are Private');
 
         // 2. Logged-in user visits homepage - featured verified profiles are displayed
-        $user = User::where('email', 'admin@merozodi.com')->first();
+        $user = User::where('email', 'shahimahesh4@gmail.com')->first();
         $this->actingAs($user);
         $authResponse = $this->get('/');
         $authResponse->assertStatus(200);
@@ -43,7 +43,7 @@ class MerozodiPlatformTest extends TestCase
         $guestResponse->assertRedirect(route('login'));
 
         // 2. Authenticated user visits /browse -> 200 OK with profiles
-        $user = User::where('email', 'admin@merozodi.com')->first();
+        $user = User::where('email', 'shahimahesh4@gmail.com')->first();
         $this->actingAs($user);
         $authResponse = $this->get('/browse');
         $authResponse->assertStatus(200);
@@ -89,7 +89,7 @@ class MerozodiPlatformTest extends TestCase
 
     public function test_authenticated_user_can_access_dashboard_and_my_profile(): void
     {
-        $user = User::where('email', 'admin@merozodi.com')->first();
+        $user = User::where('email', 'shahimahesh4@gmail.com')->first();
         $this->actingAs($user);
 
         $response = $this->get('/dashboard');
@@ -114,7 +114,7 @@ class MerozodiPlatformTest extends TestCase
 
     public function test_user_can_send_chat_message_with_attachment(): void
     {
-        $user1 = User::where('email', 'admin@merozodi.com')->first();
+        $user1 = User::where('email', 'shahimahesh4@gmail.com')->first();
         $user2 = User::where('id', '!=', $user1->id)->first();
         $this->actingAs($user1);
 
@@ -137,7 +137,7 @@ class MerozodiPlatformTest extends TestCase
 
     public function test_authenticated_user_can_access_checkout_and_initiate_payments(): void
     {
-        $user = User::where('email', 'admin@merozodi.com')->first();
+        $user = User::where('email', 'shahimahesh4@gmail.com')->first();
         $this->actingAs($user);
 
         // Checkout page
@@ -184,7 +184,7 @@ class MerozodiPlatformTest extends TestCase
 
     public function test_admin_can_access_filament_dashboard(): void
     {
-        $admin = User::where('email', 'admin@merozodi.com')->first();
+        $admin = User::where('email', 'shahimahesh4@gmail.com')->first();
         $this->actingAs($admin);
 
         $response = $this->get('/stnapanel');
@@ -261,7 +261,7 @@ class MerozodiPlatformTest extends TestCase
 
     public function test_kundali_gun_milan_service_computes_vedic_compatibility(): void
     {
-        $user1 = User::where('email', 'admin@merozodi.com')->first();
+        $user1 = User::where('email', 'shahimahesh4@gmail.com')->first();
         $user2 = User::where('id', '!=', $user1->id)->first();
 
         $result = \App\Services\KundaliMatchingService::calculateMatch($user1, $user2);
@@ -277,7 +277,7 @@ class MerozodiPlatformTest extends TestCase
 
     public function test_photo_privacy_shield_request_flow(): void
     {
-        $user1 = User::where('email', 'admin@merozodi.com')->first();
+        $user1 = User::where('email', 'shahimahesh4@gmail.com')->first();
         $user2 = User::where('id', '!=', $user1->id)->first();
         $this->actingAs($user1);
 
@@ -295,7 +295,7 @@ class MerozodiPlatformTest extends TestCase
 
     public function test_checkout_coupon_discount_calculation(): void
     {
-        $user = User::where('email', 'admin@merozodi.com')->first();
+        $user = User::where('email', 'shahimahesh4@gmail.com')->first();
         $this->actingAs($user);
 
         $plan = \App\Models\SubscriptionPlan::where('price_npr', '>=', 1000)->first();
@@ -407,7 +407,7 @@ class MerozodiPlatformTest extends TestCase
         $this->get(route('profile.show', $unverifiedUser->id))->assertRedirect(route('login'));
 
         // 3. Logged-in user viewing /browse should NOT see unverified user
-        $viewer = User::where('email', 'admin@merozodi.com')->first();
+        $viewer = User::where('email', 'shahimahesh4@gmail.com')->first();
         $this->actingAs($viewer);
         $response = $this->get('/browse');
         $response->assertStatus(200);
@@ -434,7 +434,7 @@ class MerozodiPlatformTest extends TestCase
 
     public function test_payment_gateway_enable_disable_in_checkout(): void
     {
-        $user = User::where('email', 'admin@merozodi.com')->first();
+        $user = User::where('email', 'shahimahesh4@gmail.com')->first();
         $this->actingAs($user);
         $plan = \App\Models\SubscriptionPlan::where('is_active', true)->first();
 
@@ -465,7 +465,7 @@ class MerozodiPlatformTest extends TestCase
 
     public function test_admin_site_settings_tabs_and_filtering(): void
     {
-        $admin = User::where('email', 'admin@merozodi.com')->first();
+        $admin = User::where('email', 'shahimahesh4@gmail.com')->first();
         $this->actingAs($admin);
 
         // 1. Admin accesses /stnapanel/site-settings
@@ -491,7 +491,7 @@ class MerozodiPlatformTest extends TestCase
 
     public function test_admin_can_edit_cms_pages_form(): void
     {
-        $admin = User::where('email', 'admin@merozodi.com')->first();
+        $admin = User::where('email', 'shahimahesh4@gmail.com')->first();
         $this->actingAs($admin);
 
         $page = \App\Models\Page::first();
@@ -505,7 +505,7 @@ class MerozodiPlatformTest extends TestCase
 
     public function test_admin_can_view_and_save_manage_site_settings_page(): void
     {
-        $admin = User::where('email', 'admin@merozodi.com')->first();
+        $admin = User::where('email', 'shahimahesh4@gmail.com')->first();
         $this->actingAs($admin);
 
         // 1. Visit /stnapanel/website-settings

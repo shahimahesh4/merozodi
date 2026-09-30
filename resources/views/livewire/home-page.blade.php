@@ -99,9 +99,8 @@
 <div>
     <!-- Parallax Hero Section with Matrimonial Search Widget -->
     <section class="relative bg-fixed bg-cover bg-center text-white overflow-hidden py-10 sm:py-14 lg:py-16" style="background-image: url('{{ !empty($settings['hero_bg_image']) ? (str_starts_with($settings['hero_bg_image'], 'http') || str_starts_with($settings['hero_bg_image'], 'images/') ? asset($settings['hero_bg_image']) : asset('storage/' . $settings['hero_bg_image'])) : asset('images/nepali-wedding-banner.jpg') }}');">
-        <!-- High-Contrast Background Overlay: Darkens Bright Sky & Snow Mountains for Perfect Text Readability -->
-        <div class="absolute inset-0 bg-slate-950/75"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/60 to-slate-950/85 pointer-events-none"></div>
+        <!-- Top-Focused Dark Gradient Overlay: Rich darkness concentrated at top, fading out downwards -->
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/95 via-slate-950/60 via-40% to-slate-950/15 pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <!-- Hero Title & Subtitle with Enhanced Readability -->

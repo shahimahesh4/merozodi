@@ -82,7 +82,7 @@ class EnhancementSeeder extends Seeder
             ['key' => 'copyright_text', 'value' => '© 2026 MeroZodi. All rights reserved.', 'group' => 'footer', 'label' => 'Footer Copyright Text', 'type' => 'text'],
             ['key' => 'powered_by_text', 'value' => 'Siddhi Tech Nepal', 'group' => 'footer', 'label' => 'Footer Powered By Text', 'type' => 'text'],
             ['key' => 'powered_by_url', 'value' => 'https://siddhitechnepal.com', 'group' => 'footer', 'label' => 'Footer Powered By Link URL', 'type' => 'text'],
-            ['key' => 'app_version', 'value' => 'Beta Version 1.0', 'group' => 'footer', 'label' => 'App Release Version Tag', 'type' => 'text'],
+            ['key' => 'app_version', 'value' => 'Beta Version 2.0', 'group' => 'footer', 'label' => 'App Release Version Tag', 'type' => 'text'],
 
             // Payment Gateway API Configurations & Enable/Disable Toggles
             // 1. eSewa ePay v2
